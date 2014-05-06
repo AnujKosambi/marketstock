@@ -13,7 +13,7 @@ public class learning_center extends SherlockFragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.news, container, false);
+        View rootView = inflater.inflate(R.layout.learning_home, container, false);
         
         return rootView;
     }
