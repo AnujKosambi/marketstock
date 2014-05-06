@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="5dip" >
+
+    <TextView
+        android:id="@+id/company_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="Company"
+        android:layout_marginRight="7dp"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/indices_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/company_name"
+        android:layout_below="@+id/company_name"
+        android:text="Date"
+        android:layout_marginRight="2dp"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/indices_pointchange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/indices_date"
+        android:layout_toLeftOf="@+id/indices_percentchange"
+       	android:layout_marginRight="5dp"
+        android:text="Point Change"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/indices_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/indices_pointchange"
+        android:layout_alignBottom="@+id/indices_pointchange"
+        android:layout_toLeftOf="@+id/indices_pointchange"
+        android:layout_marginRight="5dp"
+        android:text="Value"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+    <TextView
+        android:id="@+id/indices_percentchange"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/indices_date"
+        android:layout_alignParentRight="true"
+        android:text="Percent Change"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+ 
+</RelativeLayout>

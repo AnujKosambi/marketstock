@@ -20,7 +20,7 @@ private ViewPager viewPager;
 private TabsPagerAdapter mAdapter;
 private ActionBar actionBar;
 // Tab titles
-private String[] tabs = { "Top Rated", "Games", "Movies" };
+private String[] tabs = { "Indices", "Market Movers", "News", "Learn More" };
 
 @Override
 protected void onCreate(Bundle savedInstanceState) {
