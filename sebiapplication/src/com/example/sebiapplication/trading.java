@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 
 import com.actionbarsherlock.app.SherlockFragment;
 
-public class News extends SherlockFragment{
+public class trading extends SherlockFragment{
 
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

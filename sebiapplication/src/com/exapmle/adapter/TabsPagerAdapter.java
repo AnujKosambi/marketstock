@@ -2,8 +2,10 @@ package com.exapmle.adapter;
 
 import com.example.sebiapplication.indices;
 import com.example.sebiapplication.learnMore;
+import com.example.sebiapplication.learning_center;
 import com.example.sebiapplication.marketMovers;
 import com.example.sebiapplication.News;
+import com.example.sebiapplication.trading;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -21,14 +23,9 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
 
         switch (index) {
         case 0:
-            return new indices();
+            return new learning_center();
         case 1:
-            return new marketMovers();
-        case 2:
-            return new News();
-        case 3:
-        	return new learnMore();
-        	
+            return new trading();
         }
 
         return null;
@@ -36,7 +33,7 @@ public class TabsPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 4;
+        return 2;
     }
 
 }
