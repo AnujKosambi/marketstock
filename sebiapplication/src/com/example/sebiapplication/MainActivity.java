@@ -1,5 +1,6 @@
 package com.example.sebiapplication;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
@@ -70,9 +71,9 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 			@Override
 			public void onClick(View v) {
-				Toast.makeText(getApplicationContext(), "Hi",
-						Toast.LENGTH_SHORT).show();
-
+				
+				startActivity(new Intent(getApplicationContext(),Searchstock.class));
+	
 			}
 		});
 
