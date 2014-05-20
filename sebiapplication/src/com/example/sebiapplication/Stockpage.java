@@ -11,28 +11,27 @@ import android.widget.Button;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.example.adapter.TabsPagerAdapter;
+import com.example.adapter.StockPagesAdapter;
 
-public class MainActivity extends SherlockFragmentActivity implements
-		ActionBar.TabListener {
+public class Stockpage extends SherlockFragmentActivity implements ActionBar.TabListener {
 
 	private ViewPager viewPager;
-	private TabsPagerAdapter mAdapter;
+	private StockPagesAdapter mAdapter;
 	private ActionBar actionBar;
 
 	private Button getQuoteBtn;
 	// Tab titles
-	private String[] tabs = { "Learning Center", "Trade now" };
-
+	private String[] tabs = { "Stock details", "Chart","News" };
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+//		setContentView(R.layout.activity_stockpage);
 		setContentView(R.layout.activity_main);
-
-		// Initilization
+		
 		viewPager = (ViewPager) findViewById(R.id.pager);
 		actionBar = getSupportActionBar();
-		mAdapter = new TabsPagerAdapter(getSupportFragmentManager());
+		mAdapter = new StockPagesAdapter(getSupportFragmentManager());
 		getQuoteBtn = (Button) findViewById(R.id.getquote_btn);
 
 		viewPager.setAdapter(mAdapter);
@@ -65,7 +64,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 			public void onPageScrollStateChanged(int arg0) {
 			}
 		});
-
+		
 		getQuoteBtn.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -76,21 +75,25 @@ public class MainActivity extends SherlockFragmentActivity implements
 			}
 		});
 
-	}
 
-	@Override
-	public void onTabReselected(Tab tab, FragmentTransaction ft) {
+
 	}
 
 	@Override
 	public void onTabSelected(Tab tab, FragmentTransaction ft) {
-		// on tab selected
-		// show respected fragment view
+		// TODO Auto-generated method stub
 		viewPager.setCurrentItem(tab.getPosition());
 	}
 
 	@Override
 	public void onTabUnselected(Tab tab, FragmentTransaction ft) {
+		// TODO Auto-generated method stub
+		
 	}
 
+	@Override
+	public void onTabReselected(Tab tab, FragmentTransaction ft) {
+		// TODO Auto-generated method stub
+		
+	}
 }

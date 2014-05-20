@@ -26,6 +26,10 @@
             android:name="com.example.sebiapplication.Searchstock"
             android:label="@string/title_activity_searchstock" >
         </activity>
+        <activity
+            android:name="com.example.sebiapplication.Stockpage"
+            android:label="@string/title_activity_stockpage" >
+        </activity>
     </application>
 
 </manifest>
