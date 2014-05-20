@@ -1,7 +1,41 @@
-<android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:baselineAligned="false"
+    android:orientation="vertical"
+    >
+
+    <android.support.v4.view.ViewPager xmlns:android="http://schemas.android.com/apk/res/android"
 	    android:id="@+id/pager"
 	    android:layout_width="match_parent"
-	    android:layout_height="match_parent">
-    
-</android.support.v4.view.ViewPager>
+	    android:layout_height="match_parent"
+        android:layout_marginBottom="30dp">
+    </android.support.v4.view.ViewPager>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:layout_marginTop="-30dp"
+        android:orientation="horizontal"
+        android:id="@+id/getqot_layout">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="New Text"
+            android:id="@+id/textView4"
+            android:layout_marginRight="100dp"/>
+
+        <Button
+            android:layout_marginLeft="-100dp"
+            android:layout_width="100dp"
+            android:layout_height="30dp"
+            android:text="Get Quote"
+            android:padding="1dp"
+            android:textSize="5pt"
+            android:id="@+id/getquote_btn" />
+
+    </LinearLayout>
+
+</LinearLayout>

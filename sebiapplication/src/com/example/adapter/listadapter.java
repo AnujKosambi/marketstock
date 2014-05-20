@@ -1,4 +1,4 @@
-package com.exapmle.adapter;
+package com.example.adapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;

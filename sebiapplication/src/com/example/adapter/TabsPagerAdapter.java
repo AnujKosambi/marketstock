@@ -1,4 +1,4 @@
-package com.exapmle.adapter;
+package com.example.adapter;
 
 import com.example.sebiapplication.indices;
 import com.example.sebiapplication.learnMore;

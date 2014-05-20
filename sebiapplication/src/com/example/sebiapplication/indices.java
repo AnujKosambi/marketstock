@@ -14,7 +14,7 @@ import android.widget.ListView;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragment;
-import com.exapmle.adapter.listadapter;
+import com.example.adapter.listadapter;
 
 public class indices extends SherlockFragment{
 
