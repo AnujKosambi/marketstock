@@ -6,5 +6,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_searchstock">Searchstock</string>
     <string name="title_activity_stockpage">Stockpage</string>
+    <string name="company_name">Company Name</string>
 
 </resources>
