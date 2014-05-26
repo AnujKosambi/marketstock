@@ -2,6 +2,7 @@ package com.marketstock.sebiapplication.models;
 
 public class News {
 
+	int id;
 	String title;
 	String desc;
 	String learning;

@@ -3,6 +3,8 @@ package com.marketstock.sebiapplication.models;
 import java.sql.Date;
 
 public class Stock {
+	
+	int id;
 	Date date;
 	Double openPrice;
 	Double closePrice;
@@ -16,7 +18,7 @@ public class Stock {
 
 	public Stock(Date date, Double openPrice, Double closePrice,
 			Double highPrice, Double lowPrice, Double volume) {
-
+				
 		this.date = date;
 		this.openPrice = openPrice;
 		this.closePrice = closePrice;
