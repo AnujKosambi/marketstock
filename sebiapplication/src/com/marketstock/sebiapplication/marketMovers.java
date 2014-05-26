@@ -1,4 +1,4 @@
-package com.example.sebiapplication;
+package com.marketstock.sebiapplication;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -6,14 +6,15 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.actionbarsherlock.app.SherlockFragment;
+import com.example.sebiapplication.R;
 
-public class stockDetail extends SherlockFragment{
+public class marketMovers extends SherlockFragment{
 
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.stock_detail, container, false);
+        View rootView = inflater.inflate(R.layout.market_movers, container, false);
         
         return rootView;
     }

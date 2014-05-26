@@ -1,4 +1,4 @@
-package com.example.adapter;
+package com.marketstock.adapter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -62,11 +62,11 @@ public class listadapter extends BaseAdapter{
         index = data.get(position);
  
         // Setting all values in list view
-        holder.name.setText(index.get(com.example.sebiapplication.indices.KEY_NAME));
-        holder.date.setText(index.get(com.example.sebiapplication.indices.KEY_DATE));
-        holder.value.setText(index.get(com.example.sebiapplication.indices.KEY_VALUE));
-        holder.pointchange.setText(index.get(com.example.sebiapplication.indices.KEY_POINT_CHANGE));
-        holder.percentchange.setText(index.get(com.example.sebiapplication.indices.KEY_PERCENT_CHANGE));
+        holder.name.setText(index.get(com.marketstock.sebiapplication.indices.KEY_NAME));
+        holder.date.setText(index.get(com.marketstock.sebiapplication.indices.KEY_DATE));
+        holder.value.setText(index.get(com.marketstock.sebiapplication.indices.KEY_VALUE));
+        holder.pointchange.setText(index.get(com.marketstock.sebiapplication.indices.KEY_POINT_CHANGE));
+        holder.percentchange.setText(index.get(com.marketstock.sebiapplication.indices.KEY_PERCENT_CHANGE));
         return vi;
         
     }

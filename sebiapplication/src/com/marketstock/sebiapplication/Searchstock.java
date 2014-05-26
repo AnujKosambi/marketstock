@@ -1,4 +1,6 @@
-package com.example.sebiapplication;
+package com.marketstock.sebiapplication;
+
+import com.example.sebiapplication.R;
 
 import android.app.Activity;
 import android.content.Intent;

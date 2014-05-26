@@ -1,4 +1,4 @@
-package com.example.sebiapplication.models;
+package com.marketstock.sebiapplication.models;
 
 import java.sql.Date;
 

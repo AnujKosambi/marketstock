@@ -1,12 +1,12 @@
-package com.example.adapter;
+package com.marketstock.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.example.sebiapplication.stockChart;
-import com.example.sebiapplication.stockDetail;
-import com.example.sebiapplication.stockNews;
+import com.marketstock.sebiapplication.stockChart;
+import com.marketstock.sebiapplication.stockDetail;
+import com.marketstock.sebiapplication.stockNews;
 
 public class StockPagesAdapter extends FragmentPagerAdapter{
 

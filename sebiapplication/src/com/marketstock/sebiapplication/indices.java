@@ -1,4 +1,4 @@
-package com.example.sebiapplication;
+package com.marketstock.sebiapplication;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,7 +14,8 @@ import android.widget.ListView;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragment;
-import com.example.adapter.listadapter;
+import com.example.sebiapplication.R;
+import com.marketstock.adapter.listadapter;
 
 public class indices extends SherlockFragment{
 
