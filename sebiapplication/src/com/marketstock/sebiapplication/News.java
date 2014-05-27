@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.actionbarsherlock.app.SherlockFragment;
-import com.example.sebiapplication.R;
 
 public class News extends SherlockFragment{
 

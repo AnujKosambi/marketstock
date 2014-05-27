@@ -1,6 +1,7 @@
 package com.marketstock.sebiapplication;
 
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
@@ -11,8 +12,8 @@ import android.widget.Button;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.example.sebiapplication.R;
 import com.marketstock.adapter.TabsPagerAdapter;
+import com.marketstock.sebiapplication.dbhelper.DBHelper;
 
 public class MainActivity extends SherlockFragmentActivity implements
 		ActionBar.TabListener {
@@ -25,11 +26,23 @@ public class MainActivity extends SherlockFragmentActivity implements
 	// Tab titles
 	private String[] tabs = { "Learning Center", "Trade now" };
 
+	DBHelper db;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+		
+		db = new DBHelper(this);
+		
+		Cursor s = db.getReadableDatabase().rawQuery("SELECT * FROM infosys",
+				null);
 
+		s.moveToFirst();
+		
+//		Log.d(s.getDouble(5)+"","ewf");
+		
 		// Initilization
 		viewPager = (ViewPager) findViewById(R.id.pager);
 		actionBar = getSupportActionBar();
@@ -71,9 +84,10 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 			@Override
 			public void onClick(View v) {
-				
-				startActivity(new Intent(getApplicationContext(),Searchstock.class));
-	
+
+				startActivity(new Intent(getApplicationContext(),
+						Searchstock.class));
+
 			}
 		});
 

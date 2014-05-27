@@ -1,7 +1,5 @@
 package com.marketstock.sebiapplication;
 
-import com.example.sebiapplication.R;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;

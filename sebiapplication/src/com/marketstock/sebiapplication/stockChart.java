@@ -3,30 +3,22 @@ package com.marketstock.sebiapplication;
 
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.List;
 import java.util.Random;
 
-import android.R.string;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.DatePicker;
 import android.widget.LinearLayout;
 
 import com.actionbarsherlock.app.SherlockFragment;
-import com.example.sebiapplication.R;
-import com.marketstock.helper.GraphViewData;
-import com.marketstock.sebiapplication.models.Stock;
 import com.jjoe64.graphview.CustomLabelFormatter;
-import com.jjoe64.graphview.GraphView;
-import com.jjoe64.graphview.GraphViewDataInterface;
+import com.jjoe64.graphview.GraphView.GraphViewData;
 import com.jjoe64.graphview.GraphViewSeries;
 import com.jjoe64.graphview.GraphViewSeries.GraphViewSeriesStyle;
 import com.jjoe64.graphview.LineGraphView;
-import com.jjoe64.graphview.ValueDependentColor;
+import com.marketstock.sebiapplication.models.Stock;
 
 public class stockChart extends SherlockFragment{
 
@@ -53,7 +45,7 @@ public class stockChart extends SherlockFragment{
        //	graphView.getGraphViewStyle().setNumVerticalLabels(4);
        //	graphView.getGraphViewStyle().setVerticalLabelsWidth(20);
        //	graphView.getGraphViewStyle().
-       	((LineGraphView) graphView).setDrawBackground(true);
+       	graphView.setDrawBackground(true);
        	//graphView.
        	
        	
@@ -61,7 +53,7 @@ public class stockChart extends SherlockFragment{
         graphView.setDrawDataPoints(true);
        	graphView.setDataPointsRadius(2f);
   
-       	Date fromDate=new Date(1,1,2014);
+		Date fromDate =new Date(1,1,2014);
        	Date toDate=new Date(31,12,2014);
    //    	graphView.setHorizontalLabels(new String[] {fromDate.toString(),toDate.toString()});
        	ArrayList<String> dateList=new ArrayList<String>();
