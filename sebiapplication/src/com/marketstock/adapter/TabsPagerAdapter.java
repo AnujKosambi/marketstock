@@ -1,10 +1,6 @@
 package com.marketstock.adapter;
 
-import com.marketstock.sebiapplication.News;
-import com.marketstock.sebiapplication.indices;
-import com.marketstock.sebiapplication.learnMore;
 import com.marketstock.sebiapplication.learning_center;
-import com.marketstock.sebiapplication.marketMovers;
 import com.marketstock.sebiapplication.trading;
 
 import android.support.v4.app.Fragment;

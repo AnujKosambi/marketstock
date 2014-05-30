@@ -11,7 +11,6 @@ import android.widget.Button;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
-import com.example.sebiapplication.R;
 import com.marketstock.adapter.StockPagesAdapter;
 
 public class Stockpage extends SherlockFragmentActivity implements ActionBar.TabListener {
