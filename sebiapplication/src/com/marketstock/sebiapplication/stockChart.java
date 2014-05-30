@@ -2,6 +2,7 @@ package com.marketstock.sebiapplication;
 
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -10,6 +11,7 @@ import java.util.Random;
 import android.R.string;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.format.DateFormat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -69,7 +71,7 @@ public class stockChart extends SherlockFragment{
         for(int i=0;i<360;i++)
         {
         	@SuppressWarnings("deprecation")
-  			Date date=new Date(2014,i/30+1, i%30+1);
+  			Date date=new Date(0,i/30+1, i%30+1);
           	monthMarker[i/30]=1;
         	Random random=new Random();
         	double openPrice= random.nextDouble();
@@ -78,26 +80,26 @@ public class stockChart extends SherlockFragment{
         	double lowPrice= random.nextDouble();
         	double volume= random.nextDouble();        			
         	Stock stock=new Stock(date,openPrice,closePrice,highPrice,lowPrice,volume);
-        	series.appendData(new GraphViewData(i*1.0,closePrice), true);
-            if(i%30==0)
+        	series.appendData(new GraphViewData(i,closePrice), true);
+        //    if(i%30==0)
         	dateList.add(date.toString());
         }
 
         String[] stockArr = new String[dateList.size()];
         stockArr = dateList.toArray(stockArr);
-        
-    	//graphView.setHorizontalLabels(stockArr);
+        final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");
+    //	graphView.setHorizontalLabels(stockArr);
         graphView.setCustomLabelFormatter(new CustomLabelFormatter() {
             @Override
             public String formatLabel(double value, boolean isValueX) {
                 if (isValueX) {
-                    // Assuming only 7 total values here
-                    return ""+value;
+                   
+                    return dateFormat.format(new Date(913,(int)(value/30)+1, (int)value%30+1));
                 } else
                     return String.format("%.2f", value);
             }
         });
-//        graphView.getGraphViewStyle().setNumHorizontalLabels(3);
+        graphView.getGraphViewStyle().setNumHorizontalLabels(4);
     	LinearLayout layout = (LinearLayout)rootView.findViewById(R.id.ChartLayout);
     	layout.addView(graphView);
     	

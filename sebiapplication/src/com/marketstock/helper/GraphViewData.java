@@ -1,12 +1,15 @@
 package com.marketstock.helper;
 
+import java.sql.Timestamp;
+import java.util.Date;
+
 import com.jjoe64.graphview.GraphViewDataInterface;
 
 public class GraphViewData implements GraphViewDataInterface {
     private double x,y;
 
     public GraphViewData(double x, double y) {
-        this.x = x;
+        this.x =x;
         this.y = y;
     }
 
