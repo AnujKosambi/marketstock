@@ -1,15 +1,21 @@
 package com.marketstock.helper;
 
-import java.sql.Timestamp;
+
 import java.util.Date;
 
-import com.jjoe64.graphview.GraphViewDataInterface;
+import android.text.format.Time;
 
-public class GraphViewData implements GraphViewDataInterface {
+import com.jjoe64.graphview.GraphViewDataInterface;
+import com.marketstock.sebiapplication.stockChart;
+
+public class GraphViewData implements GraphViewDataInterface  {
     private double x,y;
 
-    public GraphViewData(double x, double y) {
-        this.x =x;
+    public GraphViewData(Date x, double y)  {
+      
+    	//this.x=x;
+    	
+        this.x = (double)((long)(x.getTime()/10000));
         this.y = y;
     }
 
@@ -22,4 +28,6 @@ public class GraphViewData implements GraphViewDataInterface {
     public double getY() {
         return this.y;
     }
+
+
 }

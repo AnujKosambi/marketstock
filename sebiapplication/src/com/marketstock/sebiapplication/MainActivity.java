@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
@@ -26,7 +27,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 	// Tab titles
 	private String[] tabs = { "Learning Center", "Trade now" };
 
-	DBHelper db;
+	static DBHelper db;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -35,13 +36,6 @@ public class MainActivity extends SherlockFragmentActivity implements
 		setContentView(R.layout.activity_main);
 		
 		db = new DBHelper(this);
-		
-		Cursor s = db.getReadableDatabase().rawQuery("SELECT * FROM infosys",
-				null);
-
-		s.moveToFirst();
-		
-//		Log.d(s.getDouble(5)+"","ewf");
 		
 		// Initilization
 		viewPager = (ViewPager) findViewById(R.id.pager);

@@ -17,9 +17,9 @@ public class Stockpage extends SherlockFragmentActivity implements ActionBar.Tab
 
 	private ViewPager viewPager;
 	private StockPagesAdapter mAdapter;
-	private ActionBar actionBar;
+	private ActionBar actionBar; 
 
-	private Button getQuoteBtn;
+	
 	// Tab titles
 	private String[] tabs = { "Stock details", "Chart","News" };
 	
@@ -27,12 +27,15 @@ public class Stockpage extends SherlockFragmentActivity implements ActionBar.Tab
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 //		setContentView(R.layout.activity_stockpage);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.activity_stockpage);
 		
-		viewPager = (ViewPager) findViewById(R.id.pager);
+		viewPager = (ViewPager) findViewById(R.id.stockpager);
+		viewPager.setScrollContainer(true);
+
+		
 		actionBar = getSupportActionBar();
 		mAdapter = new StockPagesAdapter(getSupportFragmentManager());
-		getQuoteBtn = (Button) findViewById(R.id.getquote_btn);
+		//getQuoteBtn = (Button) findViewById(R.id.getquote_btn);
 
 		viewPager.setAdapter(mAdapter);
 		actionBar.setHomeButtonEnabled(false);
@@ -65,17 +68,7 @@ public class Stockpage extends SherlockFragmentActivity implements ActionBar.Tab
 			}
 		});
 		
-		getQuoteBtn.setOnClickListener(new OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				
-				startActivity(new Intent(getApplicationContext(),Searchstock.class));
 	
-			}
-		});
-
-
 
 	}
 

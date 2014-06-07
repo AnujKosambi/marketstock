@@ -1,0 +1,438 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <FrameLayout
+               
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                android:layout_weight="1" 
+                >
+
+                <LinearLayout
+                    android:id="@+id/indicesCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:background="@drawable/selector_card_background"
+                    android:orientation="vertical" >
+
+                    <TextView
+                    
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Indices"
+                        android:textAlignment="center"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/textSensex"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                         android:textStyle="bold"
+                        android:text="Sensex"
+                        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                    <TableLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingLeft="20dp" >
+
+                        <TableRow
+                            android:id="@+id/tableRow1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" >
+
+                            <TextView
+                                android:id="@+id/textSensexValue"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Value"
+                                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                            <TextView
+                                android:id="@+id/textSensexValueInt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                        </TableRow>
+
+                        <TableRow
+                            android:id="@+id/tableRow2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" >
+
+                            <TextView
+                                android:id="@+id/textSensexChange"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Change"
+                                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                            <TextView
+                                android:id="@+id/textSensexChangeInt"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="0"
+                                android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                        </TableRow>
+
+                    </TableLayout>
+                
+                </LinearLayout>
+                </FrameLayout>
+
+         		<FrameLayout
+         		    
+         		    android:layout_width="0dp"
+         		    android:layout_height="match_parent"
+         		    android:layout_gravity="center"
+         		        android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+         		    android:layout_weight="1" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                        android:paddingBottom="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:background="@drawable/layer_card_background"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/textMarketMover"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                  		android:text="MarketMovers"
+                  		    android:textStyle="bold"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:paddingLeft="20dp" >
+
+                        <TextView
+                            android:id="@+id/textTopGainer"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Top Gainer"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/textView2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="XYZ Ltd"
+                            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                        <TextView
+                            android:id="@+id/textTopLosser"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Top Losser"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/textView2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="XYZ ltd"
+                            android:textAppearance="?android:attr/textAppearanceSmall" />
+                    </LinearLayout>
+                
+                </LinearLayout>
+                </FrameLayout>
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" >
+
+                 <FrameLayout
+                     
+                     android:layout_width="0dp"
+                     android:layout_height="match_parent"
+                     android:layout_gravity="center"
+                         android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp"
+                     android:layout_weight="1" >
+
+                <LinearLayout android:layout_width="match_parent" 
+                      		  android:layout_height="match_parent"
+                                 android:paddingBottom="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp"
+      							android:background="@drawable/layer_card_background"
+                      		 >
+
+                    <TextView
+                        android:id="@+id/textNews"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="News"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textStyle="bold" />
+                
+                </LinearLayout>
+                </FrameLayout>
+
+         		<FrameLayout
+         		 
+         		    android:layout_width="0dp"
+         		    android:layout_height="match_parent"
+         		    android:layout_gravity="center"
+         		    android:layout_weight="1"
+         		        android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="15dp"
+                android:paddingBottom="15dp" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                      android:paddingBottom="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp"
+                    android:background="@drawable/layer_card_background"
+                    android:orientation="vertical" >
+
+                    <TextView
+                        android:id="@+id/textPortfolio"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Portfolio"
+                        android:textStyle="bold"
+                        android:textAppearance="?android:attr/textAppearanceMedium" />
+                <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:paddingLeft="20dp" >
+
+                        <TextView
+                            android:id="@+id/textNetValue"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Net Value"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/textNetValueInt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                        <TextView
+                            android:id="@+id/textNetProfit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Net Profit"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/textNetProfitInt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textAppearance="?android:attr/textAppearanceSmall" />
+                    </LinearLayout>
+                </LinearLayout>
+                </FrameLayout>
+        </TableRow>
+
+       
+    </TableLayout>
+
+</LinearLayout><!-- 
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   android:paddingLeft="15dp"
+   android:paddingRight="15dp"
+   android:stretchColumns="0"
+   android:descendantFocusability="beforeDescendants" >
+   
+    <TableRow 
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:layout_weight="1">
+   
+   <FrameLayout
+   android:layout_width="match_parent"
+   android:layout_height="fill_parent"
+   android:paddingLeft="15dp"
+   android:paddingRight="15dp"
+   android:layout_marginTop="10dp"
+   android:layout_weight="1"
+   android:descendantFocusability="beforeDescendants">
+
+   <LinearLayout
+       android:id="@+id/cards_trading_indices"
+      android:orientation="vertical"
+      android:layout_width="match_parent"
+      android:layout_height="fill_parent"
+      android:paddingLeft="15dp"
+      android:layout_marginBottom="20dp"
+      android:layout_marginTop="10dp"
+      android:background="@drawable/selector_card_background"
+      android:descendantFocusability="afterDescendants"
+      android:clickable="true"
+      >
+
+       <TextView
+           android:id="@+id/textView1"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="Indices"
+           android:textAppearance="?android:attr/textAppearanceMedium" />
+      
+   </LinearLayout>
+</FrameLayout>
+
+ <FrameLayout
+   android:layout_width="match_parent"
+   android:layout_height="fill_parent"
+   android:paddingLeft="15dp"
+   android:paddingRight="15dp"
+   android:layout_marginTop="10dp"
+   android:layout_weight="1"
+   android:descendantFocusability="beforeDescendants">
+
+   <LinearLayout
+      android:id="@+id/cards_trading_movers"
+      android:orientation="vertical"
+      android:layout_width="match_parent"
+      android:layout_height="fill_parent"
+      android:paddingLeft="15dp"
+      android:layout_marginBottom="20dp"
+      android:layout_marginTop="10dp"
+      android:background="@drawable/selector_card_background"
+      android:descendantFocusability="afterDescendants"
+       android:clickable="true">
+
+       <TextView
+           android:id="@+id/textView2"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="Market Movers"
+           android:textAppearance="?android:attr/textAppearanceMedium" />
+
+
+   </LinearLayout>
+</FrameLayout>
+   
+        
+    </TableRow>
+    
+        <TableRow 
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:layout_weight="1">
+ 
+<FrameLayout
+   android:layout_width="match_parent"
+   android:layout_height="fill_parent"
+   android:paddingLeft="15dp"
+   android:paddingRight="15dp"
+   android:layout_marginTop="10dp"
+   android:layout_weight="1"
+   android:descendantFocusability="beforeDescendants">
+
+   <LinearLayout
+      android:id="@+id/cards_trading_news"
+      android:orientation="vertical"
+      android:layout_width="match_parent"
+      android:layout_height="fill_parent"
+      android:paddingLeft="15dp"
+      android:layout_marginBottom="20dp"
+      android:layout_marginTop="10dp"
+      android:background="@drawable/selector_card_background"
+      android:descendantFocusability="afterDescendants"
+       android:clickable="true">
+
+       <TextView
+           android:id="@+id/textView3"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="News"
+           android:textAppearance="?android:attr/textAppearanceMedium" />
+
+   </LinearLayout>
+</FrameLayout>
+            
+<FrameLayout
+   android:layout_width="match_parent"
+   android:layout_height="fill_parent"
+   android:paddingLeft="15dp"
+   android:paddingRight="15dp"
+   android:layout_marginTop="10dp"
+   android:layout_weight="1"
+   android:descendantFocusability="beforeDescendants">
+
+   <LinearLayout
+      android:id="@+id/cards_trading_portfolio"
+      android:orientation="vertical"
+      android:layout_width="match_parent"
+      android:layout_height="fill_parent"
+      android:paddingLeft="15dp"
+      android:layout_marginBottom="20dp"
+      android:layout_marginTop="10dp"
+      android:background="@drawable/selector_card_background"
+      android:descendantFocusability="afterDescendants"
+       android:clickable="true">
+
+       <TextView
+           android:id="@+id/textView4"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Portfolio"
+           android:textAppearance="?android:attr/textAppearanceMedium" />
+
+     
+   </LinearLayout>
+</FrameLayout>
+   
+        
+    </TableRow>
+   
+   
+</TableLayout>
+ -->
