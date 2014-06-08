@@ -84,10 +84,10 @@ public class stockChart extends SherlockFragment {
        	graphView.setLegendAlign(LegendAlign.MIDDLE);
        	graphView.setLegendWidth(100);
 
-       	Cursor cursor = MainActivity.db.getReadableDatabase().rawQuery("SELECT id,date,closePrice FROM infosys ",null);
+       	Cursor cursor = MainActivity.db.getReadableDatabase().rawQuery("SELECT id,date,closePrice FROM infosys order by date DESC",null);
        	cursor.moveToFirst();
        	ArrayList<GraphViewData> graphData=new ArrayList<GraphViewData>();
-      final HashMap<Date,Integer> dateMarker=new HashMap<Date,Integer>();
+      final HashMap<Integer,Date> dateMarker=new HashMap<Integer,Date>();
         final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");
         graphView.setCustomLabelFormatter(new CustomLabelFormatter() {
             @Override
@@ -95,7 +95,8 @@ public class stockChart extends SherlockFragment {
                 if (isValueX) {
          //       Log.d("Date", indexToDate.get((int)value).toString());
         //            return dateFormat.format(indexToDate.get((int)value)).toString();
-                	  return String.format("%.0f", value);// dateFormat.format(new Date((long)(value*(1000 * 60 * 60 * 24))+startdate.getTime())).toString();
+                	  return ((Date)dateMarker.get((int)value)).toString();
+                	  // dateFormat.format(new Date((long)(value*(1000 * 60 * 60 * 24))+startdate.getTime())).toString();
                     
                 } else
                     return String.format("%.2f", value);
@@ -106,12 +107,13 @@ public class stockChart extends SherlockFragment {
         int i=0;
         while (cursor.isAfterLast() == false) 
         {
+        	
       
 			Date date;
-			try {
-				SimpleDateFormat format=new SimpleDateFormat("MM/dd/yyyy");
-				date = new Date(format.parse(cursor.getString(1)).getTime());
 			
+				//SimpleDateFormat format=new SimpleDateFormat("MM/dd/yyyy");
+			date = new Date( Long.parseLong(cursor.getString(1)));
+			dateMarker.put(i, date);
 			
         	Random random=new Random();
         	double openPrice= random.nextDouble();
@@ -124,13 +126,11 @@ public class stockChart extends SherlockFragment {
         	
       
         	if(date.getTime()>=startdate.getTime() && date.getTime()<=enddate.getTime())
-        	graphData.add(new GraphViewData( date,closePrice));
+        	graphData.add(new GraphViewData( i++,closePrice));
         	
         	
    
-			} catch (ParseException e) {				
-				e.printStackTrace();
-			}
+			
         
         	cursor.moveToNext();
         	
