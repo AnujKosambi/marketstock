@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             
-            android:layout_marginBottom="100dp" >
+             >
 
             <LinearLayout
                 android:id="@+id/ChartLayout"
@@ -34,7 +34,7 @@
         <TableRow
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.2" 
+            android:layout_weight="0.25" 
               
                  >
 
@@ -59,7 +59,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_gravity="end"
-            android:layout_weight="0.2"
+            android:layout_weight="0.25"
             android:paddingTop="10dp" >
 
             <SeekBar

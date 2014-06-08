@@ -66,7 +66,7 @@ public class stockChart extends SherlockFragment {
        	graphView.getGraphViewStyle().setGridColor(Color.GRAY);
        	graphView.getGraphViewStyle().setHorizontalLabelsColor(Color.BLACK);
        	graphView.getGraphViewStyle().setVerticalLabelsColor(Color.BLACK);
-       	graphView.getGraphViewStyle().setTextSize(10);
+       	graphView.getGraphViewStyle().setTextSize(8);
      	graphView.getGraphViewStyle().setNumHorizontalLabels(5);
        //	graphView.getGraphViewStyle().setNumVerticalLabels(4);
        //	graphView.getGraphViewStyle().setVerticalLabelsWidth(20);
@@ -135,6 +135,7 @@ public class stockChart extends SherlockFragment {
         	cursor.moveToNext();
         	
         }
+     
         GraphViewSeriesStyle seriesStyle = new GraphViewSeriesStyle();
         GraphViewData[] graphDataArray= new GraphViewData[graphData.size()];
         
@@ -142,7 +143,7 @@ public class stockChart extends SherlockFragment {
         GraphViewSeries series = new GraphViewSeries("Infosys", seriesStyle,graphDataArray);
         graphView.addSeries(series); // data
       
-        graphView.getGraphViewStyle().setNumHorizontalLabels(4);
+        graphView.getGraphViewStyle().setNumHorizontalLabels(5);
      //   graphView.setViewPort(240,10);
     	LinearLayout layout = (LinearLayout)rootView.findViewById(R.id.ChartLayout);
     	//LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -152,6 +153,7 @@ public class stockChart extends SherlockFragment {
     	final SeekBar seekBarSize=(SeekBar)rootView.findViewById(R.id.ChartSeekBarSize);
     	final TextView startText=(TextView)rootView.findViewById(R.id.ChartStartSeekValue);
     	final TextView sizeText=(TextView)rootView.findViewById(R.id.ChartSizeSeekValue);
+    	final ValueOfInt startInt=new ValueOfInt(0);
     	
     	seekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 			
@@ -170,8 +172,11 @@ public class stockChart extends SherlockFragment {
 			@Override
 			public void onProgressChanged(SeekBar seekBar, int progress,
 					boolean fromUser) {
-				graphView.setViewPort(progress, seekBarSize.getProgress());
-				startText.setText(""+progress);
+				int startPos=((progress*dateMarker.size()*(100-seekBarSize.getProgress()))/10000);
+				graphView.setViewPort(startPos,seekBarSize.getProgress());
+				startInt._int=startPos;
+				
+				startText.setText(""+ (Date)dateMarker.get(startPos));
 				graphView.redrawAll();
 			//	graphView.invalidate();
 				
@@ -194,11 +199,19 @@ public class stockChart extends SherlockFragment {
 			@Override
 			public void onProgressChanged(SeekBar seekBar, int progress,
 					boolean fromUser) {
-				graphView.setViewPort(Integer.parseInt((String) startText.getText()), progress);
-				sizeText.setText(""+progress);
+				int startPos=	startInt._int;
+				graphView.setViewPort(startPos,(( progress*(dateMarker.size()-1-startPos))/100));
+				sizeText.setText(""+progress+"%");
 				graphView.redrawAll();
 			}
 		});
         return rootView;
     }
+}
+class ValueOfInt{
+	int _int;
+	ValueOfInt(int i) {
+		_int=i;
+	}
+	
 }
