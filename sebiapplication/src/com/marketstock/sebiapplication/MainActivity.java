@@ -40,7 +40,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 				null);
 
 		s.moveToFirst();
-		
+				
 //		Log.d(s.getDouble(5)+"","ewf");
 		
 		// Initilization
@@ -91,6 +91,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 			}
 		});
 
+		s.close();
 	}
 
 	@Override

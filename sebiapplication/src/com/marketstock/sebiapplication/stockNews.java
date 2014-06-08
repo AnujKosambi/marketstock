@@ -1,11 +1,16 @@
 package com.marketstock.sebiapplication;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ListView;
 
 import com.actionbarsherlock.app.SherlockFragment;
+import com.marketstock.adapter.BaseInflaterAdapter;
+import com.marketstock.adapter.CardItemData;
+import com.marketstock.adapter.inflaters.CardInflater;
 
 public class stockNews extends SherlockFragment{
 
@@ -13,7 +18,21 @@ public class stockNews extends SherlockFragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.stock_news, container, false);
+		Context context = getActivity();
+        View rootView = inflater.inflate(R.layout.cards_listview, container, false);
+        ListView list = (ListView)rootView.findViewById(R.id.list_view);
+
+		list.addHeaderView(new View(context));
+		list.addFooterView(new View(context));
+		
+		BaseInflaterAdapter<CardItemData> adapter = new BaseInflaterAdapter<CardItemData>(new CardInflater());
+		for (int i = 0; i < 10; i++)
+		{
+			CardItemData data = new CardItemData("Item " + i );
+			adapter.addItem(data, false);
+		}
+
+		list.setAdapter(adapter);
         
         return rootView;
     }

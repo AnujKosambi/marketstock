@@ -12,8 +12,8 @@ import android.widget.ListView;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockFragment;
-import com.marketstock.sebiapplication.R;
 import com.marketstock.adapter.listadapter;
+
 
 public class indices extends SherlockFragment{
 

@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+   android:paddingLeft="15dp"
+   android:paddingRight="15dp"
+   android:stretchColumns="0"
+   android:descendantFocusability="beforeDescendants" >
+   
+    <TableRow 
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:layout_weight="1">
+   
+   <FrameLayout
+   android:layout_width="match_parent"
+   android:layout_height="fill_parent"
+   android:paddingLeft="15dp"
+   android:paddingRight="15dp"
+   android:layout_marginTop="10dp"
+   android:layout_weight="1"
+   android:descendantFocusability="beforeDescendants">
+
+   <LinearLayout
+       android:id="@+id/cards_trading_indices"
+      android:orientation="vertical"
+      android:layout_width="match_parent"
+      android:layout_height="fill_parent"
+      android:paddingLeft="15dp"
+      android:layout_marginBottom="20dp"
+      android:layout_marginTop="10dp"
+      android:background="@drawable/selector_card_background"
+      android:descendantFocusability="afterDescendants"
+      android:clickable="true"
+      >
+
+       <TextView
+           android:id="@+id/textView1"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="Indices"
+           android:textAppearance="?android:attr/textAppearanceMedium" />
+      
+   </LinearLayout>
+</FrameLayout>
+
+ <FrameLayout
+   android:layout_width="match_parent"
+   android:layout_height="fill_parent"
+   android:paddingLeft="15dp"
+   android:paddingRight="15dp"
+   android:layout_marginTop="10dp"
+   android:layout_weight="1"
+   android:descendantFocusability="beforeDescendants">
+
+   <LinearLayout
+      android:id="@+id/cards_trading_movers"
+      android:orientation="vertical"
+      android:layout_width="match_parent"
+      android:layout_height="fill_parent"
+      android:paddingLeft="15dp"
+      android:layout_marginBottom="20dp"
+      android:layout_marginTop="10dp"
+      android:background="@drawable/selector_card_background"
+      android:descendantFocusability="afterDescendants"
+       android:clickable="true">
+
+       <TextView
+           android:id="@+id/textView2"
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:text="Market Movers"
+           android:textAppearance="?android:attr/textAppearanceMedium" />
+
+
+   </LinearLayout>
+</FrameLayout>
+   
+        
+    </TableRow>
+    
+        <TableRow 
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:layout_weight="1">
+ 
+<FrameLayout
+   android:layout_width="match_parent"
+   android:layout_height="fill_parent"
+   android:paddingLeft="15dp"
+   android:paddingRight="15dp"
+   android:layout_marginTop="10dp"
+   android:layout_weight="1"
+   android:descendantFocusability="beforeDescendants">
+
+   <LinearLayout
+      android:id="@+id/cards_trading_news"
+      android:orientation="vertical"
+      android:layout_width="match_parent"
+      android:layout_height="fill_parent"
+      android:paddingLeft="15dp"
+      android:layout_marginBottom="20dp"
+      android:layout_marginTop="10dp"
+      android:background="@drawable/selector_card_background"
+      android:descendantFocusability="afterDescendants"
+       android:clickable="true">
+
+       <TextView
+           android:id="@+id/textView3"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="News"
+           android:textAppearance="?android:attr/textAppearanceMedium" />
+
+   </LinearLayout>
+</FrameLayout>
+            
+<FrameLayout
+   android:layout_width="match_parent"
+   android:layout_height="fill_parent"
+   android:paddingLeft="15dp"
+   android:paddingRight="15dp"
+   android:layout_marginTop="10dp"
+   android:layout_weight="1"
+   android:descendantFocusability="beforeDescendants">
+
+   <LinearLayout
+      android:id="@+id/cards_trading_portfolio"
+      android:orientation="vertical"
+      android:layout_width="match_parent"
+      android:layout_height="fill_parent"
+      android:paddingLeft="15dp"
+      android:layout_marginBottom="20dp"
+      android:layout_marginTop="10dp"
+      android:background="@drawable/selector_card_background"
+      android:descendantFocusability="afterDescendants"
+       android:clickable="true">
+
+       <TextView
+           android:id="@+id/textView4"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Portfolio"
+           android:textAppearance="?android:attr/textAppearanceMedium" />
+
+     
+   </LinearLayout>
+</FrameLayout>
+   
+        
+    </TableRow>
+   
+   
+</TableLayout>
