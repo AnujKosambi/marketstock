@@ -37,10 +37,13 @@ public class MainActivity extends SherlockFragmentActivity implements
 		
 		db = new DBHelper(this);
 		
-		Cursor s = db.getReadableDatabase().rawQuery("SELECT * FROM infosys",
-				null);
-
-		s.moveToFirst();
+		Intent intent = new Intent(this, priceService.class);
+		startService(intent);
+		
+//		Cursor s = db.getReadableDatabase().rawQuery("SELECT * FROM infosys",
+//				null);
+//
+//		s.moveToFirst();
 				
 //		Log.d(s.getDouble(5)+"","ewf");
 		
@@ -92,7 +95,6 @@ public class MainActivity extends SherlockFragmentActivity implements
 			}
 		});
 
-		s.close();
 	}
 
 	@Override
