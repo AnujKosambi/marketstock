@@ -33,6 +33,8 @@
                     android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
                     android:paddingTop="10dp"
+                      android:descendantFocusability="afterDescendants"
+                    android:clickable="true"
                     android:background="@drawable/selector_card_background"
                     android:orientation="vertical" >
 
@@ -120,9 +122,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                         android:paddingBottom="10dp"
-                    android:paddingLeft="10dp"
+                    android:paddingLeft="4dp"
                     android:paddingTop="10dp"
-                    android:background="@drawable/layer_card_background"
+                    android:background="@drawable/selector_card_background"
+                      android:descendantFocusability="afterDescendants"
+                    android:clickable="true"
                     android:orientation="vertical" >
 
                     <TextView
@@ -196,7 +200,9 @@
                                  android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
                     android:paddingTop="10dp"
-      							android:background="@drawable/layer_card_background"
+                      android:descendantFocusability="afterDescendants"
+                    android:clickable="true"
+      							android:background="@drawable/selector_card_background"
                       		 >
 
                     <TextView
@@ -227,7 +233,9 @@
                       android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
                     android:paddingTop="10dp"
-                    android:background="@drawable/layer_card_background"
+                    android:background="@drawable/selector_card_background"
+                    android:descendantFocusability="afterDescendants"
+                    android:clickable="true"
                     android:orientation="vertical" >
 
                     <TextView

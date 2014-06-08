@@ -26,6 +26,13 @@
             android:name="com.marketstock.sebiapplication.Searchstock"
             android:label="@string/title_activity_searchstock" >
         </activity>
+            <activity
+            android:name="com.marketstock.sebiapplication.indices"
+             android:label="Indices"
+             android:parentActivityName="com.marketstock.sebiapplication.MainActivity"
+             
+             >
+        </activity>
         <activity
             android:name="com.marketstock.sebiapplication.Stockpage"
             android:label="@string/title_activity_stockpage" >

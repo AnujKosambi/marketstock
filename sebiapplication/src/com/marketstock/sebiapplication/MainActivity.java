@@ -21,7 +21,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 	private ViewPager viewPager;
 	private TabsPagerAdapter mAdapter;
-	private ActionBar actionBar;
+	public static ActionBar actionBar;
 
 	private Button getQuoteBtn;
 	// Tab titles

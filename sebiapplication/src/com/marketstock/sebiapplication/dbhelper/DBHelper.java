@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -68,9 +69,13 @@ public class DBHelper extends SQLiteOpenHelper {
 				StringBuilder sb = new StringBuilder(str1);
 				String[] str = line.split(",");
 				SimpleDateFormat format=new SimpleDateFormat("MM/dd/yyyy");
-				//date = new Date(format.parse(cursor.getString(1)).getTime());
+				
 				 Log.d("Date", str[0]);
-				sb.append("'" +  str[0] + "',");
+				try {
+					sb.append("'"+format.parse(str[0]).getTime()+"',");
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
 				sb.append(str[1] + ",");
 				sb.append(str[2] + ",");
 				sb.append(str[3] + ",");
