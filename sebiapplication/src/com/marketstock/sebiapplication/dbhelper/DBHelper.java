@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 
 import android.content.Context;
 import android.database.SQLException;
@@ -20,7 +19,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 	private static final String DB_NAME = "marketstock.db";
 
-	private static final String TB_NEWS = "new";
+	private static final String TB_NEWS = "infosysnew";
 	private static final String TB_INFOSYS = "infosys";
 
 	public DBHelper(Context context) {
@@ -37,7 +36,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 	private static final String CREATE_TB_NEWS = "CREATE TABLE "
 			+ TB_NEWS
-			+ " (id INTEGER PRIMARY KEY, title TEXT, desc TEXT, effect TEXT, learing TEXT, fluctuation TEXT)";
+			+ " (id INTEGER PRIMARY KEY, title TEXT, desc TEXT, effect TEXT, learning TEXT, fluctuation TEXT)";
 
 	private static final String CREATE_TB_INFOSYS = "CREATE TABLE "
 			+ TB_INFOSYS
@@ -52,30 +51,25 @@ public class DBHelper extends SQLiteOpenHelper {
 		db.execSQL(CREATE_TB_INFOSYS);
 
 		InputStreamReader inputstream;
+		String line, tableName, columns, str1, str2;
 		try {
 
 			inputstream = new InputStreamReader(c.getAssets().open(
 					"infosys.csv"));
 			buffer = new BufferedReader(inputstream);
-			String line = "";
-			String tableName = "infosys";
-			String columns = " date, openPrice, highPrice, lowPrice, closePrice,volume,id ";
-			String str1 = "INSERT INTO " + tableName + " (" + columns
-					+ ") values(";
-			String str2 = ");";
+			line = "";
+			tableName = "infosys";
+			columns = " date, openPrice, highPrice, lowPrice, closePrice,volume,id ";
+			str1 = "INSERT INTO " + tableName + " (" + columns + ") values(";
+			str2 = ");";
 
 			db.beginTransaction();
 			while ((line = buffer.readLine()) != null) {
 				StringBuilder sb = new StringBuilder(str1);
 				String[] str = line.split(",");
-				SimpleDateFormat format=new SimpleDateFormat("MM/dd/yyyy");
-				
-				 Log.d("Date", str[0]);
-				try {
-					sb.append("'"+format.parse(str[0]).getTime()+"',");
-				} catch (ParseException e) {
-					e.printStackTrace();
-				}
+				SimpleDateFormat format = new SimpleDateFormat("MM/dd/yyyy");
+
+				sb.append("'" + format.parse(str[0]).getTime() + "',");
 				sb.append(str[1] + ",");
 				sb.append(str[2] + ",");
 				sb.append(str[3] + ",");
@@ -85,6 +79,38 @@ public class DBHelper extends SQLiteOpenHelper {
 
 				sb.append(str2);
 				db.execSQL(sb.toString());
+				
+				Log.d("Q1","Q1 Running");
+			}
+			db.setTransactionSuccessful();
+			db.endTransaction();
+			Log.d("New","Q1 Completed");
+				
+			inputstream = new InputStreamReader(c.getAssets().open(
+					"infosysNews.csv"));
+			buffer = new BufferedReader(inputstream);
+			line = "";
+			tableName = "infosysnew";
+			columns = " title, desc, learning, effect, fluctuation,id ";
+			str1 = "INSERT INTO " + tableName + " (" + columns + ") values(";
+			str2 = ");";
+
+			db.beginTransaction();
+			int id = 1;
+			while ((line = buffer.readLine()) != null) {
+				StringBuilder sb = new StringBuilder(str1);
+				String[] str = line.split(",,");
+
+				sb.append(str[0] + ",");
+				sb.append(str[1] + ",");
+				sb.append(str[2] + ",");
+				sb.append(str[3] + ",");
+				sb.append(str[4] + ",");
+				sb.append(id++);
+
+				sb.append(str2);
+				db.execSQL(sb.toString());
+				Log.d("few",sb.toString());
 			}
 			db.setTransactionSuccessful();
 			db.endTransaction();
@@ -94,6 +120,8 @@ public class DBHelper extends SQLiteOpenHelper {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
 			e.printStackTrace();
 		}
 
