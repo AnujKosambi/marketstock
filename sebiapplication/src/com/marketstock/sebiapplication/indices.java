@@ -2,22 +2,20 @@ package com.marketstock.sebiapplication;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
+import android.support.v4.app.NavUtils;
 import android.widget.ListView;
 
 import com.actionbarsherlock.app.ActionBar;
-import com.actionbarsherlock.app.SherlockFragment;
+import com.actionbarsherlock.app.SherlockActivity;
 import com.marketstock.adapter.listadapter;
 
+public class indices extends SherlockActivity{
 
-public class indices extends SherlockFragment{
 
-	ActionBar bar;
 	ListView listview;
 	ArrayList<HashMap<String, String>> companylist = new ArrayList<HashMap<String, String>>();
 	listadapter adapt;
@@ -26,17 +24,18 @@ public class indices extends SherlockFragment{
 	public static final String KEY_VALUE = "value";
 	public static final String KEY_POINT_CHANGE = "point_change";
 	public static final String KEY_PERCENT_CHANGE = "percent_change";
-	View rootView;
+
 	
 	@Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
-
-		Context context = getActivity();
-        View rootView = inflater.inflate(R.layout.indices_listview, container, false);
-        bar = getSherlockActivity().getSupportActionBar();
-        listview = (ListView) rootView.findViewById(R.id.list_indices);
-        getSherlockActivity().getSupportActionBar().setTitle("App Name");
+    public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		Context context =this;
+		setContentView(R.layout.indices_listview);
+		listview = (ListView)findViewById(R.id.list_indices);
+		ActionBar actionBar=getSupportActionBar();
+		actionBar.setHomeButtonEnabled(true);
+		actionBar.setDisplayHomeAsUpEnabled(true);
+	
         HashMap<String, String> map;
         for(int i=0; i<10; i++)
         {
@@ -47,10 +46,26 @@ public class indices extends SherlockFragment{
         	map.put(KEY_POINT_CHANGE, "856");
         	map.put(KEY_PERCENT_CHANGE, "5.08");
         	companylist.add(map);
-        	Log.e("Map", "added "+i);
+        
         }
         adapt = new listadapter(context, companylist);
 		listview.setAdapter(adapt);
-        return rootView;
+        
     }
+	@Override
+	public boolean onOptionsItemSelected(com.actionbarsherlock.view.MenuItem item) 
+	{
+	
+	
+	    if ( item.getItemId() == android.R.id.home) {
+	    	   MainActivity.actionBar.selectTab(MainActivity.actionBar.getTabAt(1));
+	      NavUtils.navigateUpTo(this,new Intent(this,MainActivity.class));
+	      
+	        return  true;
+
+	    } else {
+	        return super.onOptionsItemSelected(item);
+	    }
+	}
+	
 }

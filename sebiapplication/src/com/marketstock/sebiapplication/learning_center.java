@@ -34,6 +34,7 @@ public class learning_center extends SherlockFragment{
 
 		list.setAdapter(adapter);
 
+
         
         return rootView;
     }

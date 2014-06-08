@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
@@ -20,13 +21,13 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 	private ViewPager viewPager;
 	private TabsPagerAdapter mAdapter;
-	private ActionBar actionBar;
+	public static ActionBar actionBar;
 
 	private Button getQuoteBtn;
 	// Tab titles
 	private String[] tabs = { "Learning Center", "Trade now" };
 
-	DBHelper db;
+	static DBHelper db;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
