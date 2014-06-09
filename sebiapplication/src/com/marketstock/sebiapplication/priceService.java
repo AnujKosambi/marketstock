@@ -25,8 +25,8 @@ public class priceService extends IntentService {
 								.rawQuery(
 										"SELECT highPrice,lowPrice from '"
 												+ DBHelper.TB_STOCKS[i]
-												+ "' where id=" + (MainActivity.moveToDays+1), null);
-						c.moveToFirst();
+												+ "' order by date ", null);
+						c.moveToPosition(MainActivity.moveToDays);
 						hp = c.getFloat(0);
 						lp = c.getFloat(1);
 						

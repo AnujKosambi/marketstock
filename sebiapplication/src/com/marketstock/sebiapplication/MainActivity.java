@@ -6,7 +6,6 @@ import java.util.Calendar;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -75,7 +74,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 		
 		db = new DBHelper(this);
 		
-		Cursor c = db.getReadableDatabase().rawQuery("select * from axis", null);
+//		Cursor c = db.getReadableDatabase().rawQuery("select * from axis", null);
 		
 		SharedPreferences prefs =getApplicationContext().getSharedPreferences(
 			      "com.marketstock.sebiapplication", Context.MODE_PRIVATE);
@@ -87,12 +86,12 @@ public class MainActivity extends SherlockFragmentActivity implements
 	     marqueeLayout.setDuration(30000);
 	     marqueeLayout.addView(getMarqueeView());
 	     marqueeLayout.startAnimation();
-	    marqueeLayout.setLayoutParams(new LayoutParams( LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+	     marqueeLayout.setLayoutParams(new LayoutParams( LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 	     LinearLayout marqueeParentLayout=(LinearLayout)findViewById(R.id.marquee_layout);
 	     marqueeParentLayout.addView(marqueeLayout,width,LayoutParams.WRAP_CONTENT);
 
-		//Intent intent = new Intent(this, priceService.class);
-		//startService(intent);
+		Intent intent = new Intent(this, priceService.class);
+		startService(intent);
 			     
 		
 		// Initilization
