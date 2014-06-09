@@ -20,6 +20,7 @@ import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.marketstock.adapter.StockPagesAdapter;
+import com.marketstock.helper.Companies;
 import com.marketstock.sebiapplication.models.Stock;
 
 public class Stockpage extends SherlockFragmentActivity implements ActionBar.TabListener {
@@ -31,6 +32,8 @@ public class Stockpage extends SherlockFragmentActivity implements ActionBar.Tab
 	public static double prevCloseprice;
 	public static String companyName;
 	public static double companyPrice;
+	public static double companyLow52;
+	public static double companyHigh52;
 	
 	// Tab titles
 	private String[] tabs = { "Stock details", "Chart","News" };
@@ -45,21 +48,13 @@ public class Stockpage extends SherlockFragmentActivity implements ActionBar.Tab
 		viewPager = (ViewPager) findViewById(R.id.stockpager);
 		viewPager.setScrollContainer(true);
 		companyName=getIntent().getExtras().getString("Company")+"";
-		Cursor cursor = MainActivity.db.getReadableDatabase()
-				.rawQuery("SELECT* FROM "+ companyName+" order by date",null); 
-		
-		
-		int moveToDays=MainActivity.moveToDays;
-		//Toast.makeText(this, moveToDays+"", Toast.LENGTH_LONG).show();
-		cursor.moveToPosition(moveToDays);
-		
-		stock=new Stock(new Date(cursor.getLong(1)), 
-			cursor.getDouble(2), cursor.getDouble(3), cursor.getDouble(4), cursor.getDouble(5),cursor.getDouble(6));
-		cursor.moveToPrevious();
-		prevCloseprice=cursor.getDouble(3);
-		cursor.close();
-		cursor = MainActivity.db.getReadableDatabase()
-				.rawQuery("SELECT* FROM companydata",null); 
+		Companies.updateData(companyName);
+		Companies.updateData52(companyName);
+		companyPrice=Companies.PriceList.get(companyName);
+		stock=Companies.StockList.get(companyName);
+		prevCloseprice=Companies.prevPriceList.get(companyName);
+		companyLow52=Companies.low52.get(companyName);
+		companyHigh52=Companies.high52.get(companyName);
 		
 		actionBar = getSupportActionBar();
 		mAdapter = new StockPagesAdapter(getSupportFragmentManager());

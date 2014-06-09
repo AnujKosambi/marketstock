@@ -40,7 +40,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 	// Tab titles
 	private String[] tabs = { "Learning Center", "Trade now" };
 
-	static DBHelper db;
+	public static DBHelper db;
 	int width;
 	public static int moveToDays;
 	private View getMarqueeView()
@@ -50,12 +50,22 @@ public class MainActivity extends SherlockFragmentActivity implements
 		
 		String[] companies=Companies.getCompanies();
 		Log.d("Marquee",companies.length+"");
-	
+
 		for(int i=0;i<companies.length;i++)
 		{
+			Companies.updateData(companies[i]);
 			TextView textView = new TextView(this);
-			textView.setText(companies[i].toUpperCase()+" "+i+"   ");
+			double change=Companies.PriceList.get(companies[i])-Companies.prevPriceList.get(companies[i]);
+			textView.setText(companies[i].toUpperCase()+" "+
+			String.format("%.2f",Companies.PriceList.get(companies[i]))+
+			" ("+
+			String.format("%.2f",change)
+			+")     ");
+			if(change<0)
 			textView.setTextColor(Color.rgb(252,82,82));
+			else
+			textView.setTextColor(Color.rgb(82,252,82));
+			
 			textView.setTypeface(null,Typeface.BOLD);
 			textView.setTextSize(20);
 			width+=textView.getText().length()*20;
@@ -84,7 +94,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 		Date dateNow=new Date(Calendar.getInstance().getTimeInMillis());
 		moveToDays=(int)( (dateNow.getTime()- installed )/(1000 * 60 * 60 * 24));
 
-		moveToDays+=10;
+		moveToDays+=55;
 		Cursor s = db.getReadableDatabase().rawQuery("SELECT * FROM infosys",
 				null);
 
@@ -92,7 +102,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 	     MarqueeLayout marqueeLayout = new MarqueeLayout(this);
 	     marqueeLayout.setBackgroundColor(Color.BLACK);
-	     marqueeLayout.setDuration(30000);
+	     marqueeLayout.setDuration(100000);
 	     marqueeLayout.addView(getMarqueeView());
 	     marqueeLayout.startAnimation();
 	     marqueeLayout.setLayoutParams(new LayoutParams( LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));

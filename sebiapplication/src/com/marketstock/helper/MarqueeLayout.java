@@ -15,7 +15,7 @@ public class MarqueeLayout extends LinearLayout {
 		
 
 		animation = new TranslateAnimation(
-			Animation.RELATIVE_TO_SELF, +1f,
+			Animation.RELATIVE_TO_SELF, 0f,
 			Animation.RELATIVE_TO_SELF,	-1f,
 			Animation.RELATIVE_TO_SELF, 0f,
 			Animation.RELATIVE_TO_SELF, 0f
