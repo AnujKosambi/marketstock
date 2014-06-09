@@ -20,7 +20,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	private static final String DB_NAME = "marketstock.db";
 
 	private static final String TB_NEWS = "infosysnew";
-	private static final String[] TB_STOCKS = { "axis", "bajaj", "bharti",
+	public static final String[] TB_STOCKS = { "axis", "bajaj", "bharti",
 			"bhel", "cipla", "coalindia", "drreddy", "gail", "hdfcbank",
 			"hdfc", "hero", "hindalco", "hul", "icicibank", "infosys", "itc",
 			"lt", "maruti", "mm", "ntpc", "ongc", "ril", "sbi", "sesa",

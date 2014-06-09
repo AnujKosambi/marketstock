@@ -1,6 +1,7 @@
 package com.marketstock.sebiapplication;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,10 +27,14 @@ public class stockNews extends SherlockFragment{
 		list.addFooterView(new View(context));
 		
 		BaseInflaterAdapter<CardItemData> adapter = new BaseInflaterAdapter<CardItemData>(new CardInflater());
-		for (int i = 0; i < 10; i++)
+		Cursor cursor = MainActivity.db.getReadableDatabase()
+				.rawQuery("SELECT * FROM "+ "infosysnew",null); 
+		cursor.moveToFirst();
+		while(cursor.isAfterLast()==false)
 		{
-			CardItemData data = new CardItemData("Item " + i );
+			CardItemData data = new CardItemData(cursor.getString(1) );
 			adapter.addItem(data, false);
+			cursor.moveToNext();
 		}
 
 		list.setAdapter(adapter);
