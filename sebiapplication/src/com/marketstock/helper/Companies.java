@@ -68,8 +68,8 @@ public class Companies {
 		float high=Float.MIN_VALUE;
 		for(;!cursor.isBeforeFirst();)
 		{
-			low=Math.min(low,(float)cursor.getDouble(5));
-			high=Math.max(low,(float)cursor.getDouble(4));
+			low=Math.min(low,(float)cursor.getDouble(cursor.getColumnIndex("lowPrice")));
+			high=Math.max(high,(float)cursor.getDouble(cursor.getColumnIndex("highPrice")));
 			
 			cursor.moveToPrevious();
 		}

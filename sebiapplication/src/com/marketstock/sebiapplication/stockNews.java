@@ -34,7 +34,10 @@ public class stockNews extends SherlockFragment{
 		cursor.moveToFirst();
 		while(cursor.isAfterLast()==false)
 		{
-			CardItemTitleNData data = new CardItemTitleNData(cursor.getString(1), cursor.getString(2));
+			CardItemTitleNData data = new CardItemTitleNData(
+					cursor.getString(1),
+					cursor.getString(2),
+					cursor.getString(cursor.getColumnIndex("learning")));
 			adapter.addItem(data, false);
 			cursor.moveToNext();
 		}

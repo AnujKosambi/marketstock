@@ -2,14 +2,16 @@ package com.marketstock.adapter;
 
 public class CardItemTitleNData
 {
-	private String title,data;
+	private String title,data,learning;
 	
 
-	public CardItemTitleNData(String title,String data)
+	public CardItemTitleNData(String title,String data,String learning)
 	{
 		this.title=title;
 		this.data=data;
+		this.learning=learning;
 	}
+	
 
 	public String getData()
 	{
@@ -21,5 +23,11 @@ public class CardItemTitleNData
 		return title;
 		
 	}
+	public String getLearning()
+	{
+		return learning;
+		
+	}
+	
 	
 }
