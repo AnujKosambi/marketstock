@@ -1,11 +1,13 @@
 package com.marketstock.sebiapplication;
 
 import android.app.IntentService;
+import android.content.ContentValues;
 import android.content.Intent;
-import android.util.Log;
-import android.widget.Toast;
+import android.database.Cursor;
 
-public class priceService extends IntentService{
+import com.marketstock.sebiapplication.dbhelper.DBHelper;
+
+public class priceService extends IntentService {
 
 	public priceService() {
 		super("priceService");
@@ -13,19 +15,34 @@ public class priceService extends IntentService{
 
 	@Override
 	protected void onHandleIntent(Intent intent) {
-		
-		Toast.makeText(getApplicationContext(), "t4t", Toast.LENGTH_SHORT).show();
-		Log.d("dwef", "fef");
-	     long endTime = System.currentTimeMillis() + 5*1000;
-	      while (System.currentTimeMillis() < endTime) {
-	          synchronized (this) {
-	              try {
-	                  wait(endTime - System.currentTimeMillis());
-	              } catch (Exception e) {
-	              }
-	          }
-	      }
-		
+
+		while (true) {
+			synchronized (this) {
+				try {
+					for (int i = 0; i < DBHelper.TB_STOCKS.length; i++) {
+						float hp = 10, lp = 0;
+						Cursor c = MainActivity.db.getReadableDatabase()
+								.rawQuery(
+										"SELECT highPrice,lowPrice from '"
+												+ DBHelper.TB_STOCKS[i]
+												+ "' where id=" + (MainActivity.moveToDays+1), null);
+						c.moveToFirst();
+						hp = c.getFloat(0);
+						lp = c.getFloat(1);
+						
+						ContentValues values = new ContentValues();
+						values.put("price", (lp + Math.random() * (hp - lp)));
+						MainActivity.db.getWritableDatabase().update(
+								DBHelper.TB_COMPANYDATA, values,
+								"company = '" + DBHelper.TB_STOCKS[i] + "'",
+								null);
+					}
+					wait(60000);
+				} catch (Exception e) {
+				}
+			}
+		}
+
 	}
 
 }

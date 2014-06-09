@@ -6,16 +6,12 @@ import java.util.Calendar;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
@@ -39,7 +35,6 @@ public class MainActivity extends SherlockFragmentActivity implements
 	private TabsPagerAdapter mAdapter;
 	public static ActionBar actionBar;
 
-	private Button getQuoteBtn;
 	// Tab titles
 	private String[] tabs = { "Learning Center", "Trade now" };
 
@@ -84,10 +79,6 @@ public class MainActivity extends SherlockFragmentActivity implements
 		Date dateNow=new Date(Calendar.getInstance().getTimeInMillis());
 		moveToDays=(int)( (dateNow.getTime()- installed )/(1000 * 60 * 60 * 24));
 		
-		Cursor s = db.getReadableDatabase().rawQuery("SELECT * FROM infosys",
-				null);
-
-		s.moveToFirst();
 	     MarqueeLayout marqueeLayout = new MarqueeLayout(this);
 	     marqueeLayout.setDuration(30000);
 	     marqueeLayout.addView(getMarqueeView());
@@ -98,15 +89,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 		Intent intent = new Intent(this, priceService.class);
 		startService(intent);
-		
-//		Cursor s = db.getReadableDatabase().rawQuery("SELECT * FROM infosys",
-//				null);
-//
-//		s.moveToFirst();
-				
-
-//		Log.d(s.getDouble(5)+"","ewf");
-	     
+			     
 		
 		// Initilization
 		viewPager = (ViewPager) findViewById(R.id.pager);

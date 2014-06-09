@@ -7,7 +7,6 @@ import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -15,21 +14,20 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 public class DBHelper extends SQLiteOpenHelper {
 	Context c;
 
-	private static final String DB_NAME = "marketstock.db";
+	public static final String DB_NAME = "marketstock.db";
 
-	private static final String TB_NEWS = "infosysnew";
+	public static final String TB_NEWS = "infosysnew";
 	public static final String[] TB_STOCKS = { "axis", "bajaj", "bharti",
 			"bhel", "cipla", "coalindia", "drreddy", "gail", "hdfcbank",
 			"hdfc", "hero", "hindalco", "hul", "icicibank", "infosys", "itc",
 			"lt", "maruti", "mm", "ntpc", "ongc", "ril", "sbi", "sesa",
 			"sunpharma", "tatamotors", "tatapower", "tatasteel", "tsc", "wipro" };
-	private static final String TB_USERDATA = "userdata";
-	private static final String TB_COMPANYDATA = "companydata";
+	public static final String TB_USERDATA = "userdata";
+	public static final String TB_COMPANYDATA = "companydata";
 
 	public DBHelper(Context context) {
 		super(context, DB_NAME, null, 1);
@@ -72,7 +70,15 @@ public class DBHelper extends SQLiteOpenHelper {
 			String CREATE_TB_INFOSYS = "CREATE TABLE "
 					+ TB_STOCKS[i]
 					+ " (id INTEGER PRIMARY KEY, date TEXT, openPrice REAL, closePrice REAL, highPrice REAL, lowPrice REAL, volume REAL)";
+			
 			db.execSQL(CREATE_TB_INFOSYS);
+			
+			str1 = "INSERT INTO " + TB_COMPANYDATA + " (company, price"
+					+ ") values('";
+			str2 = "',0);";
+			
+			db.execSQL(str1+TB_STOCKS[i]+str2);
+			
 		}
 
 		try {
