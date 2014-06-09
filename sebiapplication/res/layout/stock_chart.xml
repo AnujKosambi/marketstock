@@ -15,68 +15,58 @@
 
       <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            
-             >
-
-            <LinearLayout
-                android:id="@+id/ChartLayout"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="vertical" >
-
-            </LinearLayout>
-        </TableRow>
-        
-      
-        <TableRow
-            android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.25" 
-              
-                 >
+            android:layout_marginBottom="60dp"
+            android:layout_weight="1">
 
-            <SeekBar
-                android:id="@+id/ChartSeekBar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/ChartStartSeekValue"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="0"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+          <LinearLayout
+              android:id="@+id/ChartLayout"
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:orientation="vertical" 
+               android:layout_weight="1">
+          </LinearLayout>
 
         </TableRow>
+
+      <TableRow
+      
+          android:layout_width="match_parent"
+          android:layout_height="40dp"
+          android:layout_weight="1"
+          android:layout_marginTop="-60dp">
+
+          <SeekBar
+              android:id="@+id/ChartSeekBar"
+              android:layout_width="0dp"
+              android:layout_weight="1"
+              android:layout_height="35dp"/>
+
+          <TextView
+              android:id="@+id/ChartStartSeekValue"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="0"
+              android:textAppearance="?android:attr/textAppearanceSmall" />
+      </TableRow>
           
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_gravity="end"
-            android:layout_weight="0.25"
-            android:paddingTop="10dp" >
+            android:layout_height="40dp"
+            android:layout_weight="1">
 
             <SeekBar
                 android:id="@+id/ChartSeekBarSize"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_weight="1" />
+                android:layout_width="0dp"
+              	android:layout_weight="1"
+                android:layout_height="35dp"/>
 
             <TextView
                 android:id="@+id/ChartSizeSeekValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
                 android:text="0"
                 android:textAppearance="?android:attr/textAppearanceSmall" />
-
         </TableRow>
     </TableLayout>
      </LinearLayout>

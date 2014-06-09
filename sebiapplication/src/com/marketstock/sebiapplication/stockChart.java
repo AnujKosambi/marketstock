@@ -11,6 +11,7 @@ import android.annotation.SuppressLint;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.storage.StorageManager;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -80,7 +81,7 @@ public class stockChart extends SherlockFragment {
        	graphView.setLegendAlign(LegendAlign.MIDDLE);
        	graphView.setLegendWidth(100);
 
-       	Cursor cursor = MainActivity.db.getReadableDatabase().rawQuery("SELECT id,date,closePrice FROM infosys order by date DESC",null);
+       	Cursor cursor = MainActivity.db.getReadableDatabase().rawQuery("SELECT id,date,closePrice FROM "+Stockpage.companyName+" order by date ",null);
        	cursor.moveToFirst();
        	ArrayList<GraphViewData> graphData=new ArrayList<GraphViewData>();
       final HashMap<Integer,Date> dateMarker=new HashMap<Integer,Date>();
@@ -135,7 +136,7 @@ public class stockChart extends SherlockFragment {
         GraphViewData[] graphDataArray= new GraphViewData[graphData.size()];
         
         graphDataArray=graphData.toArray(graphDataArray);
-        GraphViewSeries series = new GraphViewSeries("Infosys", seriesStyle,graphDataArray);
+        GraphViewSeries series = new GraphViewSeries(Stockpage.companyName, seriesStyle,graphDataArray);
         graphView.addSeries(series); // data
       
         graphView.getGraphViewStyle().setNumHorizontalLabels(5);
