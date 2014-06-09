@@ -1,19 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical" >
-    
-    <LinearLayout
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:paddingBottom="20dp" >
+    android:paddingBottom="20dp"
+    android:paddingTop="20dp"
+    android:paddingLeft="10dp" >
 
 
     <TextView
-        android:id="@+id/tv2"
+        android:id="@+id/portfolio_scrip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Scrip"
@@ -22,7 +18,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
-        android:id="@+id/tv3"
+        android:id="@+id/portfolio_holding"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Holding"
@@ -31,7 +27,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <TextView
-        android:id="@+id/tv4"
+        android:id="@+id/portfolio_avg_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Avg. Price"
@@ -40,7 +36,7 @@
         android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/tv1"
+        android:id="@+id/portfolio_amount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Amount"
@@ -49,7 +45,7 @@
         android:textStyle="bold" />
     
         <TextView
-        android:id="@+id/tv5"
+        android:id="@+id/portfolio_profit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Profit"
@@ -58,16 +54,3 @@
         android:textStyle="bold" />
     
     </LinearLayout>
-
-    <ListView
-        android:id="@+id/portfolio_listview"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingLeft="10dp"
-        tools:listfooter="@android:layout/test_list_item"
-        tools:listheader="@android:layout/test_list_item"
-        tools:listitem="@android:layout/simple_list_item_1" >
-
-    </ListView>
-
-</LinearLayout>

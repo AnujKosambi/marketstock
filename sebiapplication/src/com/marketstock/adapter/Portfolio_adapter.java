@@ -1,9 +1,8 @@
 package com.marketstock.adapter;
 
+
 import java.util.ArrayList;
 import java.util.HashMap;
-
-import com.marketstock.sebiapplication.R;
 
 import android.content.Context;
 import android.util.Log;
@@ -13,13 +12,15 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.marketstock.sebiapplication.R;
 
-public class listadapter extends BaseAdapter{
+
+public class Portfolio_adapter extends BaseAdapter{
 	 private Context activity;
 	    private ArrayList<HashMap<String, String>> data;
 	    private static LayoutInflater inflater=null;
 	 
-	    public listadapter(Context a, ArrayList<HashMap<String, String>> d) {
+	    public Portfolio_adapter(Context a, ArrayList<HashMap<String, String>> d) {
 	        activity = a;
 	        data=d;
 	        inflater = (LayoutInflater)activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -28,8 +29,8 @@ public class listadapter extends BaseAdapter{
 	    @Override
 		public int getCount() {
 	        return data.size();
+	    
 	    }
-	 
 	    @Override
 		public Object getItem(int position) {
 	        return position;
@@ -46,35 +47,37 @@ public class listadapter extends BaseAdapter{
         Holder holder = new Holder();
         if(vi==null){
         	holder = new Holder();
-            vi = inflater.inflate(R.layout.indices_row_layout, parent,false);
-            holder.name = (TextView)vi.findViewById(R.id.company_name); //name
-            holder.value = (TextView)vi.findViewById(R.id.indices_value); 
-            holder.pointchange = (TextView)vi.findViewById(R.id.indices_pointchange);
-            holder.percentchange = (TextView)vi.findViewById(R.id.indices_percentchange); 
+            vi = inflater.inflate(R.layout.portfolio_row_layout, parent,false);
+            holder.scrip = (TextView)vi.findViewById(R.id.portfolio_scrip); //name
+            holder.holding = (TextView)vi.findViewById(R.id.portfolio_holding); 
+            holder.avg_price = (TextView)vi.findViewById(R.id.portfolio_avg_price);
+            holder.amount = (TextView)vi.findViewById(R.id.portfolio_amount); 
+            holder.profit = (TextView)vi.findViewById(R.id.portfolio_profit); 
             vi.setTag(holder);
             
         }
         else{
         	holder = (Holder)vi.getTag();
         }
-        Log.e("Vi value", vi.toString());
         HashMap<String, String> index = new HashMap<String, String>();
         index = data.get(position);
  
         // Setting all values in list view
-        holder.name.setText(index.get(com.marketstock.sebiapplication.indices.KEY_NAME));
-        holder.value.setText(index.get(com.marketstock.sebiapplication.indices.KEY_VALUE));
-        holder.pointchange.setText(index.get(com.marketstock.sebiapplication.indices.KEY_POINT_CHANGE));
-        holder.percentchange.setText(index.get(com.marketstock.sebiapplication.indices.KEY_PERCENT_CHANGE));
+        holder.scrip.setText(index.get(com.marketstock.sebiapplication.portFolio.KEY_NAME));
+        holder.holding.setText(index.get(com.marketstock.sebiapplication.portFolio.KEY_HOLDING));
+        holder.avg_price.setText(index.get(com.marketstock.sebiapplication.portFolio.KEY_AVG_PRICE));
+        holder.amount.setText(index.get(com.marketstock.sebiapplication.portFolio.KEY_AMOUNT));
+        holder.profit.setText(index.get(com.marketstock.sebiapplication.portFolio.KEY_PROFIT));
         return vi;
         
     }
 	
 	private static class Holder{
-		TextView name;
-		TextView value;
-		TextView pointchange;
-		TextView percentchange;
+		TextView scrip;
+		TextView holding;
+		TextView avg_price;
+		TextView amount;
+		TextView profit;
 	}
 
 }

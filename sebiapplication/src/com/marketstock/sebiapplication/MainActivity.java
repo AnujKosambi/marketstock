@@ -14,9 +14,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.Button;
-import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
@@ -40,7 +37,6 @@ public class MainActivity extends SherlockFragmentActivity implements
 	private TabsPagerAdapter mAdapter;
 	public static ActionBar actionBar;
 
-	private Button getQuoteBtn;
 	// Tab titles
 	private String[] tabs = { "Learning Center", "Trade now" };
 
@@ -79,16 +75,21 @@ public class MainActivity extends SherlockFragmentActivity implements
 		setContentView(R.layout.activity_main);
 		
 		db = new DBHelper(this);
+		
+		Cursor c = db.getReadableDatabase().rawQuery("select * from axis", null);
+		
 		SharedPreferences prefs =getApplicationContext().getSharedPreferences(
 			      "com.marketstock.sebiapplication", Context.MODE_PRIVATE);
 		long installed = prefs.getLong("Date",0); 
 		Date dateNow=new Date(Calendar.getInstance().getTimeInMillis());
 		moveToDays=(int)( (dateNow.getTime()- installed )/(1000 * 60 * 60 * 24));
+
 		moveToDays+=10;
 		Cursor s = db.getReadableDatabase().rawQuery("SELECT * FROM infosys",
 				null);
 
 		s.moveToFirst();
+
 	     MarqueeLayout marqueeLayout = new MarqueeLayout(this);
 	     marqueeLayout.setBackgroundColor(Color.BLACK);
 	     marqueeLayout.setDuration(30000);
@@ -97,6 +98,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 	     marqueeLayout.setLayoutParams(new LayoutParams( LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 	     LinearLayout marqueeParentLayout=(LinearLayout)findViewById(R.id.marquee_layout);
 	     marqueeParentLayout.addView(marqueeLayout,width,LayoutParams.WRAP_CONTENT);
+
 	     marqueeParentLayout.setBackgroundColor(Color.BLACK);
         
 		Intent intent = new Intent(this, priceService.class);
@@ -110,6 +112,9 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 //		Log.d(s.getDouble(5)+"","ewf");
 	     
+
+
+
 		
 		// Initilization
 		viewPager = (ViewPager) findViewById(R.id.pager);
