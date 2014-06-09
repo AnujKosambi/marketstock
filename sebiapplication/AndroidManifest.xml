@@ -30,9 +30,45 @@
             android:name="com.marketstock.sebiapplication.indices"
              android:label="Indices"
              android:parentActivityName="com.marketstock.sebiapplication.MainActivity"
-             
              >
         </activity>
+         <activity
+            android:name="com.marketstock.sebiapplication.News"
+             android:label="News"
+             android:parentActivityName="com.marketstock.sebiapplication.MainActivity"
+             >
+        </activity>
+         <activity
+            android:name="com.marketstock.sebiapplication.marketMovers"
+             android:label="MarketMovers"
+             android:parentActivityName="com.marketstock.sebiapplication.MainActivity"
+             >
+        </activity>
+         <activity
+            android:name="com.marketstock.sebiapplication.portFolio"
+             android:label="PortFolio"
+             android:parentActivityName="com.marketstock.sebiapplication.MainActivity"
+             >
+        </activity>
+        <activity
+            android:name="com.marketstock.sebiapplication.Definitions"
+             android:label="Definitions"
+             android:parentActivityName="com.marketstock.sebiapplication.MainActivity"
+             >
+        </activity>
+        <activity
+            android:name="com.marketstock.sebiapplication.TipOfDay"
+             android:label="TipOfDay"
+             android:parentActivityName="com.marketstock.sebiapplication.MainActivity"
+             >
+        </activity>
+        <activity
+            android:name="com.marketstock.sebiapplication.BeginnersRead"
+             android:label="BeginnersRead"
+             android:parentActivityName="com.marketstock.sebiapplication.MainActivity"
+             >
+        </activity>
+        
         <activity
             android:name="com.marketstock.sebiapplication.Stockpage"
             android:label="@string/title_activity_stockpage" >
