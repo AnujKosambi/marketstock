@@ -86,7 +86,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 		
 		db = new DBHelper(this);
 		
-		Cursor c = db.getReadableDatabase().rawQuery("select * from axis", null);
+//		Cursor c = db.getReadableDatabase().rawQuery("select * from axis", null);
 		
 		SharedPreferences prefs =getApplicationContext().getSharedPreferences(
 			      "com.marketstock.sebiapplication", Context.MODE_PRIVATE);

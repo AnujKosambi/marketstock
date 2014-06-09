@@ -14,7 +14,6 @@ import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 public class DBHelper extends SQLiteOpenHelper {
 	Context c;
@@ -30,6 +29,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	public static final String TB_USERDATA = "userdata";
 	public static final String TB_COMPANYDATA = "companydata";
 	public static final String TB_TIPS = "tips";
+	public static final String TB_DF = "definition";
 
 	public DBHelper(Context context) {
 		super(context, DB_NAME, null, 1);
@@ -57,6 +57,9 @@ public class DBHelper extends SQLiteOpenHelper {
 	private static final String CREATE_TB_TIPS = "CREATE TABLE " + TB_TIPS
 			+ " (id INTEGER PRIMARY KEY, tips TEXT)";
 
+	private static final String CREATE_TB_DF = "CREATE TABLE " + TB_DF
+			+ " (term TEXT,definition TEXT)";
+
 	private BufferedReader buffer;
 
 	@Override
@@ -66,7 +69,8 @@ public class DBHelper extends SQLiteOpenHelper {
 		db.execSQL(CREATE_TB_UD);
 		db.execSQL(CREATE_TB_CD);
 		db.execSQL(CREATE_TB_TIPS);
-		db.setMaximumSize(10240*1024);
+		db.execSQL(CREATE_TB_DF);
+		db.setMaximumSize(10240 * 1024);
 		SharedPreferences prefs = c.getSharedPreferences(
 				"com.marketstock.sebiapplication", Context.MODE_PRIVATE);
 		prefs.edit()
@@ -127,29 +131,41 @@ public class DBHelper extends SQLiteOpenHelper {
 
 			}
 
-			inputstream = new InputStreamReader(c.getAssets().open(
-					TB_TIPS + ".csv"));
-			buffer = new BufferedReader(inputstream);
-			line = "";
-			tableName = TB_TIPS;
-			columns = " id,tips ";
-			str1 = "INSERT INTO " + tableName + " (" + columns + ") values(";
-			str2 = ");";
-			
-			db.beginTransaction();
-
-			while ((line = buffer.readLine()) != null) {
-				StringBuilder sb = new StringBuilder(str1);
-				String[] str = line.split(",,");
+			String table;
+			for (int i = 0; i < 2; i++) {
 				
-				sb.append(str[0] + ",");
-				sb.append(str[1]);
-				sb.append(str2);
-				Log.d(sb.toString(),"q");
-				db.execSQL(sb.toString());
+				if (i == 0) {
+					table = TB_TIPS;
+					columns = " id,tips ";
+				} else {
+					table = TB_DF;
+					columns = " term,definition ";
+				}
+
+				inputstream = new InputStreamReader(c.getAssets().open(
+						table + ".csv"));
+
+				buffer = new BufferedReader(inputstream);
+				line = "";
+
+				str1 = "INSERT INTO " + table + " (" + columns + ") values(";
+				str2 = ");";
+
+				db.beginTransaction();
+
+				while ((line = buffer.readLine()) != null) {
+					
+					StringBuilder sb = new StringBuilder(str1);
+					String[] str = line.split(",,");
+
+					sb.append(str[0] + ",");
+					sb.append(str[1]);
+					sb.append(str2);
+					db.execSQL(sb.toString());
+				}
+				db.setTransactionSuccessful();
+				db.endTransaction();
 			}
-			db.setTransactionSuccessful();
-			db.endTransaction();
 
 			inputstream = new InputStreamReader(c.getAssets().open(
 					"infosysNews.csv"));
@@ -175,7 +191,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 				sb.append(str2);
 				db.execSQL(sb.toString());
-				
+
 			}
 			db.setTransactionSuccessful();
 			db.endTransaction();
