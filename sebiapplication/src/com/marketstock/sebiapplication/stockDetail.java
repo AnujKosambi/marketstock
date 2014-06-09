@@ -26,16 +26,18 @@ public class stockDetail extends SherlockFragment{
         TextView companyHigh=(TextView)rootView.findViewById(R.id.Shigh);
         TextView companyLow=(TextView)rootView.findViewById(R.id.Slow);
         TextView companyVol=(TextView)rootView.findViewById(R.id.Svolume);
+        TextView companyValue=(TextView)rootView.findViewById(R.id.Scompany_price);
         
         companyName.setText(Stockpage.companyName.toUpperCase());
-        companyOpen.setText("Open Price :"+Stockpage.stock.getOpenPrice()+"");
-        companyClose.setText("Close Price :"+Stockpage.stock.getClosePrice()+"");
-        companyHigh.setText("High Price :"+Stockpage.stock.getHighPrice()+"");
-        companyLow.setText("Low Price :"+Stockpage.stock.getLowPrice()+"");
+        companyOpen.setText(Stockpage.stock.getOpenPrice()+"");
+        companyClose.setText(Stockpage.prevCloseprice+"");
+        companyHigh.setText(Stockpage.stock.getHighPrice()+"");
+        companyLow.setText(Stockpage.stock.getLowPrice()+"");
+       // companyValue.setText()
         Date date=new Date(Calendar.getInstance().getTimeInMillis());
         
-        int vol=(int) ((Stockpage.stock.getVolume()*date.getSeconds())/86400);
-        companyVol.setText("Low Price :"+vol+"");
+        int vol=(int) ((Stockpage.stock.getVolume()*date.getTime())/86400000);
+        companyVol.setText(vol+"");
         return rootView;
     }
 }

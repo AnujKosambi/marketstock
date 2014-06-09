@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:text="@string/company_name"
         android:textAppearance="?android:attr/textAppearanceLarge"
+        
         android:textStyle="bold" />
 
     <TableLayout
@@ -22,24 +23,62 @@
             android:id="@+id/tableRow2"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_weight="1" >
 
-            <Button
-                android:id="@+id/button1"
+            <LinearLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="left"
+                android:orientation="vertical"
+                 android:layout_weight="1" >
+
+                <Button
+                    android:id="@+id/button1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                   
+                    android:text="Buy" />
+
+                <Button
+                    android:id="@+id/button2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Sell" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                   android:paddingRight="20dp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
                 android:layout_weight="1"
-                android:text="Buy" />
+                android:orientation="vertical" >
 
             <TextView
                 android:id="@+id/Scompany_price"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+             
+                android:layout_weight="1"
+                android:gravity="bottom"
+                android:paddingLeft="10dp"
+                android:text="Price"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/sCompany_change"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"
                 android:layout_weight="1"
-                android:text="Price"
+                android:text="+/- Change"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            </LinearLayout>
+
         </TableRow>
 
         <TableRow
@@ -48,20 +87,30 @@
             android:layout_height="0dp"
             android:layout_weight="1" >
 
-            <Button
-                android:id="@+id/button2"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Sell" />
+        </TableRow>
+
+        <TableRow
+          android:paddingTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" 
+           >
 
             <TextView
-                android:id="@+id/sCompany_change"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:text="Open Price:"
                 android:layout_weight="1"
-                android:text="+/- Change"
-                android:textAppearance="?android:attr/textAppearanceMedium" />
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold" />
+               <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Highest Price:"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold" />
+               
+
         </TableRow>
 
         <TableRow
@@ -86,7 +135,29 @@
                 android:text="High:+value"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
         </TableRow>
+<TableRow
+           android:paddingTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
 
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Previous ClosedPrice:"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold" />
+
+               <TextView
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="bottom"
+                   android:layout_weight="1"
+                   android:text="Lowest Price:"
+                   android:textAppearance="?android:attr/textAppearanceMedium"
+                   android:textStyle="bold" />
+
+        </TableRow>
         <TableRow
             android:id="@+id/tableRow5"
             android:layout_width="match_parent"
@@ -108,6 +179,66 @@
                 android:layout_weight="1"
                 android:text="Low: -Value"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
+        </TableRow>
+        <TableRow
+           android:paddingTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="52wk Highest:"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold" />
+
+               <TextView
+                   android:layout_width="0dp"
+                   android:layout_height="wrap_content"
+                   android:layout_gravity="bottom"
+                   android:layout_weight="1"
+                   android:text="52wk Lowest:"
+                   android:textAppearance="?android:attr/textAppearanceMedium"
+                   android:textStyle="bold" />
+
+        </TableRow>
+        <TableRow
+            android:id="@+id/tableRow5"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" >
+
+            <TextView
+                android:id="@+id/S52high"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Prev Close:x"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+
+            <TextView
+                android:id="@+id/S52low"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Low: -Value"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
+        </TableRow>
+        
+        <TableRow
+          android:paddingTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Volumn:"
+                android:layout_weight="1"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:textStyle="bold" />
+
         </TableRow>
 
         <TableRow

@@ -28,8 +28,10 @@ public class Stockpage extends SherlockFragmentActivity implements ActionBar.Tab
 	private StockPagesAdapter mAdapter;
 	private ActionBar actionBar; 
 	public static Stock stock;
-
+	public static double prevCloseprice;
 	public static String companyName;
+	public static double companyPrice;
+	
 	// Tab titles
 	private String[] tabs = { "Stock details", "Chart","News" };
 	
@@ -48,11 +50,17 @@ public class Stockpage extends SherlockFragmentActivity implements ActionBar.Tab
 		
 		
 		int moveToDays=MainActivity.moveToDays;
-		Toast.makeText(this, moveToDays+"", Toast.LENGTH_LONG).show();
-		cursor.moveToPosition(0);
+		//Toast.makeText(this, moveToDays+"", Toast.LENGTH_LONG).show();
+		cursor.moveToPosition(moveToDays);
+		
 		stock=new Stock(new Date(cursor.getLong(1)), 
 			cursor.getDouble(2), cursor.getDouble(3), cursor.getDouble(4), cursor.getDouble(5),cursor.getDouble(6));
+		cursor.moveToPrevious();
+		prevCloseprice=cursor.getDouble(3);
 		cursor.close();
+		cursor = MainActivity.db.getReadableDatabase()
+				.rawQuery("SELECT* FROM companydata",null); 
+		
 		actionBar = getSupportActionBar();
 		mAdapter = new StockPagesAdapter(getSupportFragmentManager());
 		//getQuoteBtn = (Button) findViewById(R.id.getquote_btn);

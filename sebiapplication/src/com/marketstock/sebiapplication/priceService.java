@@ -14,7 +14,7 @@ public class priceService extends IntentService{
 	@Override
 	protected void onHandleIntent(Intent intent) {
 		
-		Toast.makeText(getApplicationContext(), "t4t", Toast.LENGTH_SHORT).show();
+	//	Toast.makeText(getApplicationContext(), "t4t", Toast.LENGTH_SHORT).show();
 		Log.d("dwef", "fef");
 	     long endTime = System.currentTimeMillis() + 5*1000;
 	      while (System.currentTimeMillis() < endTime) {

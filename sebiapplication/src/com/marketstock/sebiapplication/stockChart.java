@@ -63,7 +63,7 @@ public class stockChart extends SherlockFragment {
        	graphView.getGraphViewStyle().setGridColor(Color.GRAY);
        	graphView.getGraphViewStyle().setHorizontalLabelsColor(Color.BLACK);
        	graphView.getGraphViewStyle().setVerticalLabelsColor(Color.BLACK);
-       	graphView.getGraphViewStyle().setTextSize(8);
+       	graphView.getGraphViewStyle().setTextSize(12);
      	graphView.getGraphViewStyle().setNumHorizontalLabels(5);
        //	graphView.getGraphViewStyle().setNumVerticalLabels(4);
        //	graphView.getGraphViewStyle().setVerticalLabelsWidth(20);
@@ -72,7 +72,7 @@ public class stockChart extends SherlockFragment {
        	//graphView.
        	
        	
-       	graphView.setBackgroundColor(Color.rgb(194, 223, 255));
+       	graphView.setBackgroundColor(Color.argb(150,194, 223, 255));
         graphView.setDrawDataPoints(true);
        	graphView.setDataPointsRadius(4f);
        	
@@ -102,7 +102,7 @@ public class stockChart extends SherlockFragment {
  
       
         int i=0;
-        while (cursor.isAfterLast() == false) 
+        while (cursor.isAfterLast() == false && i<MainActivity.moveToDays) 
         {
         
 			Date date;
@@ -131,7 +131,8 @@ public class stockChart extends SherlockFragment {
         	cursor.moveToNext();
         	
         }
-     
+        if(i<=0)
+        	return rootView;
         GraphViewSeriesStyle seriesStyle = new GraphViewSeriesStyle();
         GraphViewData[] graphDataArray= new GraphViewData[graphData.size()];
         
@@ -168,7 +169,7 @@ public class stockChart extends SherlockFragment {
 			public void onProgressChanged(SeekBar seekBar, int progress,
 					boolean fromUser) {
 
-				int startPos=((progress*dateMarker.size()*(100-seekBarSize.getProgress()))/10000);
+				int startPos=((progress*(dateMarker.size()-1)*(100-seekBarSize.getProgress()))/10000);
 				graphView.setViewPort(startPos,seekBarSize.getProgress());
 				startInt._int=startPos;
 				

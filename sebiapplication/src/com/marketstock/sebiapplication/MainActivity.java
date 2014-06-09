@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
@@ -57,18 +58,18 @@ public class MainActivity extends SherlockFragmentActivity implements
 		for(int i=0;i<companies.length;i++)
 		{
 			TextView textView = new TextView(this);
-			textView.setText(companies[i]+" "+i+" ");
-			textView.setTextColor(Color.RED);
-	
-			textView.setTextSize(10);
-			width+=textView.getText().length()*10;
+			textView.setText(companies[i].toUpperCase()+" "+i+"   ");
+			textView.setTextColor(Color.rgb(252,82,82));
+			textView.setTypeface(null,Typeface.BOLD);
+			textView.setTextSize(20);
+			width+=textView.getText().length()*20;
 			linearLayout.addView(textView);
 			//textView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
 			linearLayout.setLayoutParams(new LayoutParams( LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 		//	scrollView.addView(linearLayout, 2000, LayoutParams.WRAP_CONTENT);
 			
 		}
-		Toast.makeText(this, width+"", Toast.LENGTH_LONG).show();
+		
 		return linearLayout;
 	}
 	@Override
@@ -83,19 +84,21 @@ public class MainActivity extends SherlockFragmentActivity implements
 		long installed = prefs.getLong("Date",0); 
 		Date dateNow=new Date(Calendar.getInstance().getTimeInMillis());
 		moveToDays=(int)( (dateNow.getTime()- installed )/(1000 * 60 * 60 * 24));
-		
+		moveToDays+=10;
 		Cursor s = db.getReadableDatabase().rawQuery("SELECT * FROM infosys",
 				null);
 
 		s.moveToFirst();
 	     MarqueeLayout marqueeLayout = new MarqueeLayout(this);
+	     marqueeLayout.setBackgroundColor(Color.BLACK);
 	     marqueeLayout.setDuration(30000);
 	     marqueeLayout.addView(getMarqueeView());
 	     marqueeLayout.startAnimation();
-	    marqueeLayout.setLayoutParams(new LayoutParams( LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+	     marqueeLayout.setLayoutParams(new LayoutParams( LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 	     LinearLayout marqueeParentLayout=(LinearLayout)findViewById(R.id.marquee_layout);
 	     marqueeParentLayout.addView(marqueeLayout,width,LayoutParams.WRAP_CONTENT);
-
+	     marqueeParentLayout.setBackgroundColor(Color.BLACK);
+        
 		Intent intent = new Intent(this, priceService.class);
 		startService(intent);
 		
