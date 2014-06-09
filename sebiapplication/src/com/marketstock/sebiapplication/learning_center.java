@@ -42,7 +42,7 @@ public class learning_center extends SherlockFragment{
 			
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(context, marketMovers.class);
+				Intent intent = new Intent(context, BeginnersRead.class);
 				startActivity(intent);
 			}
 		});
@@ -51,7 +51,7 @@ public class learning_center extends SherlockFragment{
 			
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(context, News.class);
+				Intent intent = new Intent(context, TipOfDay.class);
 				startActivity(intent);
 			}
 		});

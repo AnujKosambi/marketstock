@@ -26,13 +26,16 @@ public class TipOfDay extends SherlockActivity {
 			list.addFooterView(new View(context));
 			
 			BaseInflaterAdapter<CardItemData> adapter = new BaseInflaterAdapter<CardItemData>(new CardInflater());
-			for (int i = 0; i < 50; i++)
+			for (int i = 0; i < 16; i++)
 			{
 				CardItemData data = new CardItemData("Item " + i);
 				adapter.addItem(data, false);
 			}
 
 			list.setAdapter(adapter);
+			
 	 }
+	 
+	 
 
 }

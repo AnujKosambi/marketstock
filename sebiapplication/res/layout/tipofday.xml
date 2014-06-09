@@ -6,20 +6,19 @@
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
 	android:background="#E0EEEE">
-	
-    <TextView
+
+        <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingLeft="80dp"
         android:text="Tip of the Day"
-        android:paddingStart="80dp"
-        android:textStyle="bold"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        />
+        android:textStyle="bold" />
 
 	<ListView
 		android:id="@+id/tip_list_view"
 		android:layout_width="match_parent"
-		android:layout_height="match_parent"
+		android:layout_height="wrap_content"
 		android:headerDividersEnabled="true"
 		android:footerDividersEnabled="true"
 		android:listSelector="@android:color/transparent"

@@ -4,11 +4,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-
-
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
        android:layout_gravity="center"
        android:paddingLeft="15dp"
        android:paddingRight="15dp"
@@ -22,7 +20,7 @@
                 <LinearLayout
                     android:id="@+id/beginnersCard"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:background="@drawable/selector_card_background"
                     android:clickable="true"
                     android:descendantFocusability="afterDescendants"
@@ -33,11 +31,10 @@
                
 
                     <TextView
-                        android:id="@+id/definiton_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:paddingLeft="50dp"
-                        android:text="Term goes here"
+                        android:text="Beginner's Read"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:textStyle="bold" />
 
@@ -57,8 +54,9 @@
                         android:layout_marginTop="15dp"
                         android:layout_marginRight="15dp"
                         android:background="#00000000"
+                        android:paddingLeft="15dp"
                         android:text="fsjjf dalwd ajdhawu aiwhdia d adlh efjkhsjf falaehf  aflhah  aljfhal  afhalhf  alhflahf  aflfh af lafh aflha alifhafaf alfhalfhaf  afhalfhlaf  awfhalif af haf afaf lafhawlf aw aifaf af haoifhaif a elknalif a alfhf af alnfoiagh a ahfoaehgaoif afnga  afiafa fawl d alidha daihd  aldhawld  aldhawlid a liadh adlh adjadlahd adjhaldha adnawldja wadhawld  awdjawid awd lawhdiawhd ad dlhdliawd awdjaw dawidiwa djawidaw d dlawhdliwhd aw widawidiwadja jdiadiajdlawid lahdliawdwaidaw wldhaidhifa ndliawhffhalifh dlawhdliawfafh awfhaifiafa  awfhafhihflafli falhlahilad fahfliailfi" >
-
+                       
                     </EditText>
 
              </ScrollView>
