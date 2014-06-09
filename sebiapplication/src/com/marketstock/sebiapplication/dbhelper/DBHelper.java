@@ -6,8 +6,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
@@ -59,6 +62,9 @@ public class DBHelper extends SQLiteOpenHelper {
 		db.execSQL(CREATE_TB_NEWS);
 		db.execSQL(CREATE_TB_UD);
 		db.execSQL(CREATE_TB_CD);
+		SharedPreferences prefs =c.getSharedPreferences(
+			      "com.marketstock.sebiapplication", Context.MODE_PRIVATE);
+		prefs.edit().putLong("Date", Calendar.getInstance().getTime().getTime()).commit();
 		InputStreamReader inputstream;
 		String line, tableName, columns, str1, str2;
 

@@ -1,6 +1,11 @@
 package com.marketstock.sebiapplication;
 
+import java.sql.Date;
+import java.util.Calendar;
+
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -40,6 +45,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 	static DBHelper db;
 	int width;
+	public static int moveToDays;
 	private View getMarqueeView()
 	{
 	//	HorizontalScrollView scrollView=new HorizontalScrollView(this);
@@ -53,6 +59,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 			TextView textView = new TextView(this);
 			textView.setText(companies[i]+" "+i+" ");
 			textView.setTextColor(Color.RED);
+	
 			textView.setTextSize(10);
 			width+=textView.getText().length()*10;
 			linearLayout.addView(textView);
@@ -71,8 +78,12 @@ public class MainActivity extends SherlockFragmentActivity implements
 		setContentView(R.layout.activity_main);
 		
 		db = new DBHelper(this);
+		SharedPreferences prefs =getApplicationContext().getSharedPreferences(
+			      "com.marketstock.sebiapplication", Context.MODE_PRIVATE);
+		long installed = prefs.getLong("Date",0); 
+		Date dateNow=new Date(Calendar.getInstance().getTimeInMillis());
+		moveToDays=(int)( (dateNow.getTime()- installed )/(1000 * 60 * 60 * 24));
 		
-
 		Cursor s = db.getReadableDatabase().rawQuery("SELECT * FROM infosys",
 				null);
 

@@ -1,8 +1,12 @@
 package com.marketstock.sebiapplication;
 
 import java.sql.Date;
+import java.util.Calendar;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager.NameNotFoundException;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
@@ -41,6 +45,10 @@ public class Stockpage extends SherlockFragmentActivity implements ActionBar.Tab
 		companyName=getIntent().getExtras().getString("Company")+"";
 		Cursor cursor = MainActivity.db.getReadableDatabase()
 				.rawQuery("SELECT* FROM "+ companyName+" order by date",null); 
+		
+		
+		int moveToDays=MainActivity.moveToDays;
+		Toast.makeText(this, moveToDays+"", Toast.LENGTH_LONG).show();
 		cursor.moveToPosition(0);
 		stock=new Stock(new Date(cursor.getLong(1)), 
 			cursor.getDouble(2), cursor.getDouble(3), cursor.getDouble(4), cursor.getDouble(5),cursor.getDouble(6));
