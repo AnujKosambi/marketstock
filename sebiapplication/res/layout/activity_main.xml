@@ -18,8 +18,8 @@
         android:layout_height="30dp"
         android:layout_marginTop="-30dp"
         android:orientation="horizontal"
-        android:id="@+id/getqot_layout">
-
+        android:id="@+id/marquee_layout">
+<!-- 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -32,8 +32,8 @@
             android:freezesText="true"
             android:focusable="true"
             android:focusableInTouchMode="true"
-            android:layout_marginRight="100dp"/>
-
+            android:layout_marginRight="100dp"/>-->
+<!-- 
         <Button
             android:layout_marginLeft="-100dp"
             android:layout_width="100dp"
@@ -42,7 +42,7 @@
             android:padding="1dp"
             android:textSize="5pt"
             android:id="@+id/getquote_btn" />
-
+ -->
     </LinearLayout>
 
 </LinearLayout>
