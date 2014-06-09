@@ -20,12 +20,14 @@ public class DBHelper extends SQLiteOpenHelper {
 
 	public static final String DB_NAME = "marketstock.db";
 
-	public static final String TB_NEWS = "infosysnew";
+	public static final String TB_NEWS[] = { "infosysnew", "bajajautonews",
+			"tcsnews" };
+	public static final String TB_COMMON_NEWS = "commonnews";
 	public static final String[] TB_STOCKS = { "axis", "bajaj", "bharti",
 			"bhel", "cipla", "coalindia", "drreddy", "gail", "hdfcbank",
 			"hdfc", "hero", "hindalco", "hul", "icicibank", "infosys", "itc",
 			"lt", "maruti", "mm", "ntpc", "ongc", "ril", "sbi", "sesa",
-			"sunpharma", "tatamotors", "tatapower", "tatasteel", "tsc", "wipro" };
+			"sunpharma", "tatamotors", "tatapower", "tatasteel", "tcs", "wipro" };
 	public static final String TB_USERDATA = "userdata";
 	public static final String TB_COMPANYDATA = "companydata";
 	public static final String TB_TIPS = "tips";
@@ -43,16 +45,16 @@ public class DBHelper extends SQLiteOpenHelper {
 
 	}
 
-	private static final String CREATE_TB_NEWS = "CREATE TABLE "
-			+ TB_NEWS
-			+ " (id INTEGER PRIMARY KEY, title TEXT, desc TEXT, effect TEXT, learning TEXT, fluctuation TEXT)";
-
 	private static final String CREATE_TB_UD = "CREATE TABLE "
 			+ TB_USERDATA
 			+ " (company TEXT, holdings TEXT, avg_price TEXT, amount TEXT, profit TEXT)";
 
 	private static final String CREATE_TB_CD = "CREATE TABLE " + TB_COMPANYDATA
 			+ " (company TEXT, price REAL)";
+
+	private static final String CREATE_TB_CN = "CREATE TABLE "
+			+ TB_COMMON_NEWS
+			+ " (id INTEGER PRIMARY KEY,company TEXT, title TEXT, desc TEXT, learning TEXT, day INTEGER)";
 
 	private static final String CREATE_TB_TIPS = "CREATE TABLE " + TB_TIPS
 			+ " (id INTEGER PRIMARY KEY, tips TEXT)";
@@ -65,17 +67,20 @@ public class DBHelper extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 
-		db.execSQL(CREATE_TB_NEWS);
+		db.setMaximumSize(10240 * 1024);
+
 		db.execSQL(CREATE_TB_UD);
 		db.execSQL(CREATE_TB_CD);
+		db.execSQL(CREATE_TB_CN);
 		db.execSQL(CREATE_TB_TIPS);
 		db.execSQL(CREATE_TB_DF);
-		db.setMaximumSize(10240 * 1024);
+
 		SharedPreferences prefs = c.getSharedPreferences(
 				"com.marketstock.sebiapplication", Context.MODE_PRIVATE);
 		prefs.edit()
 				.putLong("Date", Calendar.getInstance().getTime().getTime())
 				.commit();
+
 		InputStreamReader inputstream;
 		String line, tableName, columns, str1, str2;
 
@@ -91,6 +96,16 @@ public class DBHelper extends SQLiteOpenHelper {
 			str2 = "',0);";
 
 			db.execSQL(str1 + TB_STOCKS[i] + str2);
+
+		}
+
+		for (int i = 0; i < TB_NEWS.length; i++) {
+
+			String CREATE_TB_NEWS = "CREATE TABLE "
+					+ TB_NEWS[i]
+					+ " (id INTEGER PRIMARY KEY, title TEXT, desc TEXT, effect TEXT, learning TEXT, fluctuation TEXT,day INTEGER)";
+
+			db.execSQL(CREATE_TB_NEWS);
 
 		}
 
@@ -133,7 +148,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
 			String table;
 			for (int i = 0; i < 2; i++) {
-				
+
 				if (i == 0) {
 					table = TB_TIPS;
 					columns = " id,tips ";
@@ -154,7 +169,7 @@ public class DBHelper extends SQLiteOpenHelper {
 				db.beginTransaction();
 
 				while ((line = buffer.readLine()) != null) {
-					
+
 					StringBuilder sb = new StringBuilder(str1);
 					String[] str = line.split(",,");
 
@@ -167,18 +182,56 @@ public class DBHelper extends SQLiteOpenHelper {
 				db.endTransaction();
 			}
 
+			for (int i = 0; i < TB_NEWS.length; i++) {
+
+				inputstream = new InputStreamReader(c.getAssets().open(
+						TB_NEWS[i] + ".csv"));
+				buffer = new BufferedReader(inputstream);
+				line = "";
+
+				columns = " day, title, desc, learning, effect, fluctuation, id ";
+				str1 = "INSERT INTO " + TB_NEWS[i] + " (" + columns
+						+ ") values(";
+				str2 = ");";
+
+				db.beginTransaction();
+				int id = 1;
+				while ((line = buffer.readLine()) != null) {
+
+					StringBuilder sb = new StringBuilder(str1);
+					String[] str = line.split(",,");
+
+					sb.append(str[0] + ",");
+					sb.append(str[1] + ",");
+					sb.append(str[2] + ",");
+					sb.append(str[3] + ",");
+					sb.append(str[4] + ",");
+					sb.append(str[5] + ",");
+					sb.append(id++);
+
+					sb.append(str2);
+					db.execSQL(sb.toString());
+
+				}
+				db.setTransactionSuccessful();
+				db.endTransaction();
+
+			}
+
 			inputstream = new InputStreamReader(c.getAssets().open(
-					"infosysNews.csv"));
+					TB_COMMON_NEWS + ".csv"));
 			buffer = new BufferedReader(inputstream);
 			line = "";
-			tableName = "infosysnew";
-			columns = " title, desc, learning, effect, fluctuation,id ";
-			str1 = "INSERT INTO " + tableName + " (" + columns + ") values(";
+
+			columns = " day, company ,title, desc, learning, id ";
+			str1 = "INSERT INTO " + TB_COMMON_NEWS + " (" + columns
+					+ ") values(";
 			str2 = ");";
 
 			db.beginTransaction();
 			int id = 1;
 			while ((line = buffer.readLine()) != null) {
+				
 				StringBuilder sb = new StringBuilder(str1);
 				String[] str = line.split(",,");
 

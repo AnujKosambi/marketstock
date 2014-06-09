@@ -8,17 +8,19 @@ public class News {
 	String learning;
 	String effect;
 	String fluctuation;
+	int day;
 
 	public News() {
 
 	}
 
-	public News(String t, String d, String l, String e, String f) {
+	public News(String t, String d, String l, String e, String f,int da) {
 		this.title = t;
 		this.desc = d;
 		this.learning = l;
 		this.effect = e;
 		this.fluctuation = f;
+		this.day = da;
 	}
 
 	public String getTitle() {
@@ -39,5 +41,8 @@ public class News {
 
 	public String getFlucatuation() {
 		return this.fluctuation;
+	}
+	public int getDay(){
+		return this.day;
 	}
 }
