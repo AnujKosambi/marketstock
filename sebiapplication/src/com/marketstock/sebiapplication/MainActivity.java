@@ -6,9 +6,11 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
@@ -37,23 +39,29 @@ public class MainActivity extends SherlockFragmentActivity implements
 	private String[] tabs = { "Learning Center", "Trade now" };
 
 	static DBHelper db;
-	private LinearLayout getMarqueeView()
+	int width;
+	private View getMarqueeView()
 	{
+	//	HorizontalScrollView scrollView=new HorizontalScrollView(this);
 		LinearLayout linearLayout = new LinearLayout(this);
-
+		
 		String[] companies=Companies.getCompanies();
+		Log.d("Marquee",companies.length+"");
+	
 		for(int i=0;i<companies.length;i++)
 		{
 			TextView textView = new TextView(this);
-			textView.setText(companies[i]+" "+100.0);
+			textView.setText(companies[i]+" "+i+" ");
 			textView.setTextColor(Color.RED);
+			textView.setTextSize(10);
+			width+=textView.getText().length()*10;
 			linearLayout.addView(textView);
-			textView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-			linearLayout.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-			
+			//textView.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+			linearLayout.setLayoutParams(new LayoutParams( LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+		//	scrollView.addView(linearLayout, 2000, LayoutParams.WRAP_CONTENT);
 			
 		}
-		
+		Toast.makeText(this, width+"", Toast.LENGTH_LONG).show();
 		return linearLayout;
 	}
 	@Override
@@ -70,11 +78,12 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 		s.moveToFirst();
 	     MarqueeLayout marqueeLayout = new MarqueeLayout(this);
-	     marqueeLayout.setDuration(10000);
+	     marqueeLayout.setDuration(30000);
 	     marqueeLayout.addView(getMarqueeView());
 	     marqueeLayout.startAnimation();
+	    marqueeLayout.setLayoutParams(new LayoutParams( LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 	     LinearLayout marqueeParentLayout=(LinearLayout)findViewById(R.id.marquee_layout);
-	     marqueeParentLayout.addView(marqueeLayout);
+	     marqueeParentLayout.addView(marqueeLayout,width,LayoutParams.WRAP_CONTENT);
 
 		Intent intent = new Intent(this, priceService.class);
 		startService(intent);

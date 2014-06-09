@@ -11,7 +11,9 @@ import android.widget.ListView;
 import com.actionbarsherlock.app.SherlockFragment;
 import com.marketstock.adapter.BaseInflaterAdapter;
 import com.marketstock.adapter.CardItemData;
+import com.marketstock.adapter.CardItemTitleNData;
 import com.marketstock.adapter.inflaters.CardInflater;
+import com.marketstock.adapter.inflaters.CardInflaterQuote;
 
 public class stockNews extends SherlockFragment{
 
@@ -26,13 +28,13 @@ public class stockNews extends SherlockFragment{
 		list.addHeaderView(new View(context));
 		list.addFooterView(new View(context));
 		
-		BaseInflaterAdapter<CardItemData> adapter = new BaseInflaterAdapter<CardItemData>(new CardInflater());
+		BaseInflaterAdapter<CardItemTitleNData> adapter = new BaseInflaterAdapter<CardItemTitleNData>(new CardInflaterQuote());
 		Cursor cursor = MainActivity.db.getReadableDatabase()
 				.rawQuery("SELECT * FROM "+ "infosysnew",null); 
 		cursor.moveToFirst();
 		while(cursor.isAfterLast()==false)
 		{
-			CardItemData data = new CardItemData(cursor.getString(1) );
+			CardItemTitleNData data = new CardItemTitleNData(cursor.getString(1), cursor.getString(2));
 			adapter.addItem(data, false);
 			cursor.moveToNext();
 		}

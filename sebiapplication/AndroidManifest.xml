@@ -26,11 +26,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
+         <activity
             android:name="com.marketstock.sebiapplication.Searchstock"
-            android:screenOrientation="portrait"
-            android:label="@string/title_activity_searchstock" >
-        </activity>
+             android:label="GetQuote"
+             android:screenOrientation="portrait"
+             android:parentActivityName="com.marketstock.sebiapplication.MainActivity"
+            />
             <activity
             android:name="com.marketstock.sebiapplication.indices"
              android:label="Indices"
