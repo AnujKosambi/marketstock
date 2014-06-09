@@ -3,25 +3,27 @@ package com.marketstock.sebiapplication;
 import java.util.Calendar;
 import java.util.Date;
 
-import android.R.string;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
-import android.webkit.WebView.FindListener;
+import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragment;
 
 public class stockDetail extends SherlockFragment{
 
+	public Button buy, sell;
+	
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
 
-        View rootView = inflater.inflate(R.layout.stock_detail, container, false);
-        TextView companyName=(TextView)rootView.findViewById(R.id.Scompany_name);
+        final View rootView = inflater.inflate(R.layout.stock_detail, container, false);
+        final TextView companyName=(TextView)rootView.findViewById(R.id.Scompany_name);
         TextView companyOpen=(TextView)rootView.findViewById(R.id.Sopen);
         TextView companyClose=(TextView)rootView.findViewById(R.id.Sprev);
         TextView companyHigh=(TextView)rootView.findViewById(R.id.Shigh);
@@ -31,6 +33,8 @@ public class stockDetail extends SherlockFragment{
         TextView company52high=(TextView)rootView.findViewById(R.id.S52high);
         TextView company52low=(TextView)rootView.findViewById(R.id.S52low);
         TextView companyChange=(TextView)rootView.findViewById(R.id.sCompany_change);
+		
+        
         companyName.setText(Stockpage.companyName.toUpperCase());
         companyOpen.setText(Stockpage.stock.getOpenPrice()+"");
         companyClose.setText(Stockpage.prevCloseprice+"");
@@ -48,6 +52,22 @@ public class stockDetail extends SherlockFragment{
         
         int vol=(int) ((Stockpage.stock.getVolume()*date.getTime())/86400000);
         companyVol.setText(vol+"");
+        
+        
+        buy = (Button) rootView.findViewById(R.id.button1);
+		sell = (Button) rootView.findViewById(R.id.button2);
+		
+		buy.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(rootView.getContext(),BuySell.class);				
+				intent.putExtra("Company", companyName.toString());
+				startActivity(intent);
+				
+			}
+		});
+		
         return rootView;
     }
 }

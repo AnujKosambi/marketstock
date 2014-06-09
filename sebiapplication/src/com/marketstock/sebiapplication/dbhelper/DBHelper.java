@@ -60,7 +60,7 @@ public class DBHelper extends SQLiteOpenHelper {
 			+ " (id INTEGER PRIMARY KEY, tips TEXT)";
 
 	private static final String CREATE_TB_DF = "CREATE TABLE " + TB_DF
-			+ " (term TEXT,definition TEXT)";
+			+ " (id INTEGER PRIMARY KEY,term TEXT,definition TEXT)";
 
 	private BufferedReader buffer;
 
@@ -148,13 +148,13 @@ public class DBHelper extends SQLiteOpenHelper {
 
 			String table;
 			for (int i = 0; i < 2; i++) {
-
+				int j = 1;
 				if (i == 0) {
 					table = TB_TIPS;
 					columns = " id,tips ";
 				} else {
 					table = TB_DF;
-					columns = " term,definition ";
+					columns = " term,definition,id ";
 				}
 
 				inputstream = new InputStreamReader(c.getAssets().open(
@@ -175,6 +175,9 @@ public class DBHelper extends SQLiteOpenHelper {
 
 					sb.append(str[0] + ",");
 					sb.append(str[1]);
+					if (i == 1) {
+						sb.append("," + j++);
+					}
 					sb.append(str2);
 					db.execSQL(sb.toString());
 				}
@@ -231,7 +234,7 @@ public class DBHelper extends SQLiteOpenHelper {
 			db.beginTransaction();
 			int id = 1;
 			while ((line = buffer.readLine()) != null) {
-				
+
 				StringBuilder sb = new StringBuilder(str1);
 				String[] str = line.split(",,");
 

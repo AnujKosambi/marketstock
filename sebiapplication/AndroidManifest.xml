@@ -54,6 +54,13 @@
              >
         </activity>
          <activity
+            android:name="com.marketstock.sebiapplication.BuySell"
+             android:label="Buy Sell"
+             android:screenOrientation="portrait"
+             android:parentActivityName="com.marketstock.sebiapplication.MainActivity"
+             >
+        </activity>
+         <activity
             android:name="com.marketstock.sebiapplication.portFolio"
              android:label="PortFolio"
              android:screenOrientation="portrait"

@@ -6,7 +6,6 @@ import java.util.Calendar;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -17,7 +16,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
@@ -95,10 +93,6 @@ public class MainActivity extends SherlockFragmentActivity implements
 		moveToDays=(int)( (dateNow.getTime()- installed )/(1000 * 60 * 60 * 24));
 
 		moveToDays+=55;
-		Cursor s = db.getReadableDatabase().rawQuery("SELECT * FROM infosys",
-				null);
-
-		s.moveToFirst();
 
 	     MarqueeLayout marqueeLayout = new MarqueeLayout(this);
 	     marqueeLayout.setBackgroundColor(Color.BLACK);
@@ -108,24 +102,12 @@ public class MainActivity extends SherlockFragmentActivity implements
 	     marqueeLayout.setLayoutParams(new LayoutParams( LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
 	     LinearLayout marqueeParentLayout=(LinearLayout)findViewById(R.id.marquee_layout);
 	     marqueeParentLayout.addView(marqueeLayout,width,LayoutParams.WRAP_CONTENT);
-
+	
 	     marqueeParentLayout.setBackgroundColor(Color.BLACK);
-        
+	  
 		Intent intent = new Intent(this, priceService.class);
 		startService(intent);
-		
-//		Cursor s = db.getReadableDatabase().rawQuery("SELECT * FROM infosys",
-//				null);
-//
-//		s.moveToFirst();
 				
-
-//		Log.d(s.getDouble(5)+"","ewf");
-	     
-
-
-
-		
 		// Initilization
 		viewPager = (ViewPager) findViewById(R.id.pager);
 		actionBar = getSupportActionBar();
