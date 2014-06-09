@@ -1,21 +1,16 @@
 package com.marketstock.sebiapplication;
 
-
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Random;
-import java.util.jar.JarEntry;
 
 import android.annotation.SuppressLint;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.text.format.DateFormat;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,7 +19,6 @@ import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragment;
 import com.jjoe64.graphview.CustomLabelFormatter;
@@ -33,23 +27,25 @@ import com.jjoe64.graphview.GraphViewSeries;
 import com.jjoe64.graphview.GraphViewSeries.GraphViewSeriesStyle;
 import com.jjoe64.graphview.LineGraphView;
 import com.marketstock.helper.GraphViewData;
-import com.marketstock.sebiapplication.models.Stock;
 
 public class stockChart extends SherlockFragment {
-	private static SimpleDateFormat dateformat=new SimpleDateFormat("dd/MM/yyyy");
-	public static  java.util.Date startdate ;
-	public static java.util.Date enddate ;
+	private static SimpleDateFormat dateformat = new SimpleDateFormat(
+			"dd/MM/yyyy");
+	public static java.util.Date startdate;
+	public static java.util.Date enddate;
 
-	@SuppressLint("SimpleDateFormat") @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
+	@SuppressLint("SimpleDateFormat")
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+			Bundle savedInstanceState) {
 		try {
-			startdate=dateformat.parse("01/01/2011");
-			enddate=dateformat.parse("31/12/2012");
+			startdate = dateformat.parse("01/01/2011");
+			enddate = dateformat.parse("31/12/2012");
 		} catch (ParseException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
+
 		
         final View rootView = inflater.inflate(R.layout.stock_chart, container, false);
        // GraphViewSeriesStyle seriesStyle = new GraphViewSeriesStyle();
@@ -107,13 +103,12 @@ public class stockChart extends SherlockFragment {
         int i=0;
         while (cursor.isAfterLast() == false) 
         {
-        	
-      
+        
 			Date date;
-			
-				//SimpleDateFormat format=new SimpleDateFormat("MM/dd/yyyy");
-			date = new Date( Long.parseLong(cursor.getString(1)));
+
+			date = new Date(Long.parseLong(cursor.getString(1)));
 			dateMarker.put(i, date);
+
 			
         	Random random=new Random();
         	double openPrice= random.nextDouble();
@@ -156,57 +151,58 @@ public class stockChart extends SherlockFragment {
     	final ValueOfInt startInt=new ValueOfInt(0);
     	
     	seekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
-			
+		
 			@Override
 			public void onStopTrackingTouch(SeekBar seekBar) {
 				// TODO Auto-generated method stub
-				
+
 			}
-			
+
 			@Override
 			public void onStartTrackingTouch(SeekBar seekBar) {
 
-				
 			}
-			
+
 			@Override
 			public void onProgressChanged(SeekBar seekBar, int progress,
 					boolean fromUser) {
+
 				int startPos=((progress*dateMarker.size()*(100-seekBarSize.getProgress()))/10000);
 				graphView.setViewPort(startPos,seekBarSize.getProgress());
 				startInt._int=startPos;
 				
 				startText.setText(""+ (Date)dateMarker.get(startPos));
+
 				graphView.redrawAll();
-			//	graphView.invalidate();
-				
+				// graphView.invalidate();
+
 			}
 		});
-    
-    	seekBarSize.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
-			
+
+		seekBarSize.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
+
 			@Override
 			public void onStopTrackingTouch(SeekBar seekBar) {
-				
+
 			}
-			
+
 			@Override
 			public void onStartTrackingTouch(SeekBar seekBar) {
-				
-				
+
 			}
-			
+
 			@Override
 			public void onProgressChanged(SeekBar seekBar, int progress,
 					boolean fromUser) {
 				int startPos=	startInt._int;
 				graphView.setViewPort(startPos,(( progress*(dateMarker.size()-1-startPos))/100));
 				sizeText.setText(""+progress+"%");
+
 				graphView.redrawAll();
 			}
 		});
-        return rootView;
-    }
+		return rootView;
+	}
 }
 class ValueOfInt{
 	int _int;

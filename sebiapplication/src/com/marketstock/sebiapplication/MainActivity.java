@@ -64,6 +64,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 		
 		db = new DBHelper(this);
 		
+
 		Cursor s = db.getReadableDatabase().rawQuery("SELECT * FROM infosys",
 				null);
 
@@ -74,6 +75,16 @@ public class MainActivity extends SherlockFragmentActivity implements
 	     marqueeLayout.startAnimation();
 	     LinearLayout marqueeParentLayout=(LinearLayout)findViewById(R.id.marquee_layout);
 	     marqueeParentLayout.addView(marqueeLayout);
+
+		Intent intent = new Intent(this, priceService.class);
+		startService(intent);
+		
+//		Cursor s = db.getReadableDatabase().rawQuery("SELECT * FROM infosys",
+//				null);
+//
+//		s.moveToFirst();
+				
+
 //		Log.d(s.getDouble(5)+"","ewf");
 	     
 		
@@ -115,8 +126,8 @@ public class MainActivity extends SherlockFragmentActivity implements
 			}
 		});
 
-	
-		s.close();
+
+
 	}
 
 	@Override
