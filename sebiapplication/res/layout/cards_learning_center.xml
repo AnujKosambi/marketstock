@@ -16,7 +16,6 @@
             android:layout_weight="1">
 
             <FrameLayout
-               
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
@@ -28,22 +27,21 @@
                 >
 
                 <LinearLayout
-                    android:id="@+id/indicesCard"
+                    android:id="@+id/definitionsCard"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
                     android:paddingTop="10dp"
-                      android:descendantFocusability="afterDescendants"
+                    android:descendantFocusability="afterDescendants"
                     android:clickable="true"
                     android:background="@drawable/selector_card_background"
                     android:orientation="vertical" >
 
                     <TextView
-                    
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Indices"
+                        android:text="Definitions"
                         android:textAlignment="center"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textStyle="bold" />
@@ -83,7 +81,7 @@
                         </TableRow>
 
                         <TableRow
-                            android:id="@+id/tableRow2"
+                            android:id="@+id/tableRow22"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" >
 
@@ -119,7 +117,7 @@
          		    android:layout_weight="1" >
 
                 <LinearLayout
-                    android:id="@+id/moversCard"
+                    android:id="@+id/beginnersCard"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:paddingBottom="10dp"
@@ -134,7 +132,7 @@
                         android:id="@+id/textMarketMover"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                  		android:text="MarketMovers"
+                  		android:text="Begginer's Read"
                   		android:textStyle="bold"
                         android:textAppearance="?android:attr/textAppearanceMedium" />
 
@@ -168,7 +166,7 @@
                             android:textStyle="bold" />
 
                         <TextView
-                            android:id="@+id/textView2"
+                            android:id="@+id/textView23"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="XYZ ltd"
@@ -196,7 +194,7 @@
                     android:layout_weight="1" >
 
                 <LinearLayout 
-                    android:id="@+id/newsCard"
+                    android:id="@+id/tipsCard"
                     android:layout_width="match_parent" 
                     android:layout_height="match_parent"
                     android:paddingBottom="10dp"
@@ -211,7 +209,7 @@
                         android:id="@+id/textNews"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="News"
+                        android:text="Tip of the day"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textStyle="bold" />
                 
@@ -219,21 +217,20 @@
                 </FrameLayout>
 
          		<FrameLayout
-         		 
          		    android:layout_width="0dp"
          		    android:layout_height="match_parent"
          		    android:layout_gravity="center"
          		    android:layout_weight="1"
-         		        android:paddingLeft="15dp"
-                android:paddingRight="15dp"
-                android:paddingTop="15dp"
-                android:paddingBottom="15dp" >
+         		    android:paddingLeft="15dp"
+                	android:paddingRight="15dp"
+                	android:paddingTop="15dp"
+                	android:paddingBottom="15dp" >
 
                 <LinearLayout
-                    android:id="@+id/portfolioCard"
+                    android:id="@+id/explanationCard"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                      android:paddingBottom="10dp"
+                    android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
                     android:paddingTop="10dp"
                     android:background="@drawable/selector_card_background"
@@ -245,7 +242,7 @@
                         android:id="@+id/textPortfolio"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Portfolio"
+                        android:text="Explanation for News"
                         android:textStyle="bold"
                         android:textAppearance="?android:attr/textAppearanceMedium" />
                 <LinearLayout

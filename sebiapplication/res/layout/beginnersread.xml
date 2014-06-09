@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+       android:layout_gravity="center"
+       android:paddingLeft="15dp"
+       android:paddingRight="15dp"
+       android:paddingTop="15dp"
+       android:paddingBottom="15dp"
+       android:layout_weight="1" >  
+ 
+               <ScrollView
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent" >
+                <LinearLayout
+                    android:id="@+id/beginnersCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/selector_card_background"
+                    android:clickable="true"
+                    android:descendantFocusability="afterDescendants"
+                    android:orientation="vertical"
+                    android:paddingBottom="10dp"
+                    android:paddingTop="10dp" >
+                    
+               
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:paddingLeft="50dp"
+                        android:text="Beginner's Read"
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textStyle="bold" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                    <EditText
+                        android:id="@+id/definition"
+                        android:layout_width="match_parent"
+                        android:layout_height="265dp"
+                        android:editable="false"
+                        android:ems="10"
+                        android:enabled="false"
+                        android:inputType="textMultiLine"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginRight="15dp"
+                        android:background="#00000000"
+                        android:paddingLeft="15dp"
+                        android:text="fsjjf dalwd ajdhawu aiwhdia d adlh efjkhsjf falaehf  aflhah  aljfhal  afhalhf  alhflahf  aflfh af lafh aflha alifhafaf alfhalfhaf  afhalfhlaf  awfhalif af haf afaf lafhawlf aw aifaf af haoifhaif a elknalif a alfhf af alnfoiagh a ahfoaehgaoif afnga  afiafa fawl d alidha daihd  aldhawld  aldhawlid a liadh adlh adjadlahd adjhaldha adnawldja wadhawld  awdjawid awd lawhdiawhd ad dlhdliawd awdjaw dawidiwa djawidaw d dlawhdliwhd aw widawidiwadja jdiadiajdlawid lahdliawdwaidaw wldhaidhifa ndliawhffhalifh dlawhdliawfafh awfhaifiafa  awfhafhihflafli falhlahilad fahfliailfi" >
+                       
+                    </EditText>
+
+             </ScrollView>
+ 
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+    					android:layout_height="match_parent"
+    					android:orientation="horizontal" 
+    					android:paddingTop="20dp"
+    					android:gravity="bottom"
+                        >
+	                 
+	                    
+	                      <ImageButton
+	                        android:id="@+id/goprev"
+	                        android:layout_height="50dp"
+	                        android:layout_width="50dp"
+	                        android:layout_weight="1"
+	                        android:clickable="true"
+	                        android:src="@drawable/go_next_rtl" />
+	                      
+	                         <ImageButton
+	                        android:id="@+id/gonext"
+	                        android:layout_width="50dp"
+	                        android:layout_height="50dp"
+	                        android:layout_weight="1"
+	                        android:clickable="true"
+	                        android:src="@drawable/go_previous_rtl" />
+                      </LinearLayout>
+                </LinearLayout>
+                 </ScrollView> 
+                </FrameLayout>
+                
+
+</LinearLayout>

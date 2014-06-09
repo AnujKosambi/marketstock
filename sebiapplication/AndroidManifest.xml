@@ -2,7 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.marketstock.sebiapplication"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="1.0" 
+    >
 
     <uses-sdk
         android:minSdkVersion="8"
@@ -12,12 +13,12 @@
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
+        android:screenOrientation="portrait"
         android:theme="@style/Theme.Sherlock.Light.DarkActionBar" >
-        
         <service android:name="com.marketstock.sebiapplication.priceService" />
-        
         <activity
             android:name="com.marketstock.sebiapplication.MainActivity"
+            android:screenOrientation="portrait"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,17 +28,62 @@
         </activity>
         <activity
             android:name="com.marketstock.sebiapplication.Searchstock"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_searchstock" >
         </activity>
             <activity
             android:name="com.marketstock.sebiapplication.indices"
              android:label="Indices"
+             android:screenOrientation="portrait"
              android:parentActivityName="com.marketstock.sebiapplication.MainActivity"
-             
+             >
+        </activity>
+         <activity
+            android:name="com.marketstock.sebiapplication.News"
+             android:label="News"
+             android:screenOrientation="portrait"
+             android:parentActivityName="com.marketstock.sebiapplication.MainActivity"
+             >
+        </activity>
+         <activity
+            android:name="com.marketstock.sebiapplication.marketMovers"
+             android:label="Market Movers"
+             android:screenOrientation="portrait"
+             android:parentActivityName="com.marketstock.sebiapplication.MainActivity"
+             >
+        </activity>
+         <activity
+            android:name="com.marketstock.sebiapplication.portFolio"
+             android:label="PortFolio"
+             android:screenOrientation="portrait"
+             android:parentActivityName="com.marketstock.sebiapplication.MainActivity"
              >
         </activity>
         <activity
+            android:name="com.marketstock.sebiapplication.Definitions"
+             android:label="Definitions"
+             android:screenOrientation="portrait"
+             android:parentActivityName="com.marketstock.sebiapplication.MainActivity"
+             >
+        </activity>
+        <activity
+            android:name="com.marketstock.sebiapplication.TipOfDay"
+             android:label="Tip Of the Day"
+             android:screenOrientation="portrait"
+             android:parentActivityName="com.marketstock.sebiapplication.MainActivity"
+             >
+        </activity>
+        <activity
+            android:name="com.marketstock.sebiapplication.BeginnersRead"
+             android:label="Beginner's Read"
+             android:screenOrientation="portrait"
+             android:parentActivityName="com.marketstock.sebiapplication.MainActivity"
+             >
+        </activity>
+        
+        <activity
             android:name="com.marketstock.sebiapplication.Stockpage"
+            android:screenOrientation="portrait"
             android:label="@string/title_activity_stockpage" >
         </activity>
         

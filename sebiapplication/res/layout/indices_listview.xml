@@ -3,13 +3,60 @@
     android:layout_width="fill_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+   
+    <LinearLayout
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:paddingBottom="10dp" >
 
-    <ListView
+
+    <TextView
+        android:id="@+id/tv2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Company"
+        android:textStyle="bold"
+        android:layout_weight="0.3"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/tv3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Value"
+        android:layout_weight="0.3"
+        android:textStyle="bold"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:id="@+id/tv4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Change"
+        android:layout_weight="0.2"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Weight"
+        android:layout_weight="0.2"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textStyle="bold" />
+    
+    </LinearLayout>
+    
+     <ListView
         android:id="@+id/list_indices"
         android:layout_width="fill_parent"
         android:layout_height="match_parent"
         android:divider="#b5b5b5"
         android:dividerHeight="1dp"
+        android:paddingBottom="30dp"
+        android:paddingTop="10dp"
         android:clickable="false" >
     </ListView>	
      

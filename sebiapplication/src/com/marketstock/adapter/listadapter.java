@@ -49,7 +49,6 @@ public class listadapter extends BaseAdapter{
         	holder = new Holder();
             vi = inflater.inflate(R.layout.indices_row_layout, parent,false);
             holder.name = (TextView)vi.findViewById(R.id.company_name); //name
-            holder.date = (TextView)vi.findViewById(R.id.indices_date); 
             holder.value = (TextView)vi.findViewById(R.id.indices_value); 
             holder.pointchange = (TextView)vi.findViewById(R.id.indices_pointchange);
             holder.percentchange = (TextView)vi.findViewById(R.id.indices_percentchange); 
@@ -65,7 +64,6 @@ public class listadapter extends BaseAdapter{
  
         // Setting all values in list view
         holder.name.setText(index.get(com.marketstock.sebiapplication.indices.KEY_NAME));
-        holder.date.setText(index.get(com.marketstock.sebiapplication.indices.KEY_DATE));
         holder.value.setText(index.get(com.marketstock.sebiapplication.indices.KEY_VALUE));
         holder.pointchange.setText(index.get(com.marketstock.sebiapplication.indices.KEY_POINT_CHANGE));
         holder.percentchange.setText(index.get(com.marketstock.sebiapplication.indices.KEY_PERCENT_CHANGE));
@@ -75,7 +73,6 @@ public class listadapter extends BaseAdapter{
 	
 	private static class Holder{
 		TextView name;
-		TextView date;
 		TextView value;
 		TextView pointchange;
 		TextView percentchange;

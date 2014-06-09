@@ -3,17 +3,16 @@ package com.marketstock.sebiapplication;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import android.content.Context;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.actionbarsherlock.app.SherlockFragment;
+import com.actionbarsherlock.app.ActionBar;
+import com.actionbarsherlock.app.SherlockActivity;
 import com.marketstock.adapter.portfolioListAdapter;
 
 
-public class portFolio extends SherlockFragment{
+public class portFolio extends SherlockActivity{
 
 	ListView portfolio_listview;
 	ArrayList<HashMap<String, String>> stocklist = new ArrayList<HashMap<String, String>>();
@@ -26,12 +25,13 @@ public class portFolio extends SherlockFragment{
 
 	
 	@Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState) {
-		
-        View rootView = inflater.inflate(R.layout.portfolio, container, false);
-        
-        
-        return rootView;
-    }
+    public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		Context context =this;
+		setContentView(R.layout.portfolio);
+		ActionBar actionBar=getSupportActionBar();
+		actionBar.setHomeButtonEnabled(true);
+		actionBar.setDisplayHomeAsUpEnabled(true);
+	}
+
 }

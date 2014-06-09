@@ -19,7 +19,6 @@ import com.actionbarsherlock.app.SherlockFragment;
 public class trading extends SherlockFragment{
 	
 	Context context = getActivity();
-	LinearLayout card_indices;
 
 	@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -28,16 +27,43 @@ public class trading extends SherlockFragment{
 
         final View rootView = inflater.inflate(R.layout.card, container, false);
         LinearLayout indicesCard=(LinearLayout)rootView.findViewById(R.id.indicesCard);
+        LinearLayout moversCard=(LinearLayout)rootView.findViewById(R.id.moversCard);
+        LinearLayout newsCard = (LinearLayout)rootView.findViewById(R.id.newsCard);
+        LinearLayout portfolioCard = (LinearLayout)rootView.findViewById(R.id.portfolioCard);
         final Context context=getActivity().getApplicationContext();
-        indicesCard.setOnTouchListener(new View.OnTouchListener() {
+        indicesCard.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
-			public boolean onTouch(View v, MotionEvent event) {
-				
+			public void onClick(View v) {
 				Intent intent = new Intent(context, indices.class);
 				startActivity(intent);
-				return false;
-
+			}
+		});
+        
+        moversCard.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(context, marketMovers.class);
+				startActivity(intent);
+			}
+		});
+        
+        newsCard.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(context, News.class);
+				startActivity(intent);
+			}
+		});
+        
+        portfolioCard.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(context, portFolio.class);
+				startActivity(intent);
 			}
 		});
         return rootView;
