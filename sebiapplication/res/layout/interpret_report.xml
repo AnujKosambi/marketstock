@@ -18,7 +18,6 @@
         >  
  
                 <LinearLayout
-                    android:id="@+id/beginnersCard"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/selector_card_background"
@@ -32,11 +31,11 @@
                      >
                     
                     <TextView
-                        android:id="@+id/definiton_title"
+                        android:id="@+id/heading"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
-                        android:text="Term goes here fjhej eakfhekh euhakj akfhaekf"
+                        android:text="Term goes here"
                         android:textAppearance="?android:attr/textAppearanceLarge"
                         android:textStyle="bold"
                         android:paddingBottom="10dp"
@@ -49,7 +48,7 @@
                  >
 
                     <TextView
-                        android:id="@+id/definition"
+                        android:id="@+id/interpretation"
                         android:layout_width="fill_parent"
                         android:layout_height="match_parent"
                         android:enabled="false"
@@ -57,7 +56,7 @@
                         android:paddingTop="15dp"
                         android:paddingRight="15dp"
                         android:background="#00000000"
-                        android:text="Definition goes here"
+                        android:text="Interpretation goes here"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         />
 
@@ -82,7 +81,7 @@
 	                 
 	                    
 	                      <ImageButton
-	                        android:id="@+id/goprev"
+	                        android:id="@+id/prevarrow"
 	                        android:layout_height="50dp"
 	                        android:layout_width="50dp"
 	                        android:layout_weight="1"
@@ -90,7 +89,7 @@
 	                        android:src="@drawable/go_next_rtl" />
 	                      
 	                         <ImageButton
-	                        android:id="@+id/gonext"
+	                        android:id="@+id/nextarrow"
 	                        android:layout_width="50dp"
 	                        android:layout_height="50dp"
 	                        android:layout_weight="1"

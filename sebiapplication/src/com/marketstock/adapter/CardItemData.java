@@ -2,17 +2,18 @@ package com.marketstock.adapter;
 
 public class CardItemData
 {
-	private String news1;
+	private String tips;
 	
 
 	public CardItemData(String text1)
 	{
-		news1 = text1;
+		tips = text1.replaceAll("//", "'");
+		
 	}
 
 	public String getText1()
 	{
-		return news1;
+		return tips;
 	}
 	
 }

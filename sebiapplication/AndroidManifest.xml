@@ -88,15 +88,47 @@
              android:parentActivityName="com.marketstock.sebiapplication.MainActivity"
              >
         </activity>
+        <activity
+            android:name="com.marketstock.sebiapplication.Notification"
+             android:label="Notification"
+             android:screenOrientation="portrait"
+             android:parentActivityName="com.marketstock.sebiapplication.MainActivity"
+             >
+        </activity>
         
+          <activity
+            android:name="com.marketstock.sebiapplication.Select_Stock"
+             android:label="Beginner's Read"
+             android:screenOrientation="portrait"
+             android:parentActivityName="com.marketstock.sebiapplication.MainActivity"
+             >
+        </activity>
+        
+                <activity
+            android:name="com.marketstock.sebiapplication.Interpret_Report"
+             android:label="Beginner's Read"
+             android:screenOrientation="portrait"
+             android:parentActivityName="com.marketstock.sebiapplication.MainActivity"
+             >
+        </activity>
+        
+                 <activity
+            android:name="com.marketstock.sebiapplication.Download_PDF"
+             android:label="Beginner's Read"
+             android:screenOrientation="portrait"
+             android:parentActivityName="com.marketstock.sebiapplication.MainActivity"
+             >
+        </activity>
         <activity
             android:name="com.marketstock.sebiapplication.Stockpage"
             android:screenOrientation="portrait"
             android:label="@string/title_activity_stockpage" >
         </activity>
         
+        
     </application>
     
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     
 </manifest>

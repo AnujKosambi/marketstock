@@ -5,15 +5,17 @@
 	android:orientation="vertical"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
+	android:paddingLeft="10dp"
+	android:paddingRight="10dp"
 	android:background="#E0EEEE">
 
         <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="80dp"
         android:text="Tip of the Day"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:textStyle="bold" />
+        android:textStyle="bold" 
+        android:paddingBottom="20dp"/>
 
 	<ListView
 		android:id="@+id/tip_list_view"
