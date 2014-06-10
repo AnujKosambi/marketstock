@@ -29,6 +29,7 @@ public class learning_center extends SherlockFragment{
         LinearLayout tipsCard = (LinearLayout)rootView.findViewById(R.id.tipsCard);
         LinearLayout explanationCard = (LinearLayout)rootView.findViewById(R.id.explanationCard);
         final Context context=getActivity().getApplicationContext();
+        
         definitionCard.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
@@ -60,10 +61,12 @@ public class learning_center extends SherlockFragment{
 			
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(context, portFolio.class);
+				Intent intent = new Intent(context, News.class);
 				startActivity(intent);
 			}
 		});
+        
+      
         return rootView;
     }
 
