@@ -78,6 +78,7 @@
             android:name="com.marketstock.sebiapplication.TipOfDay"
              android:label="Tip Of the Day"
              android:screenOrientation="portrait"
+             android:launchMode="singleTask"
              android:parentActivityName="com.marketstock.sebiapplication.MainActivity"
              >
         </activity>
