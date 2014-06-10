@@ -11,6 +11,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragment;
 
@@ -48,10 +49,27 @@ public class stockDetail extends SherlockFragment{
         companyChange.setText(String.format("%.2f",Stockpage.companyPrice-Stockpage.prevCloseprice)
         		+" ("+ String.format("%.2f",percent) +"%)");
        // companyValue.setText()
-        Date date=new Date(Calendar.getInstance().getTimeInMillis());
-        
-        int vol=(int) ((Stockpage.stock.getVolume()*date.getTime())/86400000);
-        companyVol.setText(vol+"");
+        Calendar calendar=Calendar.getInstance();
+        long nowMillies=(calendar.get(Calendar.HOUR_OF_DAY)*60*60*1000);
+        nowMillies+=calendar.get(Calendar.MINUTE)*60*1000;
+        long millies330=(long)(15.5*60*60*1000);
+        long millies930=(long)(9.5*60*60*1000);
+        long durationMillies=millies330-millies930;
+        int vol=0;//=(int) ((Stockpage.stock.getVolume()*nowMillies)/millies330);
+        if(nowMillies<millies930)
+        {
+        	vol=0;
+        }
+        else if(nowMillies>millies330)
+        {
+        	nowMillies=millies330;
+        }
+        else
+        {
+        	vol=(int) ((Stockpage.stock.getVolume()*(nowMillies-millies930))/durationMillies);
+        }
+        Toast.makeText(rootView.getContext(), Stockpage.stock.getVolume()+"", Toast.LENGTH_LONG).show();
+        companyVol.setText(vol+" ");
         
         
         buy = (Button) rootView.findViewById(R.id.button1);

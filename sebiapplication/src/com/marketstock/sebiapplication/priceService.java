@@ -4,6 +4,8 @@ import android.app.IntentService;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.Handler;
+import android.widget.Toast;
 
 import com.marketstock.sebiapplication.dbhelper.DBHelper;
 
@@ -15,9 +17,9 @@ public class priceService extends IntentService {
 
 	@Override
 	protected void onHandleIntent(Intent intent) {
-
-
+	
 		while (true) {
+			
 			synchronized (this) {
 				try {
 					for (int i = 0; i < DBHelper.TB_STOCKS.length; i++) {
