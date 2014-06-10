@@ -70,6 +70,7 @@ public class TipOfDay extends SherlockActivity {
 				}
 			}
 			list.setAdapter(adapter);
+			cursor.close();
 	 }
 	 
 
