@@ -54,30 +54,8 @@ public class TipOfDay extends SherlockActivity {
 				diff--;
 			}
 			list.setAdapter(adapter);
-			generateTipsNotification(context, adapter.getItem(diff).toString());
+			
 	 }
 	 
-	 public void generateTipsNotification(Context context, String text){
-		Intent resultIntent = new Intent(context, TipOfDay.class);
-			TaskStackBuilder stackBuilder = TaskStackBuilder.create(context)
-					.addParentStack(TipOfDay.class)
-					.addNextIntent(resultIntent);
-			PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0, PendingIntent.FLAG_UPDATE_CURRENT);
-
-		 Builder notif = new NotificationCompat.Builder(context);
-	        notif.setContentIntent(resultPendingIntent)
-	                .setWhen(System.currentTimeMillis())
-	                .setTicker("Application Name")
-	                .setSmallIcon(R.drawable.ic_launcher)
-	                .setContentTitle("Tip of the Day")
-	                .setContentText(text)
-	                .setAutoCancel(true);
-	      //create notification from builder
-	      Notification notification = notif.build();
-	      //get instance of NotificationManager
-	      NotificationManager notificationmanager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-	      //call notify method of NotificationManager to add this notification to android notification drawer..
-	      notificationmanager.notify(0, notification);
-		}
-
+	
 }

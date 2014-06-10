@@ -3,6 +3,7 @@ package com.marketstock.sebiapplication;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -84,12 +85,23 @@ public class BuySell extends Activity {
 				if (qtn.getText().length() > 0
 						&& Integer.parseInt(qtn.getText().toString()) > 0
 						&& bst.isChecked()) {
-
+					int q = Integer.parseInt(qtn.getText().toString());
 					if (bst.isChecked()) {
-						int q = Integer.parseInt(qtn.getText().toString());
-
-						buyStock(companyName, q);
+						
+						double price = Companies.PriceList.get(companyName.toLowerCase());
+						buyStock(companyName, q,price);
 					}
+					else{
+						SharedPreferences pref= getSharedPreferences(
+										"AutoBuy",
+										Context.MODE_PRIVATE);
+						int count=pref.getInt("autobuycount",0);
+						pref.edit().putString("autobuy"+count,companyName+"#"+q+"#" ).commit();
+						count++;
+						pref.edit().putInt("autobuycount",count).commit();
+						
+					}
+					
 
 				} else {
 
@@ -132,7 +144,8 @@ public class BuySell extends Activity {
 
 					if (bst.isChecked()) {
 						int q = Integer.parseInt(qtn.getText().toString());
-						sellStock(companyName, q);
+						double price = Companies.PriceList.get(companyName.toLowerCase());
+						sellStock(companyName, q,price);
 					}
 
 				} else {
@@ -167,10 +180,10 @@ public class BuySell extends Activity {
 
 	}
 
-	public static void buyStock(String companyName, int q) {
+	public static void buyStock(String companyName, int q,double price) {
 
 		Companies.updateData(companyName);
-		double price = Companies.PriceList.get(companyName.toLowerCase());
+		
 
 		SQLiteDatabase d = MainActivity.db.getWritableDatabase();
 		String qrl = "select * from userdata where company='"
@@ -240,9 +253,9 @@ public class BuySell extends Activity {
 
 	}
 
-	public static void sellStock(String companyName, int q) {
+	public static void sellStock(String companyName, int q,double price) {
 		Companies.updateData(companyName);
-		double price = Companies.PriceList.get(companyName.toLowerCase());
+		
 
 		SQLiteDatabase d = MainActivity.db.getWritableDatabase();
 		String qrl = "select * from userdata where company='"
