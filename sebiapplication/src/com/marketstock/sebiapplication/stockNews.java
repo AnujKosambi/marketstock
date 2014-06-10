@@ -34,7 +34,7 @@ public class stockNews extends SherlockFragment{
 		Cursor cursor;
 		if(Stockpage.companyName.equals("infosys")||
 				Stockpage.companyName.equals("tcs")|| 
-				Stockpage.companyName.equals("bajajauto"))
+				Stockpage.companyName.equals("bajaj"))
 		{
 			cursor= MainActivity.db.getReadableDatabase()
 				.rawQuery("SELECT * FROM "+Stockpage.companyName +"news where day <="+(MainActivity.moveToDays-54),null); 
@@ -52,8 +52,20 @@ public class stockNews extends SherlockFragment{
 		}
 		else
 		{
-			/*cursor= MainActivity.db.getReadableDatabase()
-					.rawQuery("SELECT * FROM "+Stockpage.companyName +"new where day <="+(MainActivity.moveToDays-54),null);*/ 
+			cursor= MainActivity.db.getReadableDatabase()
+					.rawQuery("SELECT * FROM commonnews where company='"+Stockpage.companyName+
+							"' and day <="+(MainActivity.moveToDays-54),null);
+		
+			cursor.moveToFirst();
+			while(cursor.isAfterLast()==false)
+			{
+			CardItemTitleNData data = new CardItemTitleNData(
+					cursor.getString(cursor.getColumnIndex("title")),
+					cursor.getString(cursor.getColumnIndex("desc")),
+					cursor.getString(cursor.getColumnIndex("learning")));
+			adapter.addItem(data, false);
+			cursor.moveToNext();
+			}
 		}
 		list.setAdapter(adapter);
         
