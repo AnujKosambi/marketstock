@@ -35,6 +35,14 @@ public class Searchstock extends Activity {
 				android.R.layout.simple_list_item_1, DBHelper.TB_STOCKS);
 		stockVal.setAdapter(adapter);
 		stockVal.setThreshold(1);
+		stockVal.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View arg0) {
+				stockVal.showDropDown();
+				
+			}
+		});
 	
 		final ArrayList<String> list=new ArrayList<String>(Arrays.asList(DBHelper.TB_STOCKS));
 		stockVal.addTextChangedListener(new TextWatcher() {
