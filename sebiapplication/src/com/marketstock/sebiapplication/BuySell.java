@@ -81,10 +81,10 @@ public class BuySell extends Activity {
 
 			@Override
 			public void onClick(View v) {
-
+				Toast.makeText(BuySell.this,"AUTOBUY", Toast.LENGTH_LONG).show();
 				if (qtn.getText().length() > 0
 						&& Integer.parseInt(qtn.getText().toString()) > 0
-						&& bst.isChecked()) {
+						) {
 					int q = Integer.parseInt(qtn.getText().toString());
 					if (bst.isChecked()) {
 						
@@ -92,11 +92,11 @@ public class BuySell extends Activity {
 						buyStock(companyName, q,price);
 					}
 					else{
-						SharedPreferences pref= getSharedPreferences(
-										"AutoBuy",
+						SharedPreferences pref= BuySell.this.getSharedPreferences(
+										"Autobuy",
 										Context.MODE_PRIVATE);
 						int count=pref.getInt("autobuycount",0);
-						pref.edit().putString("autobuy"+count,companyName+"#"+q+"#" ).commit();
+						pref.edit().putString("autobuy"+count,companyName.toLowerCase()+"#"+q+"#"+et.getText()).commit();
 						count++;
 						pref.edit().putInt("autobuycount",count).commit();
 						
@@ -140,14 +140,23 @@ public class BuySell extends Activity {
 
 				if (qtn.getText().length() > 0
 						&& Integer.parseInt(qtn.getText().toString()) > 0
-						&& bst.isChecked()) {
-
+						) {
+					int q = Integer.parseInt(qtn.getText().toString());
 					if (bst.isChecked()) {
-						int q = Integer.parseInt(qtn.getText().toString());
+						
 						double price = Companies.PriceList.get(companyName.toLowerCase());
 						sellStock(companyName, q,price);
 					}
-
+					else
+					{
+						SharedPreferences pref= BuySell.this.getSharedPreferences(
+								"Autobuy",
+								Context.MODE_PRIVATE);
+					int count=pref.getInt("autosellcount",0);
+					pref.edit().putString("autosell"+count,companyName.toLowerCase()+"#"+q+"#"+et.getText()).commit();
+					count++;
+					pref.edit().putInt("autosellcount",count).commit();
+					}
 				} else {
 
 					final Dialog dialog = new Dialog(BuySell.this);
