@@ -80,9 +80,7 @@ public class Searchstock extends Activity {
 						Stockpage.class);
 				intent.putExtra("Company", stockVal.getText().toString());
 				startActivity(intent);
-				Toast.makeText(getApplicationContext(),
-						"Search the stock: " + stockVal.getText(),
-						Toast.LENGTH_SHORT).show();
+				
 			}
 		});
 

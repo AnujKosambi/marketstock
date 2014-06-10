@@ -68,7 +68,7 @@ public class stockDetail extends SherlockFragment{
         {
         	vol=(int) ((Stockpage.stock.getVolume()*(nowMillies-millies930))/durationMillies);
         }
-        Toast.makeText(rootView.getContext(), Stockpage.stock.getVolume()+"", Toast.LENGTH_LONG).show();
+        //Toast.makeText(rootView.getContext(), Stockpage.stock.getVolume()+"", Toast.LENGTH_LONG).show();
         companyVol.setText(vol+" ");
         
         
