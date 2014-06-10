@@ -3,10 +3,13 @@ package com.marketstock.sebiapplication.models;
 public class CompanyPrice {
 	String company;
 	float price;
-	
-	public CompanyPrice(String com, float p){
+	float weight;
+	float percentChange;
+	public CompanyPrice(String com, float p,float w,float pc){
 		this.company = com;
 		this.price = p;
+		this.weight = w;
+		this.percentChange = pc;
 	}
 	
 	public String getCompany(){

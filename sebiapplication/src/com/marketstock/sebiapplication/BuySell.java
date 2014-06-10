@@ -2,6 +2,7 @@ package com.marketstock.sebiapplication;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -24,12 +25,14 @@ import com.marketstock.sebiapplication.dbhelper.DBHelper;
 
 public class BuySell extends Activity {
 
+	static Context cont;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.buy_sell);
-
+		cont = getApplicationContext();
 		final ToggleButton bst = (ToggleButton) findViewById(R.id.buyselltoggle);
 		final EditText et = (EditText) findViewById(R.id.price);
 
@@ -83,86 +86,9 @@ public class BuySell extends Activity {
 						&& bst.isChecked()) {
 
 					if (bst.isChecked()) {
-
 						int q = Integer.parseInt(qtn.getText().toString());
-						Companies.updateData(companyName);
-						double price = Companies.PriceList.get(companyName
-								.toLowerCase());
 
-						// TODO Check if current stock already purchased
-						SQLiteDatabase d = MainActivity.db
-								.getWritableDatabase();
-						String qrl = "select * from userdata where company='"
-								+ companyName.toLowerCase() + "'";
-
-						Cursor c = d.rawQuery(qrl, null);
-
-						Log.d("qrl", "buy");
-
-						Log.d("text quantity", q + "");
-						Log.d("text current_price", price + "");
-						Log.d("text current_amount", price * q + "");
-						Log.d("text company", companyName);
-
-						if (c.getCount() > 0) {
-							c.moveToFirst();
-							Log.d("msg", "Already there update");
-
-							int holding = Integer.parseInt(c.getString(c
-									.getColumnIndex("holdings")));
-							double amount = Double.parseDouble(c.getString(c
-									.getColumnIndex("amount")));
-							amount = Math.round(amount * 100.0) / 100.0;
-
-							double namount = q * price;
-							namount = Math.round(namount * 100.0) / 100.0;
-
-							double total_amount = amount + namount;
-
-							int nholding = q + holding;
-
-							double navg_price = total_amount / (nholding * 1.0);
-							navg_price = Math.round(navg_price * 100.0) / 100.0;
-
-							double nprofit = (price - navg_price) * nholding;
-							nprofit = Math.round(nprofit * 100.0) / 100.0;
-							Log.d("text current holding", holding + "");
-							Log.d("text amount", amount + "");
-							Log.d("text namount", namount + "");
-							Log.d("text total_amount ", total_amount + "");
-							Log.d("text navg_price", navg_price + "");
-							Log.d("text nprofit", nprofit + "");
-
-							d.execSQL("UPDATE userdata SET holdings = '"
-									+ nholding + "',avg_price = '" + navg_price
-									+ "',amount = '" + total_amount
-									+ "',profit ='" + nprofit
-									+ "' where company='"
-									+ companyName.toLowerCase() + "'");
-
-						} else {
-							Log.d("msg", "new entry");
-
-							d.execSQL("INSERT into userdata (company,holdings,avg_price,amount,profit) values ('"
-									+ companyName.toLowerCase()
-									+ "','"
-									+ q
-									+ "','"
-									+ price
-									+ "','"
-									+ price
-									* q
-									+ "','0')");
-
-						}
-
-						Toast.makeText(getApplicationContext(),
-								"Stock Buyed Successfully", Toast.LENGTH_SHORT)
-								.show();
-
-						c.close();
-						d.close();
-
+						buyStock(companyName, q);
 					}
 
 				} else {
@@ -206,95 +132,7 @@ public class BuySell extends Activity {
 
 					if (bst.isChecked()) {
 						int q = Integer.parseInt(qtn.getText().toString());
-						Companies.updateData(companyName);
-						double price = Companies.PriceList.get(companyName
-								.toLowerCase());
-
-						// TODO Check if current stock already purchased
-						SQLiteDatabase d = MainActivity.db
-								.getWritableDatabase();
-						String qrl = "select * from userdata where company='"
-								+ companyName.toLowerCase() + "'";
-
-						Cursor c = d.rawQuery(qrl, null);
-
-						Log.d("qrl", "sell");
-
-						Log.d("text quantity", q + "");
-						Log.d("text current_price", price + "");
-						Log.d("text current_amount", price * q + "");
-						Log.d("text company", companyName);
-
-						if (c.getCount() > 0) {
-							c.moveToFirst();
-
-							int holding = Integer.parseInt(c.getString(c
-									.getColumnIndex("holdings")));
-
-							if (holding > q) {
-
-								double amount = Double.parseDouble(c
-										.getString(c.getColumnIndex("amount")));
-								amount = Math.round(amount * 100.0) / 100.0;
-
-								double namount = q * price;
-								namount = Math.round(namount * 100.0) / 100.0;
-
-								double total_amount = amount - namount;
-
-								int nholding = holding - q;
-
-								double navg_price = total_amount
-										/ (nholding * 1.0);
-								navg_price = Math.round(navg_price * 100.0) / 100.0;
-
-								double nprofit = (price - navg_price)
-										* nholding;
-								nprofit = Math.round(nprofit * 100.0) / 100.0;
-
-								Log.d("text current holding", holding + "");
-								Log.d("text amount", amount + "");
-								Log.d("text namount", namount + "");
-								Log.d("text total_amount ", total_amount + "");
-								Log.d("text navg_price", navg_price + "");
-								Log.d("text nprofit", nprofit + "");
-
-								d.execSQL("UPDATE userdata SET holdings = '"
-										+ nholding + "',avg_price = '"
-										+ navg_price + "',amount = '"
-										+ total_amount + "',profit ='"
-										+ nprofit + "' where company='"
-										+ companyName.toLowerCase() + "'");
-
-								Toast.makeText(getApplicationContext(),
-										"Stocks sold successfully",
-										Toast.LENGTH_SHORT).show();
-
-							} else if (holding == q) {
-								// DELETE ROW
-								d.execSQL("DELETE from userdata  where company='"
-										+ companyName.toLowerCase() + "'");
-
-								Toast.makeText(getApplicationContext(),
-										"All of these stock sold",
-										Toast.LENGTH_SHORT).show();
-
-							} else {
-								Toast.makeText(getApplicationContext(),
-										"You Don't have any of these stock",
-										Toast.LENGTH_SHORT).show();
-							}
-
-						} else {
-							Toast.makeText(getApplicationContext(),
-									"You Don't have any of these stock",
-									Toast.LENGTH_SHORT).show();
-
-						}
-
-						c.close();
-						d.close();
-
+						sellStock(companyName, q);
 					}
 
 				} else {
@@ -326,6 +164,160 @@ public class BuySell extends Activity {
 
 			}
 		});
+
+	}
+
+	public static void buyStock(String companyName, int q) {
+
+		Companies.updateData(companyName);
+		double price = Companies.PriceList.get(companyName.toLowerCase());
+
+		SQLiteDatabase d = MainActivity.db.getWritableDatabase();
+		String qrl = "select * from userdata where company='"
+				+ companyName.toLowerCase() + "'";
+
+		Cursor c = d.rawQuery(qrl, null);
+
+		Log.d("qrl", "buy");
+
+		Log.d("text quantity", q + "");
+		Log.d("text current_price", price + "");
+		Log.d("text current_amount", price * q + "");
+		Log.d("text company", companyName);
+
+		if (c.getCount() > 0) {
+			c.moveToFirst();
+			Log.d("msg", "Already there update");
+
+			int holding = Integer.parseInt(c.getString(c
+					.getColumnIndex("holdings")));
+			double amount = Double.parseDouble(c.getString(c
+					.getColumnIndex("amount")));
+			amount = Math.round(amount * 100.0) / 100.0;
+
+			double namount = q * price;
+			namount = Math.round(namount * 100.0) / 100.0;
+
+			double total_amount = amount + namount;
+
+			int nholding = q + holding;
+
+			double navg_price = total_amount / (nholding * 1.0);
+			navg_price = Math.round(navg_price * 100.0) / 100.0;
+
+			double nprofit = (price - navg_price) * nholding;
+			nprofit = Math.round(nprofit * 100.0) / 100.0;
+			Log.d("text current holding", holding + "");
+			Log.d("text amount", amount + "");
+			Log.d("text namount", namount + "");
+			Log.d("text total_amount ", total_amount + "");
+			Log.d("text navg_price", navg_price + "");
+			Log.d("text nprofit", nprofit + "");
+
+			d.execSQL("UPDATE userdata SET holdings = '" + nholding
+					+ "',avg_price = '" + navg_price + "',amount = '"
+					+ total_amount + "',profit ='" + nprofit
+					+ "' where company='" + companyName.toLowerCase() + "'");
+
+		} else {
+			Log.d("msg", "new entry");
+
+			d.execSQL("INSERT into userdata (company,holdings,avg_price,amount,profit) values ('"
+					+ companyName.toLowerCase()
+					+ "','"
+					+ q
+					+ "','"
+					+ price
+					+ "','" + price * q + "','0')");
+
+		}
+
+		Toast.makeText(cont, "Stock Buyed Successfully", Toast.LENGTH_SHORT)
+				.show();
+
+		c.close();
+		d.close();
+
+	}
+
+	public static void sellStock(String companyName, int q) {
+		Companies.updateData(companyName);
+		double price = Companies.PriceList.get(companyName.toLowerCase());
+
+		SQLiteDatabase d = MainActivity.db.getWritableDatabase();
+		String qrl = "select * from userdata where company='"
+				+ companyName.toLowerCase() + "'";
+
+		Cursor c = d.rawQuery(qrl, null);
+
+		Log.d("qrl", "sell");
+
+		Log.d("text quantity", q + "");
+		Log.d("text current_price", price + "");
+		Log.d("text current_amount", price * q + "");
+		Log.d("text company", companyName);
+
+		if (c.getCount() > 0) {
+			c.moveToFirst();
+
+			int holding = Integer.parseInt(c.getString(c
+					.getColumnIndex("holdings")));
+
+			if (holding > q) {
+
+				double amount = Double.parseDouble(c.getString(c
+						.getColumnIndex("amount")));
+				amount = Math.round(amount * 100.0) / 100.0;
+
+				double namount = q * price;
+				namount = Math.round(namount * 100.0) / 100.0;
+
+				double total_amount = amount - namount;
+
+				int nholding = holding - q;
+
+				double navg_price = total_amount / (nholding * 1.0);
+				navg_price = Math.round(navg_price * 100.0) / 100.0;
+
+				double nprofit = (price - navg_price) * nholding;
+				nprofit = Math.round(nprofit * 100.0) / 100.0;
+
+				Log.d("text current holding", holding + "");
+				Log.d("text amount", amount + "");
+				Log.d("text namount", namount + "");
+				Log.d("text total_amount ", total_amount + "");
+				Log.d("text navg_price", navg_price + "");
+				Log.d("text nprofit", nprofit + "");
+
+				d.execSQL("UPDATE userdata SET holdings = '" + nholding
+						+ "',avg_price = '" + navg_price + "',amount = '"
+						+ total_amount + "',profit ='" + nprofit
+						+ "' where company='" + companyName.toLowerCase() + "'");
+
+				Toast.makeText(cont, "Stocks sold successfully",
+						Toast.LENGTH_SHORT).show();
+
+			} else if (holding == q) {
+				// DELETE ROW
+				d.execSQL("DELETE from userdata  where company='"
+						+ companyName.toLowerCase() + "'");
+
+				Toast.makeText(cont, "All of these stock sold",
+						Toast.LENGTH_SHORT).show();
+
+			} else {
+				Toast.makeText(cont, "You Don't have any of these stock",
+						Toast.LENGTH_SHORT).show();
+			}
+
+		} else {
+			Toast.makeText(cont, "You Don't have any of these stock",
+					Toast.LENGTH_SHORT).show();
+
+		}
+
+		c.close();
+		d.close();
 
 	}
 }

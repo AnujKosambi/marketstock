@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
@@ -80,8 +81,11 @@ public class CardInflaterQuote implements IAdapterViewInflater<CardItemTitleNDat
 					LinearLayout linearLayout=new LinearLayout(rootView.getContext()); 
 					linearLayout.setPadding(25, 25, 25,25);
 					linearLayout.setOrientation(LinearLayout.VERTICAL);
+					ScrollView scrollView = new ScrollView(rootView.getContext());
+					
 					TextView desc=new  TextView(rootView.getContext());
 					desc.setText(data.getLearning());
+					desc.setTextSize(18);
 					Button ok=new Button(rootView.getContext());
 					ok.setText("OK");
 					ok.setOnClickListener(new View.OnClickListener() {
@@ -92,7 +96,8 @@ public class CardInflaterQuote implements IAdapterViewInflater<CardItemTitleNDat
 							
 						}
 					});
-					linearLayout.addView(desc,LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
+					scrollView.addView(desc,LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
+					linearLayout.addView(scrollView,LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
 					linearLayout.addView(ok);						
 					dialog.setContentView(linearLayout);
 					dialog.show();

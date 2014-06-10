@@ -2,6 +2,7 @@ package com.marketstock.sebiapplication;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -30,6 +31,18 @@ public class trading extends SherlockFragment {
 				.findViewById(R.id.newsCard);
 		LinearLayout portfolioCard = (LinearLayout) rootView
 				.findViewById(R.id.portfolioCard);
+		
+		TextView sensexvi = (TextView) rootView.findViewById(R.id.textSensexValueInt);
+		TextView sensexci = (TextView) rootView.findViewById(R.id.textSensexChangeInt);
+		
+		SharedPreferences prefs = rootView.getContext()
+				.getSharedPreferences(
+						"com.marketstock.sebiapplication",
+						Context.MODE_PRIVATE);
+		
+		sensexvi.setText(prefs.getFloat("sensex", 0)+"");
+		sensexci.setText(prefs.getFloat("sensexchange", 0)+"");
+		
 
 		SQLiteDatabase d = MainActivity.db.getReadableDatabase();
 		Cursor c = d

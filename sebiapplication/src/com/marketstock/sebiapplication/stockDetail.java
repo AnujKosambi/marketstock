@@ -4,6 +4,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -34,8 +35,16 @@ public class stockDetail extends SherlockFragment{
         TextView company52high=(TextView)rootView.findViewById(R.id.S52high);
         TextView company52low=(TextView)rootView.findViewById(R.id.S52low);
         TextView companyChange=(TextView)rootView.findViewById(R.id.sCompany_change);
-		
-        
+		if(Stockpage.companyPrice-Stockpage.prevCloseprice>=0)
+		{
+			companyValue.setTextColor(Color.rgb(22, 116,22));
+			companyChange.setTextColor(Color.rgb(22, 116,22));
+		}
+		else
+		{
+			companyChange.setTextColor(Color.RED);
+			companyValue.setTextColor(Color.RED);
+		}
         companyName.setText(Stockpage.companyName.toUpperCase());
         companyOpen.setText(Stockpage.stock.getOpenPrice()+"");
         companyClose.setText(Stockpage.prevCloseprice+"");
@@ -63,6 +72,7 @@ public class stockDetail extends SherlockFragment{
         else if(nowMillies>millies330)
         {
         	nowMillies=millies330;
+        	vol=(int)( Stockpage.stock.getVolume()/1);
         }
         else
         {

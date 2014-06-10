@@ -2,45 +2,42 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#d0d0d0">
+    android:background="#d0d0d0"
+    android:orientation="vertical" >
 
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent" >
 
         <TableRow
             android:id="@+id/tableRow2"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_weight="1" >
 
             <FrameLayout
-               
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
+                android:layout_weight="1"
+                android:paddingBottom="15dp"
                 android:paddingLeft="15dp"
                 android:paddingRight="15dp"
-                android:paddingTop="15dp"
-                android:paddingBottom="15dp"
-                android:layout_weight="1" 
-                >
+                android:paddingTop="15dp" >
 
                 <LinearLayout
                     android:id="@+id/indicesCard"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@drawable/selector_card_background"
+                    android:clickable="true"
+                    android:descendantFocusability="afterDescendants"
+                    android:orientation="vertical"
                     android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
-                    android:paddingTop="10dp"
-                      android:descendantFocusability="afterDescendants"
-                    android:clickable="true"
-                    android:background="@drawable/selector_card_background"
-                    android:orientation="vertical" >
+                    android:paddingTop="10dp" >
 
                     <TextView
-                    
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Indices"
@@ -52,91 +49,78 @@
                         android:id="@+id/textSensex"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                         android:textStyle="bold"
                         android:text="Sensex"
-                        android:textAppearance="?android:attr/textAppearanceSmall" />
+                        android:textAppearance="?android:attr/textAppearanceSmall"
+                        android:textStyle="bold" />
 
-                    <TableLayout
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
+                        android:orientation="vertical"
                         android:paddingLeft="20dp" >
 
-                        <TableRow
-                            android:id="@+id/tableRow1"
+                        <TextView
+                            android:id="@+id/textSensexValue"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" >
+                            android:layout_height="wrap_content"
+                            android:text="Value"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textStyle="bold" />
 
-                            <TextView
-                                android:id="@+id/textSensexValue"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Value"
-                                android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                            <TextView
-                                android:id="@+id/textSensexValueInt"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="0"
-                                android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                        </TableRow>
-
-                        <TableRow
-                            android:id="@+id/tableRow2"
+                        <TextView
+                            android:id="@+id/textSensexValueInt"
                             android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" >
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textAppearance="?android:attr/textAppearanceSmall" />
 
-                            <TextView
-                                android:id="@+id/textSensexChange"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Change"
-                                android:textAppearance="?android:attr/textAppearanceSmall" />
+                        <TextView
+                            android:id="@+id/textSensexChange"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Change"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textStyle="bold" />
 
-                            <TextView
-                                android:id="@+id/textSensexChangeInt"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="0"
-                                android:textAppearance="?android:attr/textAppearanceSmall" />
-
-                        </TableRow>
-
-                    </TableLayout>
-                
+                        <TextView
+                            android:id="@+id/textSensexChangeInt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textAppearance="?android:attr/textAppearanceSmall" />
+                    </LinearLayout>
                 </LinearLayout>
-                </FrameLayout>
+            </FrameLayout>
 
-         		<FrameLayout
-         		    android:layout_width="0dp"
-         		    android:layout_height="match_parent"
-         		    android:layout_gravity="center"
-         		    android:paddingLeft="15dp"
-                	android:paddingRight="15dp"
-                	android:paddingTop="15dp"
-                	android:paddingBottom="15dp"
-         		    android:layout_weight="1" >
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:paddingBottom="15dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="15dp" >
 
                 <LinearLayout
                     android:id="@+id/moversCard"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@drawable/selector_card_background"
+                    android:clickable="true"
+                    android:descendantFocusability="afterDescendants"
+                    android:orientation="vertical"
                     android:paddingBottom="10dp"
                     android:paddingLeft="4dp"
-                    android:paddingTop="10dp"
-                    android:background="@drawable/selector_card_background"
-                    android:descendantFocusability="afterDescendants"
-                    android:clickable="true"
-                    android:orientation="vertical" >
+                    android:paddingTop="10dp" >
 
                     <TextView
                         android:id="@+id/textMarketMover"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                  		android:text="MarketMovers"
-                  		android:textStyle="bold"
-                        android:textAppearance="?android:attr/textAppearanceMedium" />
+                        android:text="MarketMovers"
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textStyle="bold" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -174,9 +158,8 @@
                             android:text="XYZ ltd"
                             android:textAppearance="?android:attr/textAppearanceSmall" />
                     </LinearLayout>
-                
                 </LinearLayout>
-                </FrameLayout>
+            </FrameLayout>
         </TableRow>
 
         <TableRow
@@ -185,27 +168,26 @@
             android:layout_height="0dp"
             android:layout_weight="1" >
 
-                 <FrameLayout
-                     android:layout_width="0dp"
-                     android:layout_height="match_parent"
-                     android:layout_gravity="center"
-                     android:paddingLeft="15dp"
-                	android:paddingRight="15dp"
-               		android:paddingTop="15dp"
-                	android:paddingBottom="15dp"
-                    android:layout_weight="1" >
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:paddingBottom="15dp"
+                android:paddingLeft="15dp"
+                android:paddingRight="15dp"
+                android:paddingTop="15dp" >
 
-                <LinearLayout 
+                <LinearLayout
                     android:id="@+id/newsCard"
-                    android:layout_width="match_parent" 
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:background="@drawable/selector_card_background"
+                    android:clickable="true"
+                    android:descendantFocusability="afterDescendants"
                     android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
-                    android:paddingTop="10dp"
-                   	android:descendantFocusability="afterDescendants"
-                   	android:clickable="true"
-  					android:background="@drawable/selector_card_background"
-            		 >
+                    android:paddingTop="10dp" >
 
                     <TextView
                         android:id="@+id/textNews"
@@ -214,41 +196,40 @@
                         android:text="News"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textStyle="bold" />
-                
                 </LinearLayout>
-                </FrameLayout>
+            </FrameLayout>
 
-         		<FrameLayout
-         		 
-         		    android:layout_width="0dp"
-         		    android:layout_height="match_parent"
-         		    android:layout_gravity="center"
-         		    android:layout_weight="1"
-         		        android:paddingLeft="15dp"
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:paddingBottom="15dp"
+                android:paddingLeft="15dp"
                 android:paddingRight="15dp"
-                android:paddingTop="15dp"
-                android:paddingBottom="15dp" >
+                android:paddingTop="15dp" >
 
                 <LinearLayout
                     android:id="@+id/portfolioCard"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                      android:paddingBottom="10dp"
-                    android:paddingLeft="10dp"
-                    android:paddingTop="10dp"
                     android:background="@drawable/selector_card_background"
-                    android:descendantFocusability="afterDescendants"
                     android:clickable="true"
-                    android:orientation="vertical" >
+                    android:descendantFocusability="afterDescendants"
+                    android:orientation="vertical"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="10dp"
+                    android:paddingTop="10dp" >
 
                     <TextView
                         android:id="@+id/textPortfolio"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Portfolio"
-                        android:textStyle="bold"
-                        android:textAppearance="?android:attr/textAppearanceMedium" />
-                <LinearLayout
+                        android:textAppearance="?android:attr/textAppearanceMedium"
+                        android:textStyle="bold" />
+
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
@@ -285,10 +266,8 @@
                             android:textAppearance="?android:attr/textAppearanceSmall" />
                     </LinearLayout>
                 </LinearLayout>
-                </FrameLayout>
+            </FrameLayout>
         </TableRow>
-
-       
     </TableLayout>
 
 </LinearLayout>

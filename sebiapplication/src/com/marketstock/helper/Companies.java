@@ -16,17 +16,19 @@ public class Companies {
 	public static HashMap<String, Double> PriceList = new HashMap<String, Double>();
 	public static HashMap<String, Double> low52 = new HashMap<String, Double>();
 	public static HashMap<String, Double> high52 = new HashMap<String, Double>();
-
+	
 	public static String[] getCompanies() {
 		return DBHelper.TB_STOCKS;
 	}
 
 	public static void updateData(String companyName) {
+		
 		companyName = companyName.toLowerCase();
 		int moveToDays = MainActivity.moveToDays;
 
 		Cursor cursor = MainActivity.db.getReadableDatabase().rawQuery(
 				"SELECT * FROM " + companyName + " order by date", null);
+		
 		cursor.moveToPosition(moveToDays);
 
 		Stock stock = new Stock(new Date(cursor.getLong(1)),
@@ -35,6 +37,8 @@ public class Companies {
 				cursor.getDouble(cursor.getColumnIndex("highPrice")),
 				cursor.getDouble(cursor.getColumnIndex("lowPrice")),
 				cursor.getDouble(cursor.getColumnIndex("volume")));
+		
+		
 		if (StockList.containsKey(companyName))
 			StockList.remove(companyName);
 		StockList.put(companyName, stock);
@@ -57,6 +61,8 @@ public class Companies {
 			PriceList.put(companyName, cursor.getDouble(1));
 		else
 			PriceList.put(companyName, 0.0);
+		
+		
 		cursor.close();
 
 	}

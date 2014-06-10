@@ -45,6 +45,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 
 	public static DBHelper db;
 	int width;
+	public static long installed;
 	public static int moveToDays;
 	private void updateNewsEffect(){
 		
@@ -148,7 +149,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 		
 		String LastUsed = prefs.getString("LastUsed",""); 
 	
-		long installed = prefs.getLong("Date",0); 
+		installed = prefs.getLong("Date",0); 
 		String newUsed=Calendar.getInstance().get(Calendar.DATE)+"-"+
 				  Calendar.getInstance().get(Calendar.MONTH)+"-"+
 				  Calendar.getInstance().get(Calendar.YEAR);

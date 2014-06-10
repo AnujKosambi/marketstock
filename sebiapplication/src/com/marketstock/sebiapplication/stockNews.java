@@ -31,41 +31,12 @@ public class stockNews extends SherlockFragment{
 		
 		BaseInflaterAdapter<CardItemTitleNData> adapter = new BaseInflaterAdapter<CardItemTitleNData>(new CardInflaterQuote());
 		
-		Cursor cursor;
-		if(Stockpage.companyName.equals("infosys")||
-				Stockpage.companyName.equals("tcs")|| 
-				Stockpage.companyName.equals("bajaj"))
-		{
-			cursor= MainActivity.db.getReadableDatabase()
-				.rawQuery("SELECT * FROM "+Stockpage.companyName +"news where day <="+(MainActivity.moveToDays-54),null); 
-		
-			cursor.moveToFirst();
-			while(cursor.isAfterLast()==false)
-			{
+		for (com.marketstock.sebiapplication.models.News news : Stockpage.news) {
 			CardItemTitleNData data = new CardItemTitleNData(
-					cursor.getString(1),
-					cursor.getString(2),
-					cursor.getString(cursor.getColumnIndex("learning")));
+					news.getTitle(),
+					news.getDesc(),
+					news.getLearning());
 			adapter.addItem(data, false);
-			cursor.moveToNext();
-			}
-		}
-		else
-		{
-			cursor= MainActivity.db.getReadableDatabase()
-					.rawQuery("SELECT * FROM commonnews where company='"+Stockpage.companyName+
-							"' and day <="+(MainActivity.moveToDays-54),null);
-		
-			cursor.moveToFirst();
-			while(cursor.isAfterLast()==false)
-			{
-			CardItemTitleNData data = new CardItemTitleNData(
-					cursor.getString(cursor.getColumnIndex("title")),
-					cursor.getString(cursor.getColumnIndex("desc")),
-					cursor.getString(cursor.getColumnIndex("learning")));
-			adapter.addItem(data, false);
-			cursor.moveToNext();
-			}
 		}
 		list.setAdapter(adapter);
         

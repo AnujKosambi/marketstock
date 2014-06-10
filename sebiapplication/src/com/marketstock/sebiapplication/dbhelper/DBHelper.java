@@ -50,7 +50,7 @@ public class DBHelper extends SQLiteOpenHelper {
 			+ " (company TEXT, holdings TEXT, avg_price TEXT, amount TEXT, profit TEXT)";
 
 	private static final String CREATE_TB_CD = "CREATE TABLE " + TB_COMPANYDATA
-			+ " (company TEXT, price REAL)";
+			+ " (company TEXT,price REAL,weight REAL,percentChange REAL)";
 
 	private static final String CREATE_TB_CN = "CREATE TABLE "
 			+ TB_COMMON_NEWS
@@ -91,9 +91,9 @@ public class DBHelper extends SQLiteOpenHelper {
 
 			db.execSQL(CREATE_TB_INFOSYS);
 
-			str1 = "INSERT INTO " + TB_COMPANYDATA + " (company, price"
+			str1 = "INSERT INTO " + TB_COMPANYDATA + " (company, price, weight,percentChange"
 					+ ") values('";
-			str2 = "',0);";
+			str2 = "',0,0,0);";
 
 			db.execSQL(str1 + TB_STOCKS[i] + str2);
 
