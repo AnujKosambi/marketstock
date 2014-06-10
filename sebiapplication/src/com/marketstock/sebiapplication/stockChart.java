@@ -12,6 +12,7 @@ import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.storage.StorageManager;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -100,17 +101,20 @@ public class stockChart extends SherlockFragment {
        	cursor.moveToFirst();    
         int i=0;
       
-        while (cursor.isAfterLast() == false && i<MainActivity.moveToDays) 
+        while (cursor.isAfterLast() == false && i<=MainActivity.moveToDays) 
         { 
         
 			Date date;
 
-			date = new Date(Long.parseLong(cursor.getString(1)));
+			date = new Date(MainActivity.installed+(i-MainActivity.moveToDays)*24*60*60*1000);
 			dateMarker.put(i, date);
         	double closePrice= cursor.getDouble(2);
        // 	Stock stock=new Stock(new Date(i++),openPrice,closePrice,highPrice,lowPrice,volume);
-        	
-        	graphData.add(new GraphViewData( i++,closePrice));
+        	int day=i;
+        	if(Stockpage.dayList.containsKey(MainActivity.moveToDays-day+1))
+        	graphData.add(new GraphViewData( i++,closePrice,Stockpage.dayList.get(MainActivity.moveToDays-day+1)));
+        	else
+        	graphData.add(new GraphViewData( i++,closePrice,false));        		
         	cursor.moveToNext();
         	
         }
@@ -136,6 +140,8 @@ public class stockChart extends SherlockFragment {
     	final TextView startText=(TextView)rootView.findViewById(R.id.ChartStartSeekValue);
     	final TextView sizeText=(TextView)rootView.findViewById(R.id.ChartSizeSeekValue);
     	final ValueOfInt startInt=new ValueOfInt(0);
+    	final ValueOfInt sizeInt = new  ValueOfInt(0);
+    	seekBar.setMax(dateMarker.size());
     	
     	seekBar.setOnSeekBarChangeListener(new OnSeekBarChangeListener() {
 		
@@ -153,15 +159,14 @@ public class stockChart extends SherlockFragment {
 			@Override
 			public void onProgressChanged(SeekBar seekBar, int progress,
 					boolean fromUser) {
-
-				int startPos=((progress*(dateMarker.size()-1)*(100-seekBarSize.getProgress()))/10000);
-				graphView.setViewPort(startPos,seekBarSize.getProgress());
-				startInt._int=startPos;
 				
+				int startPos=(int)(progress*((100-seekBarSize.getProgress())/100.0));
+				graphView.setViewPort(Math.min(startPos,dateMarker.size()-1),sizeInt._int);
+				startInt._int=startPos;
 				startText.setText(""+ (Date)dateMarker.get(startPos));
-
 				graphView.redrawAll();
-				// graphView.invalidate();
+				Log.d("Chart","Start " +startInt._int+"");
+				Log.d("Chart","Seekbar2 " +seekBarSize.getProgress()+"");
 
 			}
 		});
@@ -182,8 +187,11 @@ public class stockChart extends SherlockFragment {
 			public void onProgressChanged(SeekBar seekBar, int progress,
 					boolean fromUser) {
 				int startPos=	startInt._int;
-				graphView.setViewPort(startPos,(( progress*(dateMarker.size()-1-startPos))/100));
+				sizeInt._int=(( progress*(dateMarker.size()-1-startPos))/100);
+				graphView.setViewPort(startPos,sizeInt._int);
 				sizeText.setText(""+progress+"%");
+				Log.d("Chart","Start " +startInt._int+"");
+				Log.d("Chart","Size " +sizeInt._int+"");
 
 				graphView.redrawAll();
 			}

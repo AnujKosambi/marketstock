@@ -1,5 +1,9 @@
 package com.marketstock.sebiapplication;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
@@ -7,8 +11,10 @@ import android.support.v4.view.ViewPager;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.marketstock.adapter.CardItemTitleNData;
 import com.marketstock.adapter.StockPagesAdapter;
 import com.marketstock.helper.Companies;
+import com.marketstock.sebiapplication.models.News;
 import com.marketstock.sebiapplication.models.Stock;
 
 public class Stockpage extends SherlockFragmentActivity implements
@@ -26,7 +32,68 @@ public class Stockpage extends SherlockFragmentActivity implements
 
 	// Tab titles
 	private String[] tabs = { "Stock details", "Chart", "News" };
-
+	public static ArrayList<com.marketstock.sebiapplication.models.News> news
+	=new ArrayList<com.marketstock.sebiapplication.models.News>();
+	public static HashMap<Integer,Boolean> dayList=new HashMap<Integer, Boolean>();
+	public void updateNews(String companyName)
+	{
+		Cursor cursor;
+		if(companyName.equals("infosys")||
+				companyName.equals("tcs")|| 
+				companyName.equals("bajaj"))
+		{
+			cursor= MainActivity.db.getReadableDatabase()
+				.rawQuery("SELECT * FROM "+companyName +"news where day <="+(MainActivity.moveToDays-54),null); 
+		
+			cursor.moveToFirst();
+			while(cursor.isAfterLast()==false)
+			{
+				int day=cursor.getInt(cursor.getColumnIndex("day"));
+				com.marketstock.sebiapplication.models.News newsObj=
+						new com.marketstock.sebiapplication.models.News(
+								cursor.getString(cursor.getColumnIndex("title")),
+								cursor.getString(cursor.getColumnIndex("desc")), 
+								cursor.getString(cursor.getColumnIndex("learning")), 
+								cursor.getString(cursor.getColumnIndex("effect")),
+								cursor.getString(cursor.getColumnIndex("fluctuation")), 
+								day);
+			if(dayList.containsKey(day))
+			dayList.remove(day);
+		    dayList.put(day, true);
+		
+			news.add(newsObj );
+			cursor.moveToNext();
+			}
+		}
+		else
+		{
+			cursor= MainActivity.db.getReadableDatabase()
+					.rawQuery("SELECT * FROM commonnews where company='"+companyName+
+							"' and day <="+(MainActivity.moveToDays-54),null);
+		
+			cursor.moveToFirst();
+			while(cursor.isAfterLast()==false)
+			{
+				int day=cursor.getInt(cursor.getColumnIndex("day"));
+				com.marketstock.sebiapplication.models.News newsObj=
+						new com.marketstock.sebiapplication.models.News(
+								cursor.getString(cursor.getColumnIndex("title")),
+								cursor.getString(cursor.getColumnIndex("desc")), 
+								cursor.getString(cursor.getColumnIndex("learning")), 
+								"",
+								"", 
+								day);
+			if(dayList.containsKey(day))
+			dayList.remove(day);
+			dayList.put(day, true);
+			news.add(newsObj );
+			cursor.moveToNext();
+		
+			cursor.moveToNext();
+			}
+		}
+		
+	}
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		
@@ -37,6 +104,7 @@ public class Stockpage extends SherlockFragmentActivity implements
 		viewPager = (ViewPager) findViewById(R.id.stockpager);
 		viewPager.setScrollContainer(true);
 		companyName = getIntent().getExtras().getString("Company") + "";
+		updateNews(companyName);
 		Companies.updateData(companyName);
 		Companies.updateData52(companyName);
 		companyPrice = Companies.PriceList.get(companyName);
