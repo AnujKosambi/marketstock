@@ -8,8 +8,7 @@
     android:layout_width="fill_parent"
     android:layout_height="0dp"
     android:orientation="horizontal"
-    android:layout_weight="0.05"
-    android:paddingBottom="10dp" >
+    android:layout_weight="0.05">
 
 
     <TextView
@@ -34,7 +33,7 @@
         android:id="@+id/tv4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Change"
+        android:text="Change(%)"
         android:layout_weight="0.2"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textStyle="bold" />
@@ -70,8 +69,9 @@
          android:layout_height="0dp"
          android:layout_weight="0.05">
      <TextView 
-         android:text = "Sensex Change"
-         android:layout_width="wrap_content"
+         
+        android:text = "Sensex Change"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="0.7"
         android:paddingLeft="40dp"
@@ -79,9 +79,9 @@
         android:textStyle="bold"
                   />
      <TextView 
-         android:id="@+id/indices_sensex_change"
-         android:text = "Change"
-         android:layout_width="wrap_content"
+        android:id="@+id/indices_sensex_change"
+        android:text = "Change"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_weight="0.3"
         android:textAppearance="?android:attr/textAppearanceMedium"

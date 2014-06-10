@@ -5,13 +5,17 @@ import java.util.HashMap;
 
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.marketstock.adapter.listadapter;
+import com.marketstock.sebiapplication.dbhelper.DBHelper;
 
 public class indices extends SherlockActivity{
 
@@ -35,19 +39,31 @@ public class indices extends SherlockActivity{
 		ActionBar actionBar=getSupportActionBar();
 		actionBar.setHomeButtonEnabled(true);
 		actionBar.setDisplayHomeAsUpEnabled(true);
-	
+		
+		TextView sensex = (TextView) findViewById(R.id.indices_sensex_change);
+		
+		float change=0.0f;
+		
         HashMap<String, String> map;
-        for(int i=0; i<10; i++)
-        {
-        	map = new HashMap<String, String>();
-        	map.put(KEY_NAME, "Infosys");
-        	map.put(KEY_DATE, (i+1)+",May,2014");
-        	map.put(KEY_VALUE,"85309");
-        	map.put(KEY_POINT_CHANGE, "856");
-        	map.put(KEY_PERCENT_CHANGE, "5.08");
-        	companylist.add(map);
         
-        }
+        SQLiteDatabase d = MainActivity.db.getReadableDatabase();
+         
+        Cursor c = d.rawQuery("select * from "+DBHelper.TB_COMPANYDATA, null);
+        if(c.moveToFirst())
+        do{
+        	map = new HashMap<String, String>();        	
+        	map.put(KEY_NAME, c.getString(c.getColumnIndex("company")));
+//        	map.put(KEY_DATE, MainActivity.moveToDays+"");
+        	map.put(KEY_VALUE, c.getString(c.getColumnIndex("price")));
+        	map.put(KEY_POINT_CHANGE, c.getString(c.getColumnIndex("weight")));
+        	map.put(KEY_PERCENT_CHANGE, c.getString(c.getColumnIndex("percentChange")));
+        	
+        	change += Float.parseFloat(c.getString(c.getColumnIndex("weight")));
+        	companylist.add(map);
+        	
+        }while(c.moveToNext());
+        
+        sensex.setText(change+"");
         adapt = new listadapter(context, companylist);
 		listview.setAdapter(adapt);
         
