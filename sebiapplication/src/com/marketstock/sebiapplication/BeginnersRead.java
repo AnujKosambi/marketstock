@@ -29,7 +29,7 @@ public class BeginnersRead extends SherlockActivity{
 			
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(getApplication(), Select_Stock.class);
+				Intent intent = new Intent(getApplicationContext(), Select_Stock.class);
 				startActivity(intent);
 			}
 		});
@@ -38,7 +38,7 @@ public class BeginnersRead extends SherlockActivity{
 					
 					@Override
 					public void onClick(View v) {
-						Intent intent = new Intent(getApplication(), Interpret_Report.class);
+						Intent intent = new Intent(getApplicationContext(), Interpret_Report.class);
 						startActivity(intent);
 					}
 				});
@@ -47,7 +47,7 @@ public class BeginnersRead extends SherlockActivity{
 			
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(getApplication(), Download_PDF.class);
+				Intent intent = new Intent(getApplicationContext(), Download_PDF.class);
 				startActivity(intent);
 			}
 		});
