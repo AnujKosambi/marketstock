@@ -80,7 +80,7 @@ public class stockDetail extends SherlockFragment{
 			@Override
 			public void onClick(View v) {
 				Intent intent = new Intent(rootView.getContext(),BuySell.class);				
-				intent.putExtra("Company", companyName.toString());
+				intent.putExtra("Company", companyName.getText());
 				startActivity(intent);
 				
 			}

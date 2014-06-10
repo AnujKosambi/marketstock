@@ -258,7 +258,7 @@
                             android:id="@+id/textNetValue"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Net Value"
+                            android:text="Net Investment"
                             android:textAppearance="?android:attr/textAppearanceSmall"
                             android:textStyle="bold" />
 

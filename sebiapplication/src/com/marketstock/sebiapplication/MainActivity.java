@@ -15,7 +15,6 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
@@ -104,7 +103,6 @@ public class MainActivity extends SherlockFragmentActivity implements
 		LinearLayout linearLayout = new LinearLayout(this);
 		
 		String[] companies=Companies.getCompanies();
-		Log.d("Marquee",companies.length+"");
 
 		for(int i=0;i<companies.length;i++)
 		{
