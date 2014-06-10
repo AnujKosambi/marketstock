@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:paddingLeft="5dp" >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+ >
 
     <TextView
         android:id="@+id/textView1"
@@ -12,9 +12,12 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:paddingBottom="70dp" />
 
-    <TableRow >
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
 	     <TextView
-	        android:id="@+id/textView1"
+	        android:id="@+id/topgainers"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:text="Top Gainers"
@@ -22,194 +25,219 @@
 	        android:paddingBottom="10dp"
 	        android:textAppearance="?android:attr/textAppearanceMedium" />
     </TableRow>
-    <TableRow >
-        <LinearLayout 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="fill_horizontal"
-            android:layout_weight="1"
-            android:paddingBottom="7dp"
-            android:paddingRight="5dp"
-            >
+
+    <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.45"
+        android:orientation="vertical" >
+
+        <FrameLayout
+              	android:id="@+id/gainers"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/layer_card_background"
+                    android:clickable="false"
+                    android:descendantFocusability="afterDescendants"
+                    android:orientation="vertical"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="10dp" 
+                    android:paddingRight="5dp"
+                    >
+				         <TableLayout
+				             android:layout_width="match_parent"
+				             android:layout_height="0dp"
+				             android:layout_weight="1" >
+             
+					            <TableRow 
+					                android:layout_width="fill_parent"
+					                android:layout_height="match_parent"
+					                android:layout_weight="0.5"
+					                android:paddingBottom="5dp"
+					                android:paddingTop="5dp"
+					               >
+							            <TextView
+									        android:id="@+id/gainers_company1_name"
+							        		android:layout_width="match_parent"
+							     		    android:layout_height="match_parent"
+							     		    android:text="Company1"
+							        		android:layout_weight="0.4"
+							        		android:textAppearance="?android:attr/textAppearanceMedium" />
+						            
+						                <TextView
+									        android:id="@+id/gainers_company1_value"
+									        android:layout_width="match_parent"
+									        android:layout_height="match_parent"
+									        android:layout_weight="0.3"
+									        android:text="value1"
+									        android:textAppearance="?android:attr/textAppearanceMedium" />
+                   
+								       <TextView
+									        android:id="@+id/gainers_company1_percent"
+									        android:layout_width="match_parent"
+									        android:layout_height="match_parent"
+									        android:text="Percent"
+									        android:layout_weight="0.3"
+									        android:textAppearance="?android:attr/textAppearanceMedium" />
+     					  </TableRow>
+     
+						<TableRow 
+							android:layout_width="fill_parent"
+						    android:layout_weight="0.5"
+						    android:layout_height="match_parent"
+						  	android:paddingBottom="5dp"
+					        android:paddingTop="5dp">
+					    
+				            <TextView
+						        android:id="@+id/gainers_company2_name"
+						        android:layout_width="wrap_content"
+						        android:layout_height="wrap_content"
+						        android:text="Company2"
+						        android:layout_weight="0.4"
+						        android:textAppearance="?android:attr/textAppearanceMedium" />
             
-            <TextView
-        android:id="@+id/gainers_company1_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Company1"
-        android:layout_weight="0.3"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-            
-                <TextView
-        android:id="@+id/gainers_company1_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.3"
-        android:text="value1"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+			                <TextView
+						        android:id="@+id/gainers_company2_value"
+						        android:layout_width="wrap_content"
+						        android:layout_height="wrap_content"
+						        android:layout_weight="0.3"
+						        android:text="value2"
+						        android:textAppearance="?android:attr/textAppearanceMedium" />
                 
-                    <TextView
-        android:id="@+id/gainers_company1_change"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="change1"
-        android:layout_weight="0.2"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-                    
-                        <TextView
-        android:id="@+id/gainers_company1_percent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Percent"
-        android:layout_weight="0.2"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-        </LinearLayout>
-    </TableRow>
-    
-     <TableRow >
-        <LinearLayout 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:gravity="fill_horizontal"
-            android:paddingBottom="7dp"
-            android:paddingRight="5dp"
-            >
-            
-            <TextView
-        android:id="@+id/gainers_company2_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Company2"
-        android:layout_weight="0.3"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-            
-                <TextView
-        android:id="@+id/gainers_company2_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.3"
-        android:text="value2"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-                
-                    <TextView
-        android:id="@+id/gainers_company2_change"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="change2"
-        android:layout_weight="0.2"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-                    
-                        <TextView
-        android:id="@+id/gainers_company2_percent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Percent2"
-        android:layout_weight="0.2"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-        </LinearLayout>
+					       <TextView
+						        android:id="@+id/gainers_company2_percent"
+						        android:layout_width="wrap_content"
+						        android:layout_height="wrap_content"
+						        android:text="Percent2"
+						        android:layout_weight="0.3"
+						        android:textAppearance="?android:attr/textAppearanceMedium" />
+       				</TableRow>
+      			 </TableLayout>
+       		</LinearLayout>
+        </FrameLayout>
     </TableRow>
     <TableRow >
 	     <TextView
-	        android:id="@+id/textView11"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
+	        android:id="@+id/toplosers"
+	        android:layout_width="match_parent"
+	        android:layout_height="match_parent"
 	        android:text="Top Losers"
 	        android:textStyle="bold"
-	        android:paddingTop="40dp"
+	        android:paddingTop="10dp"
 	        android:paddingBottom="10dp"
 	        android:textAppearance="?android:attr/textAppearanceMedium" />
     </TableRow>
     
-    <TableRow >
-        <LinearLayout 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:gravity="fill_horizontal"
-            android:paddingBottom="7dp"
-            android:paddingRight="5dp"
-            >
+   <TableRow
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.45"
+        android:orientation="vertical" >
+
+        <FrameLayout
+              	android:id="@+id/losers"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:layout_weight="1"
+                android:paddingBottom="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="10dp"
+                >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/layer_card_background"
+                    android:clickable="false"
+                    android:descendantFocusability="afterDescendants"
+                    android:orientation="vertical"
+                    android:paddingBottom="10dp"
+                    android:paddingLeft="5dp"
+                    android:paddingTop="10dp" 
+                    android:paddingRight="5dp"
+                    >
+				         <TableLayout
+				             android:layout_width="match_parent"
+				             android:layout_height="0dp"
+				             android:layout_weight="1" >
+             
+					            <TableRow 
+					                android:layout_width="fill_parent"
+					                android:layout_height="match_parent"
+					                android:layout_weight="0.5"
+					                android:paddingBottom="5dp"
+					        		android:paddingTop="5dp"
+					                >
+							            <TextView
+									        android:id="@+id/losers_company1_name"
+							        		android:layout_width="match_parent"
+							     		    android:layout_height="match_parent"
+							     		    android:text="Company1"
+							        		android:layout_weight="0.4"
+							        		android:textAppearance="?android:attr/textAppearanceMedium" />
+						            
+						                <TextView
+									        android:id="@+id/losers_company1_value"
+									        android:layout_width="match_parent"
+									        android:layout_height="match_parent"
+									        android:layout_weight="0.3"
+									        android:text="value1"
+									        android:textAppearance="?android:attr/textAppearanceMedium" />
+                   
+								       <TextView
+									        android:id="@+id/losers_company1_percent"
+									        android:layout_width="match_parent"
+									        android:layout_height="match_parent"
+									        android:text="Percent"
+									        android:layout_weight="0.3"
+									        android:textAppearance="?android:attr/textAppearanceMedium" />
+     					  </TableRow>
+     
+						<TableRow 
+							android:layout_width="fill_parent"
+						    android:layout_weight="0.5"
+						    android:layout_height="match_parent"
+						    android:paddingBottom="5dp"
+					        android:paddingTop="5dp">
+					    
+				            <TextView
+						        android:id="@+id/losers_company2_name"
+						        android:layout_width="wrap_content"
+						        android:layout_height="wrap_content"
+						        android:text="Company2"
+						        android:layout_weight="0.4"
+						        android:textAppearance="?android:attr/textAppearanceMedium" />
             
-            <TextView
-        android:id="@+id/loser_company1_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Company1"
-        android:layout_weight="0.3"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-            
-                <TextView
-        android:id="@+id/losers_company1_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.3"
-        android:text="value1"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
+			                <TextView
+						        android:id="@+id/losers_company2_value"
+						        android:layout_width="wrap_content"
+						        android:layout_height="wrap_content"
+						        android:layout_weight="0.3"
+						        android:text="value2"
+						        android:textAppearance="?android:attr/textAppearanceMedium" />
                 
-                    <TextView
-        android:id="@+id/losers_company1_change"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="change1"
-        android:layout_weight="0.2"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-                    
-                        <TextView
-        android:id="@+id/lsoers_company1_percent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Percent"
-        android:layout_weight="0.2"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-        </LinearLayout>
-    </TableRow>
-    
-    <TableRow >
-        <LinearLayout 
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            android:gravity="fill_horizontal"
-            android:paddingBottom="7dp"
-            android:paddingRight="5dp"
-            >
-            
-            <TextView
-        android:id="@+id/losers_company2_name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Company2"
-        android:layout_weight="0.3"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-            
-                <TextView
-        android:id="@+id/losers_company2_value"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_weight="0.3"
-        android:text="value2"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-                
-                    <TextView
-        android:id="@+id/lsoers_company2_change"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="change2"
-        android:layout_weight="0.2"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-                    
-                        <TextView
-        android:id="@+id/losers_company2_percent"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Percen2"
-        android:layout_weight="0.2"
-        android:textAppearance="?android:attr/textAppearanceMedium" />
-        </LinearLayout>
+					       <TextView
+						        android:id="@+id/losers_company2_percent"
+						        android:layout_width="wrap_content"
+						        android:layout_height="wrap_content"
+						        android:text="Percent2"
+						        android:layout_weight="0.3"
+						        android:textAppearance="?android:attr/textAppearanceMedium" />
+       				</TableRow>
+      			 </TableLayout>
+       		</LinearLayout>
+        </FrameLayout>
     </TableRow>
 </TableLayout>
