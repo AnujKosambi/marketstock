@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import android.content.Context;
-import android.util.Log;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,7 +52,7 @@ public class Portfolio_adapter extends BaseAdapter{
             holder.holding = (TextView)vi.findViewById(R.id.portfolio_holding); 
             holder.avg_price = (TextView)vi.findViewById(R.id.portfolio_avg_price);
             holder.amount = (TextView)vi.findViewById(R.id.portfolio_amount); 
-            holder.profit = (TextView)vi.findViewById(R.id.portfolio_profit); 
+            holder.profit = (TextView)vi.findViewById(R.id.portfolio_profit);             
             vi.setTag(holder);
             
         }
@@ -68,6 +68,13 @@ public class Portfolio_adapter extends BaseAdapter{
         holder.avg_price.setText(index.get(com.marketstock.sebiapplication.portFolio.KEY_AVG_PRICE));
         holder.amount.setText(index.get(com.marketstock.sebiapplication.portFolio.KEY_AMOUNT));
         holder.profit.setText(index.get(com.marketstock.sebiapplication.portFolio.KEY_PROFIT));
+        
+        if(Double.parseDouble(index.get(com.marketstock.sebiapplication.portFolio.KEY_PROFIT))>0){
+        	vi.setBackgroundColor(Color.rgb(82,252,82));
+        }else{
+        	vi.setBackgroundColor(Color.rgb(252,82,82));
+        }
+        
         return vi;
         
     }

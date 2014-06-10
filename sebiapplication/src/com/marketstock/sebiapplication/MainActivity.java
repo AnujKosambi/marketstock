@@ -1,21 +1,25 @@
 package com.marketstock.sebiapplication;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
@@ -23,6 +27,7 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
+import com.marketstock.adapter.CardItemTitleNData;
 import com.marketstock.adapter.TabsPagerAdapter;
 import com.marketstock.helper.Companies;
 import com.marketstock.helper.MarqueeLayout;
@@ -41,13 +46,63 @@ public class MainActivity extends SherlockFragmentActivity implements
 	public static DBHelper db;
 	int width;
 	public static int moveToDays;
+	private void updateNewsEffect(){
+		
+		for(int i=0;i<DBHelper.TB_NEWS.length;i++)
+		{
+				Cursor	cursor= db.getReadableDatabase()
+									.rawQuery("SELECT day,effect,fluctuation FROM "+DBHelper.TB_NEWS[i] +
+											" where day ="+(MainActivity.moveToDays-54),null); 
+			    String cname= DBHelper.TB_NEWS[i].substring(0, DBHelper.TB_NEWS[i].length()-4);
+				cursor.moveToFirst();
+				ArrayList<com.marketstock.sebiapplication.models.News> newsList=
+						new ArrayList<com.marketstock.sebiapplication.models.News>();
+				while(cursor.isAfterLast()==false)
+				{
+				    int day=cursor.getInt(cursor.getColumnIndex("day"));
+					String effect=cursor.getString(cursor.getColumnIndex("effect"));
+					Double fluctuation=cursor.getDouble(cursor.getColumnIndex("fluctuation"));
+					com.marketstock.sebiapplication.models.News news=
+					new com.marketstock.sebiapplication.models.News("","","",effect,fluctuation+"",day);
+					newsList.add(news);
+					cursor.moveToNext();
+					
+				}
+				cursor.close();
+				for(com.marketstock.sebiapplication.models.News news:newsList){
+					Cursor	ucursor= db.getReadableDatabase()
+							.rawQuery("SELECT id,closePrice FROM "+ cname+" order by date",null); 
+					int id=-1;
+					ucursor.moveToPosition(news.getDay()+54);
+					id=ucursor.getInt(ucursor.getColumnIndex("id"));
+				
+					Toast.makeText(this,id+" "+DBHelper.TB_NEWS[i], Toast.LENGTH_SHORT).show();
+					ContentValues cv = new ContentValues();
+					ucursor.moveToPrevious();
+					Double preValue=ucursor.getDouble(ucursor.getColumnIndex("closePrice"));
+					double change=0.01*Double.parseDouble(news.getFlucatuation())*preValue;
+					if(news.getEffect().equals("Up"))
+					{cv.put("closePrice",preValue+change); 
+					
+					Toast.makeText(this,id+" "+(preValue+change), Toast.LENGTH_LONG).show();
+					}
+					else
+					{	cv.put("closePrice",preValue-change); 
+					Toast.makeText(this,id+" "+(preValue-change), Toast.LENGTH_SHORT).show();
+					}
+					ucursor.close();
+					db.getWritableDatabase().update(cname, cv, "id="+id, null);
+					
+				}
+		}
+		
+	}
 	private View getMarqueeView()
 	{
 	//	HorizontalScrollView scrollView=new HorizontalScrollView(this);
 		LinearLayout linearLayout = new LinearLayout(this);
 		
 		String[] companies=Companies.getCompanies();
-		Log.d("Marquee",companies.length+"");
 
 		for(int i=0;i<companies.length;i++)
 		{
@@ -88,12 +143,23 @@ public class MainActivity extends SherlockFragmentActivity implements
 		
 		SharedPreferences prefs =getApplicationContext().getSharedPreferences(
 			      "com.marketstock.sebiapplication", Context.MODE_PRIVATE);
+		
+		
+		
+		String LastUsed = prefs.getString("LastUsed",""); 
+	
 		long installed = prefs.getLong("Date",0); 
-		Date dateNow=new Date(Calendar.getInstance().getTimeInMillis());
-		moveToDays=(int)( (dateNow.getTime()- installed )/(1000 * 60 * 60 * 24));
-
-		moveToDays+=55;
-
+		String newUsed=Calendar.getInstance().get(Calendar.DATE)+"-"+
+				  Calendar.getInstance().get(Calendar.MONTH)+"-"+
+				  Calendar.getInstance().get(Calendar.YEAR);
+		prefs.edit().putString("LastUsed",newUsed).commit();
+		
+	     Date dateNow=new Date(Calendar.getInstance().getTimeInMillis());
+		 moveToDays=(int)( (dateNow.getTime()- installed )/(1000 * 60 * 60 * 24));
+		 moveToDays+=55;
+		 if(!newUsed.equals(LastUsed)){;
+			updateNewsEffect();
+		 }
 	     MarqueeLayout marqueeLayout = new MarqueeLayout(this);
 	     marqueeLayout.setBackgroundColor(Color.BLACK);
 	     marqueeLayout.setDuration(100000);

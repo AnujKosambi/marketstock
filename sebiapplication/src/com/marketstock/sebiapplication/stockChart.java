@@ -20,6 +20,7 @@ import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragment;
 import com.jjoe64.graphview.CustomLabelFormatter;
@@ -58,7 +59,7 @@ public class stockChart extends SherlockFragment {
       	graphView.setScalable(true);
         graphView.setGravity(Gravity.BOTTOM);
    
-       	graphView.getGraphViewStyle().setVerticalLabelsWidth(30);
+       	graphView.getGraphViewStyle().setVerticalLabelsWidth(80);
       
        	graphView.getGraphViewStyle().setGridColor(Color.GRAY);
        	graphView.getGraphViewStyle().setHorizontalLabelsColor(Color.BLACK);
@@ -80,59 +81,43 @@ public class stockChart extends SherlockFragment {
     
        	graphView.setLegendAlign(LegendAlign.MIDDLE);
        	graphView.setLegendWidth(100);
-
-       	Cursor cursor = MainActivity.db.getReadableDatabase().rawQuery("SELECT id,date,closePrice FROM "+Stockpage.companyName+" order by date ",null);
-       	cursor.moveToFirst();
-       	ArrayList<GraphViewData> graphData=new ArrayList<GraphViewData>();
-      final HashMap<Integer,Date> dateMarker=new HashMap<Integer,Date>();
+        final HashMap<Integer,Date> dateMarker=new HashMap<Integer,Date>();
         final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");
+     	ArrayList<GraphViewData> graphData=new ArrayList<GraphViewData>();
         graphView.setCustomLabelFormatter(new CustomLabelFormatter() {
             @Override
             public String formatLabel(double value, boolean isValueX) {
                 if (isValueX) {
-         //       Log.d("Date", indexToDate.get((int)value).toString());
-        //            return dateFormat.format(indexToDate.get((int)value)).toString();
+         
                 	  return ((Date)dateMarker.get((int)value)).toString();
-                	  // dateFormat.format(new Date((long)(value*(1000 * 60 * 60 * 24))+startdate.getTime())).toString();
-                    
                 } else
                     return String.format("%.2f", value);
             }
         });
  
       
+       	Cursor cursor = MainActivity.db.getReadableDatabase().rawQuery("SELECT id,date,closePrice FROM "+Stockpage.companyName+" order by date ",null);
+       	cursor.moveToFirst();    
         int i=0;
+      
         while (cursor.isAfterLast() == false && i<MainActivity.moveToDays) 
-        {
+        { 
         
 			Date date;
 
 			date = new Date(Long.parseLong(cursor.getString(1)));
 			dateMarker.put(i, date);
-
-			
-        	Random random=new Random();
-        	double openPrice= random.nextDouble();
         	double closePrice= cursor.getDouble(2);
-        	double highPrice= random.nextDouble();
-        	double lowPrice= random.nextDouble();
-        	
-        	double volume= random.nextDouble();        			
        // 	Stock stock=new Stock(new Date(i++),openPrice,closePrice,highPrice,lowPrice,volume);
         	
-      
-        	if(date.getTime()>=startdate.getTime() && date.getTime()<=enddate.getTime())
         	graphData.add(new GraphViewData( i++,closePrice));
-        	
-        	
-   
-			
-        
         	cursor.moveToNext();
         	
         }
+        Toast.makeText(rootView.getContext(),i+" ", Toast.LENGTH_LONG).show();
         if(i<=0)
         	return rootView;
+        
         GraphViewSeriesStyle seriesStyle = new GraphViewSeriesStyle();
         GraphViewData[] graphDataArray= new GraphViewData[graphData.size()];
         

@@ -25,8 +25,8 @@ public class priceService extends IntentService {
 	@Override
 	protected void onHandleIntent(Intent intent) {
 
-
 		while (true) {
+
 			synchronized (this) {
 				try {
 					for (int i = 0; i < DBHelper.TB_STOCKS.length; i++) {
@@ -39,9 +39,12 @@ public class priceService extends IntentService {
 						c.moveToPosition(MainActivity.moveToDays);
 						hp = c.getFloat(0);
 						lp = c.getFloat(1);
-						
+
 						ContentValues values = new ContentValues();
-						values.put("price", (lp + Math.random() * (hp - lp)));
+						double price = Math.round((lp + Math.random()
+								* (hp - lp)) * 100.0) / 100.0;
+
+						values.put("price", price);
 						MainActivity.db.getWritableDatabase().update(
 								DBHelper.TB_COMPANYDATA, values,
 								"company = '" + DBHelper.TB_STOCKS[i] + "'",
@@ -76,7 +79,6 @@ public class priceService extends IntentService {
 				}
 			}
 		}
-
 
 	}
 

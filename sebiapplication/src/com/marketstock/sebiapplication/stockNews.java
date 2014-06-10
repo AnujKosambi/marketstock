@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragment;
 import com.marketstock.adapter.BaseInflaterAdapter;
@@ -29,19 +30,43 @@ public class stockNews extends SherlockFragment{
 		list.addFooterView(new View(context));
 		
 		BaseInflaterAdapter<CardItemTitleNData> adapter = new BaseInflaterAdapter<CardItemTitleNData>(new CardInflaterQuote());
-		Cursor cursor = MainActivity.db.getReadableDatabase()
-				.rawQuery("SELECT * FROM "+ "infosysnew",null); 
-		cursor.moveToFirst();
-		while(cursor.isAfterLast()==false)
+		
+		Cursor cursor;
+		if(Stockpage.companyName.equals("infosys")||
+				Stockpage.companyName.equals("tcs")|| 
+				Stockpage.companyName.equals("bajaj"))
 		{
+			cursor= MainActivity.db.getReadableDatabase()
+				.rawQuery("SELECT * FROM "+Stockpage.companyName +"news where day <="+(MainActivity.moveToDays-54),null); 
+		
+			cursor.moveToFirst();
+			while(cursor.isAfterLast()==false)
+			{
 			CardItemTitleNData data = new CardItemTitleNData(
 					cursor.getString(1),
 					cursor.getString(2),
 					cursor.getString(cursor.getColumnIndex("learning")));
 			adapter.addItem(data, false);
 			cursor.moveToNext();
+			}
 		}
-
+		else
+		{
+			cursor= MainActivity.db.getReadableDatabase()
+					.rawQuery("SELECT * FROM commonnews where company='"+Stockpage.companyName+
+							"' and day <="+(MainActivity.moveToDays-54),null);
+		
+			cursor.moveToFirst();
+			while(cursor.isAfterLast()==false)
+			{
+			CardItemTitleNData data = new CardItemTitleNData(
+					cursor.getString(cursor.getColumnIndex("title")),
+					cursor.getString(cursor.getColumnIndex("desc")),
+					cursor.getString(cursor.getColumnIndex("learning")));
+			adapter.addItem(data, false);
+			cursor.moveToNext();
+			}
+		}
 		list.setAdapter(adapter);
         
         return rootView;
