@@ -4,6 +4,7 @@ import java.io.ObjectOutputStream.PutField;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 
 import android.app.IntentService;
 import android.app.Notification;
@@ -18,6 +19,7 @@ import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationCompat.Builder;
 import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.marketstock.sebiapplication.dbhelper.DBHelper;
 
@@ -33,7 +35,7 @@ public class priceService extends IntentService {
 	public priceService() {
 		super("priceService");
 	}
-
+	HashMap<String ,Double> currentValue=new HashMap<String,Double>();
 	@Override
 	protected void onHandleIntent(Intent intent) {
 
@@ -44,8 +46,10 @@ public class priceService extends IntentService {
 					float weight = 0.0f;
 					float last = 0.0f;
 					float cweight = 0.0f;
+				
 					for (int i = 0; i < DBHelper.TB_STOCKS.length; i++) {
-
+					
+							
 						float hp = 10, lp = 0;
 						Cursor c = MainActivity.db.getReadableDatabase()
 								.rawQuery(
@@ -74,6 +78,9 @@ public class priceService extends IntentService {
 						weight += cweight;
 
 						values.put("price", price);
+						if(currentValue.containsKey(DBHelper.TB_STOCKS[i]))
+							currentValue.remove(DBHelper.TB_STOCKS[i]);
+						currentValue.put(DBHelper.TB_STOCKS[i], price);
 						values.put("weight", cweight);
 						values.put("percentChange", pc);
 
@@ -147,12 +154,58 @@ public class priceService extends IntentService {
 					      //call notify method of NotificationManager to add this notification to android notification drawer..
 					      notificationmanager.notify(0, notification);
 				     }
-				     
-				     wait(60000);
+				     SharedPreferences autoBuypref =getApplicationContext().getSharedPreferences(
+						      "Autobuy", Context.MODE_PRIVATE);
+				     int autobuycount=autoBuypref.getInt("autobuycount", 0);
+				     for(int i=0;i<autoBuypref.getInt("autobuycount", 0);i++)
+				     {
+				    	 String[] buystring =autoBuypref.getString("autobuy"+i, "").split("#");
+				    	 if(buystring.length>2)
+				    	 {
+				    		
+				    		 Double doublePrice=Double.parseDouble(buystring[2]);
+				    		 if(doublePrice>=currentValue.get(buystring[0]))
+				    		 { Log.d("Autobuy",buystring[0]+" "+buystring[1]+" "+buystring[2]);
+				    			 BuySell.buyStock(buystring[0], Integer.parseInt(buystring[1]), doublePrice);
+				    		
+				    		 String[] buylastString =autoBuypref.getString("autobuy"+(autobuycount-1), "").split("#");
+				    		 autoBuypref.edit().putString("autobuy"+i,buylastString[0]+"#"+buylastString[1]+"#"
+				    				 								+buylastString[2]).commit();
+				    		 autoBuypref.edit().remove("autobuy"+(autobuycount-1)).commit();
+				    		 Log.d("Autobuy","autobuy"+(autobuycount-1));
+				    		 autoBuypref.edit().putInt("autobuycount",autobuycount-1).commit();
+				    		 }
+				    		 
+				    	 }
+				    	 
+				     } 
+				     int autosellcount=autoBuypref.getInt("autosellcount", 0);
+				     for(int i=0;i<autosellcount;i++)
+				     {
+				    	 String[] sellstring =autoBuypref.getString("autosell"+i, "").split("#");
+				    	 if(sellstring.length>2)
+				    	 {
+				    		
+				    		 Double doublePrice=Double.parseDouble(sellstring[2]);
+				    		 if(doublePrice<currentValue.get(sellstring[0]))
+				    		 { Log.d("Autosell",sellstring[0]+" "+sellstring[1]+" "+sellstring[2]);
+				    			 BuySell.sellStock(sellstring[0], Integer.parseInt(sellstring[1]), doublePrice);
+				    		
+				    		 String[] selllastString =autoBuypref.getString("autosell"+(autosellcount-1), "").split("#");
+				    		 autoBuypref.edit().putString("autosell"+i,selllastString[0]+"#"+selllastString[1]+"#"
+				    				 								+selllastString[2]).commit();
+				    		 autoBuypref.edit().remove("autosell"+(autosellcount-1)).commit();
+				    		 autoBuypref.edit().putInt("autosellcount",autosellcount-1).commit();
+				    		 }
+				    	 }
+				    	 
+				     }
+				     wait(1000);
 
 				} catch (Exception e) {
 				}
 			}
+			
 		}
 
 	}
