@@ -11,6 +11,8 @@ import android.support.v4.view.ViewPager;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
+import com.actionbarsherlock.view.Menu;
+import com.actionbarsherlock.view.MenuInflater;
 import com.marketstock.adapter.StockPagesAdapter;
 import com.marketstock.helper.Companies;
 import com.marketstock.sebiapplication.models.Stock;
@@ -34,6 +36,7 @@ public class Stockpage extends SherlockFragmentActivity implements
 	public static HashMap<Integer, Boolean> dayList = new HashMap<Integer, Boolean>();
 
 	public void updateNews(String companyName) {
+
 		Cursor cursor;
 		if (companyName.equals("infosys") || companyName.equals("tcs")
 				|| companyName.equals("bajaj")) {
@@ -108,6 +111,7 @@ public class Stockpage extends SherlockFragmentActivity implements
 
 		viewPager.setAdapter(mAdapter);
 		actionBar.setHomeButtonEnabled(false);
+		
 		actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_TABS);
 
 		// Adding Tabs
@@ -137,6 +141,13 @@ public class Stockpage extends SherlockFragmentActivity implements
 			}
 		});
 
+	}
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+	    // Inflate the menu items for use in the action bar
+	    MenuInflater inflater = getSupportMenuInflater();
+	    //inflater.inflate(R.menu., menu);
+	    return super.onCreateOptionsMenu(menu);
 	}
 
 	@Override
