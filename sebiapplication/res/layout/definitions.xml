@@ -20,8 +20,8 @@
                 <LinearLayout
                     android:id="@+id/beginnersCard"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/selector_card_background"
+                    android:layout_height="fill_parent"
+                    android:background="@drawable/layer_card_background"
                     android:clickable="true"
                     android:descendantFocusability="afterDescendants"
                     android:orientation="vertical"
@@ -36,23 +36,21 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="center_horizontal"
-                        android:text="Term goes here fjhej eakfhekh euhakj akfhaekf"
+                        android:text="Term goes here fjhej eakfhekh euhakj akfhaekfyyyyyyyyyyyyy yyyyyyyy"
                         android:textAppearance="?android:attr/textAppearanceLarge"
-                        android:textStyle="bold"
-                        android:paddingBottom="10dp"
-                        android:layout_weight="0.1" />
+                        android:textStyle="bold" />
 
             <ScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="0.9"
+                android:layout_marginTop="5dp"
+                android:layout_weight="0.95"
                  >
 
                     <TextView
                         android:id="@+id/definition"
                         android:layout_width="fill_parent"
                         android:layout_height="match_parent"
-                        android:enabled="false"
                         android:paddingLeft="15dp"
                         android:paddingTop="15dp"
                         android:paddingRight="15dp"
