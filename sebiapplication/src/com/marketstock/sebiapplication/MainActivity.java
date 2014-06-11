@@ -158,6 +158,10 @@ public class MainActivity extends SherlockFragmentActivity implements
 				  Calendar.getInstance().get(Calendar.YEAR);
 		prefs.edit().putString("LastUsed",newUsed).commit();
 		
+
+		Intent intent = new Intent(this, priceService.class);
+		startService(intent);
+		
 	     Date dateNow=new Date(Calendar.getInstance().getTimeInMillis());
 		 moveToDays=(int)( (dateNow.getTime()- installed )/(1000 * 60 * 60 * 24));
 		 moveToDays+=55;
@@ -175,8 +179,6 @@ public class MainActivity extends SherlockFragmentActivity implements
 	
 	     marqueeParentLayout.setBackgroundColor(Color.BLACK);
 	  
-		Intent intent = new Intent(this, priceService.class);
-		startService(intent);
 				
 		// Initilization
 		viewPager = (ViewPager) findViewById(R.id.pager);

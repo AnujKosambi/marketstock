@@ -22,6 +22,20 @@ public class trading extends SherlockFragment {
 	TextView careerNetWorth, careerLevel, careerWorth, sensexvi, sensexci;
 
 	@Override
+	public void onResume() {
+		
+		super.onResume();
+		titleUpdate();
+		
+	}
+	
+	@Override
+	public void onStart() {
+		super.onStart();
+		titleUpdate();
+	}
+	
+	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container,
 			Bundle savedInstanceState) {
 
@@ -75,7 +89,9 @@ public class trading extends SherlockFragment {
 			netvalue.setText(c.getString(c.getColumnIndex("totalamount")));
 			netprofit.setText(c.getString(c.getColumnIndex("totalprofit")));
 		}
-
+		
+		titleUpdate();
+		
 		final Context context = getActivity().getApplicationContext();
 
 		indicesCard.setOnClickListener(new View.OnClickListener() {
