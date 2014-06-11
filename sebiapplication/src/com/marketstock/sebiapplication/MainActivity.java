@@ -102,8 +102,9 @@ public class MainActivity extends SherlockFragmentActivity implements
 		String[] companies=Companies.getCompanies();
 		for(int i=0;i<companies.length;i++)
 		{
-			Log.d("Marquee", "Update");
+			Log.d("Marquee", companies[i]);
 			Companies.updateData(companies[i]);
+			
 			double change=Companies.PriceList.get(companies[i])-Companies.prevPriceList.get(companies[i]);
 			marqueeView.get(companies[i]).setText(companies[i].toUpperCase()+" "+
 			String.format("%.2f",Companies.PriceList.get(companies[i]))+

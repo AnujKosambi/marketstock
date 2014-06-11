@@ -70,6 +70,29 @@ public class Companies {
 
 	}
 
+	public static void updateCurrent(String companyName)
+	{
+		companyName = companyName.toLowerCase();
+		int moveToDays = MainActivity.moveToDays;
+
+		Cursor cursor = MainActivity.db.getReadableDatabase().rawQuery(
+				"SELECT * FROM " + companyName + " order by date", null);
+
+		cursor.moveToPosition(moveToDays);
+
+		Stock stock = new Stock(new Date(cursor.getLong(1)),
+				cursor.getDouble(cursor.getColumnIndex("openPrice")),
+				cursor.getDouble(cursor.getColumnIndex("closePrice")),
+				cursor.getDouble(cursor.getColumnIndex("highPrice")),
+				cursor.getDouble(cursor.getColumnIndex("lowPrice")),
+				cursor.getDouble(cursor.getColumnIndex("volume")));
+
+		if (StockList.containsKey(companyName))
+			StockList.remove(companyName);
+		StockList.put(companyName, stock);
+		cursor.close();
+	}
+	
 	public static void updateData52(String companyName) {
 		companyName = companyName.toLowerCase();
 		Cursor cursor = MainActivity.db.getReadableDatabase().rawQuery(
