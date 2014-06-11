@@ -65,7 +65,7 @@ public class portFolio extends SherlockActivity {
 				double price = Companies.PriceList.get(c.getString(c
 						.getColumnIndex("company")));
 				double profit = (price - aprice) * holding;
-				price = Math.round(price * 100.0) / 100.0;
+				profit = Math.round(profit * 100.0) / 100.0;
 				netProfit += profit;
 				map.put(KEY_PROFIT, profit + "");
 				stocklist.add(map);
