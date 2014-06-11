@@ -43,8 +43,8 @@ public class News extends SherlockActivity{
 			CardItemTitleNData data = new CardItemTitleNData(
 					cursor.getInt(cursor.getColumnIndex("day")),
 					cursor.getString(cursor.getColumnIndex("title")),
-					cursor.getString(cursor.getColumnIndex("desc")),
-					cursor.getString(cursor.getColumnIndex("learning")));
+					cursor.getString(cursor.getColumnIndex("desc")).replaceAll("//", "'"),
+					cursor.getString(cursor.getColumnIndex("learning")).replaceAll("//", "'"));
 			adapter.addItem(data, false);
 			cursor.moveToNext();
 			}
@@ -59,8 +59,8 @@ public class News extends SherlockActivity{
 				cursor.getInt(cursor.getColumnIndex("day")),
 				
 				cursor.getString(cursor.getColumnIndex("title")),
-				cursor.getString(cursor.getColumnIndex("desc")),
-				cursor.getString(cursor.getColumnIndex("learning")));
+				cursor.getString(cursor.getColumnIndex("desc")).replaceAll("//", "'"),
+				cursor.getString(cursor.getColumnIndex("learning")).replaceAll("//", "'"));
 		adapter.addItem(data, false);
 		cursor.moveToNext();
 		}

@@ -83,14 +83,14 @@ public class CardInflaterQuote implements IAdapterViewInflater<CardItemTitleNDat
 				@Override
 				public void onClick(View v) {
 					final Dialog dialog = new Dialog(rootView.getContext());
-					dialog.setTitle(stock_news_title.getText());
+					dialog.setTitle("Explanation:");
 					LinearLayout linearLayout=new LinearLayout(rootView.getContext()); 
 					linearLayout.setPadding(25, 25, 25,25);
 					linearLayout.setOrientation(LinearLayout.VERTICAL);
 					ScrollView scrollView = new ScrollView(rootView.getContext());
 					
 					TextView desc=new  TextView(rootView.getContext());
-					desc.setText(data.getLearning());
+					desc.setText(data.getLearning().replaceAll("//", "'"));
 					desc.setTextSize(18);
 					Button ok=new Button(rootView.getContext());
 					ok.setText("OK");
