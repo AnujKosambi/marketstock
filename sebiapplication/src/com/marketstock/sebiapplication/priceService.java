@@ -196,8 +196,8 @@ public class priceService extends IntentService {
 						Builder notif = new NotificationCompat.Builder(this);
 						notif.setContentIntent(resultPendingIntent)
 								.setWhen(System.currentTimeMillis())
-								.setTicker("Application Name")
-								.setSmallIcon(R.drawable.ic_launcher)
+								.setTicker("Stock Master")
+								.setSmallIcon(R.drawable.logo)
 								.setContentTitle("Tip of the Day")
 								.setContentText(cursor.getString(1))
 								.setAutoCancel(true);
@@ -293,13 +293,16 @@ public class priceService extends IntentService {
 						}
 
 					}
+					
+					BuySell.checkLevel();
+					
 					try{
 						MainActivity.updateMarqueeView();
 					}
 					catch (Exception e) {
 						
 					}
-					wait(60000);
+					wait(1000);
 
 				} catch (Exception e) {
 				}
