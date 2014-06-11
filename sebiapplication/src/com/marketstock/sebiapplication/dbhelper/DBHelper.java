@@ -33,6 +33,12 @@ public class DBHelper extends SQLiteOpenHelper {
 	public static final String TB_TIPS = "tips";
 	public static final String TB_DF = "definition";
 
+	public static final int level[][] = { { 1, 14, 28 }, { 0, 15, 16 },
+			{ 21, 25, 8 }, { 9, 17, 18 }, { 3, 4, 5 }, { 6, 7, 10 },
+			{ 11, 12, 13 }, { 19, 20, 22 }, { 23, 24, 26 }, { 27, 29, 2 } };
+
+	private static final float wallet = 200000f;
+
 	public DBHelper(Context context) {
 		super(context, DB_NAME, null, 1);
 		c = context;
@@ -81,6 +87,15 @@ public class DBHelper extends SQLiteOpenHelper {
 				.putLong("Date", Calendar.getInstance().getTime().getTime())
 				.commit();
 
+		SharedPreferences settings = c
+				.getSharedPreferences(
+						"com.marketstock.sebiapplication.setting",
+						Context.MODE_PRIVATE);
+
+		settings.edit().putFloat("wallet", wallet).commit();
+		settings.edit().putFloat("networth", wallet).commit();
+		settings.edit().putInt("level", 1).commit();
+
 		InputStreamReader inputstream;
 		String line, tableName, columns, str1, str2;
 
@@ -91,8 +106,8 @@ public class DBHelper extends SQLiteOpenHelper {
 
 			db.execSQL(CREATE_TB_INFOSYS);
 
-			str1 = "INSERT INTO " + TB_COMPANYDATA + " (company, price, weight,percentChange"
-					+ ") values('";
+			str1 = "INSERT INTO " + TB_COMPANYDATA
+					+ " (company, price, weight,percentChange" + ") values('";
 			str2 = "',0,0,0);";
 
 			db.execSQL(str1 + TB_STOCKS[i] + str2);

@@ -3,16 +3,20 @@ package com.marketstock.sebiapplication;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
 import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.marketstock.adapter.StockPagesAdapter;
 import com.marketstock.helper.Companies;
+import com.marketstock.sebiapplication.dbhelper.DBHelper;
 import com.marketstock.sebiapplication.models.Stock;
 
 public class Stockpage extends SherlockFragmentActivity implements
@@ -46,8 +50,8 @@ public class Stockpage extends SherlockFragmentActivity implements
 				int day = cursor.getInt(cursor.getColumnIndex("day"));
 				com.marketstock.sebiapplication.models.News newsObj = new com.marketstock.sebiapplication.models.News(
 						cursor.getString(cursor.getColumnIndex("title")),
-						cursor.getString(cursor.getColumnIndex("desc")),
-						cursor.getString(cursor.getColumnIndex("learning")),
+						cursor.getString(cursor.getColumnIndex("desc")).replaceAll("//", "'"),
+						cursor.getString(cursor.getColumnIndex("learning")).replaceAll("//", "'"),
 						cursor.getString(cursor.getColumnIndex("effect")),
 						cursor.getString(cursor.getColumnIndex("fluctuation")),
 						day);
@@ -93,6 +97,7 @@ public class Stockpage extends SherlockFragmentActivity implements
 		viewPager = (ViewPager) findViewById(R.id.stockpager);
 		viewPager.setScrollContainer(true);
 		companyName = getIntent().getExtras().getString("Company") + "";
+
 		updateNews(companyName);
 		Companies.updateData(companyName);
 		Companies.updateData52(companyName);

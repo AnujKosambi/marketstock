@@ -42,6 +42,7 @@ public class portFolio extends SherlockActivity {
 		SQLiteDatabase d = MainActivity.db.getReadableDatabase();
 		Cursor c = d.rawQuery("select * from userdata", null);
 		HashMap<String, String> map;
+		double networthChange = 0.0;
 		if (c.moveToFirst())
 			do {
 				map = new HashMap<String, String>();
