@@ -158,6 +158,11 @@ public class BuySell extends Activity {
 
 			@Override
 			public void onClick(View v) {
+				
+				if(!priceService.marketOpen){
+					Toast.makeText(cont, "Sorry Market is Closed", Toast.LENGTH_SHORT).show();
+					return;
+				}
 
 				if (qtn.getText().length() > 0 && qtn.getText().length() <= 4
 						&& Integer.parseInt(qtn.getText().toString()) > 0) {
@@ -228,8 +233,14 @@ public class BuySell extends Activity {
 
 		sell.setOnClickListener(new OnClickListener() {
 
+			
 			@Override
 			public void onClick(View v) {
+				
+				if(!priceService.marketOpen){
+					Toast.makeText(cont, "Sorry Market is Closed", Toast.LENGTH_SHORT).show();
+					return;
+				}
 
 				if (qtn.getText().length() > 0 && qtn.getText().length() <= 4
 						&& Integer.parseInt(qtn.getText().toString()) > 0) {
