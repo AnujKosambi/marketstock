@@ -31,16 +31,6 @@ public class priceService extends IntentService {
 			22.34, 18.79, 3.8, 6.6, 4.06, 9.9, 22.09, 9.14, 4.82, 5.33, 11.17,
 			2.03, 4.57, 12.95, 3.8 };
 
-	private Handler handler;
-	 @Override
-	    public void onCreate() {
-	        // Handler will get associated with the current thread, 
-	        // which is the main thread.
-	        handler = new Handler();
-	        super.onCreate();
-	    }
-
-
 	public priceService() {
 		super("priceService");
 	}
@@ -52,6 +42,14 @@ public class priceService extends IntentService {
 	float cweight = 0.0f;
 	SharedPreferences prefs;
 
+	private Handler handler;
+	@Override
+   public void onCreate() {
+	        // Handler will get associated with the current thread, 
+	        // which is the main thread.
+	        handler = new Handler();
+	        super.onCreate();
+	    }
 	@Override
 	protected void onHandleIntent(Intent intent) {
 
@@ -207,8 +205,8 @@ public class priceService extends IntentService {
 						Builder notif = new NotificationCompat.Builder(this);
 						notif.setContentIntent(resultPendingIntent)
 								.setWhen(System.currentTimeMillis())
-								.setTicker("Stock Master")
-								.setSmallIcon(R.drawable.logo)
+								.setTicker("Application Name")
+								.setSmallIcon(R.drawable.ic_launcher)
 								.setContentTitle("Tip of the Day")
 								.setContentText(cursor.getString(1))
 								.setAutoCancel(true);
@@ -304,9 +302,6 @@ public class priceService extends IntentService {
 						}
 
 					}
-					
-					BuySell.checkLevel();
-				
 					try{
 						handler.post(new Runnable() {
 							
@@ -317,16 +312,17 @@ public class priceService extends IntentService {
 							}
 						});
 							
+				
 
 						
 					}
 					catch (Exception e) {
 					
-						Log.d("Marquee","Error "+e.getMessage());;
 					}
 					wait(1000);
 
 				} catch (Exception e) {
+					Log.d("Marquee","Error "+e.getMessage());
 				}
 			}
 
