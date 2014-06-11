@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.marketstock.adapter.Portfolio_adapter;
+import com.marketstock.helper.Companies;
 
 public class portFolio extends SherlockActivity {
 
@@ -28,6 +29,7 @@ public class portFolio extends SherlockActivity {
 	public static final String KEY_AVG_PRICE = "avg. price";
 	public static final String KEY_AMOUNT = "amount";
 	public static final String KEY_PROFIT = "profit";
+	public static double netProfit = 0;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -42,7 +44,8 @@ public class portFolio extends SherlockActivity {
 		SQLiteDatabase d = MainActivity.db.getReadableDatabase();
 		Cursor c = d.rawQuery("select * from userdata", null);
 		HashMap<String, String> map;
-		double networthChange = 0.0;
+
+		netProfit = 0.0;
 		if (c.moveToFirst())
 			do {
 				map = new HashMap<String, String>();
@@ -50,8 +53,21 @@ public class portFolio extends SherlockActivity {
 				map.put(KEY_HOLDING, c.getString(c.getColumnIndex("holdings")));
 				map.put(KEY_AVG_PRICE,
 						c.getString(c.getColumnIndex("avg_price")));
-				map.put(KEY_AMOUNT, c.getString(c.getColumnIndex("amount")));
-				map.put(KEY_PROFIT, c.getString(c.getColumnIndex("profit")));
+				double amount = Math.round(Double.parseDouble(c.getString(c
+						.getColumnIndex("amount"))) * 100.0) / 100.0;
+				map.put(KEY_AMOUNT, amount + "");
+
+				double aprice = Double.parseDouble(c.getString(c
+						.getColumnIndex("avg_price")));
+				int holding = Integer.parseInt(c.getString(c
+						.getColumnIndex("holdings")));
+				Companies.updateData(c.getString(c.getColumnIndex("company")));
+				double price = Companies.PriceList.get(c.getString(c
+						.getColumnIndex("company")));
+				double profit = (price - aprice) * holding;
+				price = Math.round(price * 100.0) / 100.0;
+				netProfit += profit;
+				map.put(KEY_PROFIT, profit + "");
 				stocklist.add(map);
 			} while (c.moveToNext());
 		else {

@@ -133,6 +133,14 @@ public class BuySell extends Activity {
 			@Override
 			public void onClick(View v) {
 
+				if (!priceService.marketOpen) {
+					Toast.makeText(
+							getApplicationContext(),
+							"Sorry Market is Closed. Market hours 9:30 AM to 3:30 PM",
+							Toast.LENGTH_SHORT).show();
+					return;
+				}
+
 				if (qtn.getText().length() > 0
 						&& Integer.parseInt(qtn.getText().toString()) > 0) {
 					int q = Integer.parseInt(qtn.getText().toString());
@@ -204,6 +212,14 @@ public class BuySell extends Activity {
 
 			@Override
 			public void onClick(View v) {
+
+				if (!priceService.marketOpen) {
+					Toast.makeText(
+							getApplicationContext(),
+							"Sorry Market is Closed. Market hours 9:30 AM to 3:30 PM",
+							Toast.LENGTH_SHORT).show();
+					return;
+				}
 
 				if (qtn.getText().length() > 0
 						&& Integer.parseInt(qtn.getText().toString()) > 0) {

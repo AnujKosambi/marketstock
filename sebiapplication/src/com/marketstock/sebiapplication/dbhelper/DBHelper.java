@@ -86,6 +86,8 @@ public class DBHelper extends SQLiteOpenHelper {
 		prefs.edit()
 				.putLong("Date", Calendar.getInstance().getTime().getTime())
 				.commit();
+		prefs.edit().putFloat("psensex", 15000.0f).commit();
+		prefs.edit().putFloat("sensex", 15000.0f).commit();
 
 		SharedPreferences settings = c
 				.getSharedPreferences(
