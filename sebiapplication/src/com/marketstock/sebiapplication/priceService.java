@@ -43,13 +43,15 @@ public class priceService extends IntentService {
 	SharedPreferences prefs;
 
 	private Handler handler;
+
 	@Override
-   public void onCreate() {
-	        // Handler will get associated with the current thread, 
-	        // which is the main thread.
-	        handler = new Handler();
-	        super.onCreate();
-	    }
+	public void onCreate() {
+		// Handler will get associated with the current thread,
+		// which is the main thread.
+		handler = new Handler();
+		super.onCreate();
+	}
+
 	@Override
 	protected void onHandleIntent(Intent intent) {
 
@@ -236,6 +238,13 @@ public class priceService extends IntentService {
 										Integer.parseInt(buystring[1]),
 										currentValue.get(buystring[0]));
 
+								BuySell.notification(
+										portFolio.class,
+										buystring[0].toUpperCase() + " Stock Buy Successfull",
+										"Stock bought at "
+												+ currentValue
+														.get(buystring[0]));
+
 								String[] buylastString = autoBuypref.getString(
 										"autobuy" + (autobuycount - 1), "")
 										.split("#");
@@ -275,6 +284,13 @@ public class priceService extends IntentService {
 								BuySell.sellStock(sellstring[0],
 										Integer.parseInt(sellstring[1]),
 										currentValue.get(sellstring[0]));
+								
+								BuySell.notification(
+										portFolio.class,
+										sellstring[0].toUpperCase() + " Stock Sold Successfull",
+										"Stock bought at "
+												+ currentValue
+														.get(sellstring[0]));
 
 								String[] selllastString = autoBuypref
 										.getString(
@@ -302,27 +318,23 @@ public class priceService extends IntentService {
 						}
 
 					}
-					try{
+					try {
 						handler.post(new Runnable() {
-							
+
 							@Override
 							public void run() {
 								MainActivity.updateMarqueeView();
-								
+
 							}
 						});
-							
-				
 
-						
-					}
-					catch (Exception e) {
-					
+					} catch (Exception e) {
+
 					}
 					wait(60000);
 
 				} catch (Exception e) {
-					Log.d("Marquee","Error "+e.getMessage());
+					Log.d("Marquee", "Error " + e.getMessage());
 				}
 			}
 

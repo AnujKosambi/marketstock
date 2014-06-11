@@ -172,6 +172,7 @@ public class BuySell extends Activity {
 						double price = Companies.PriceList.get(companyName
 								.toLowerCase());
 						buyStock(companyName, q, price);
+						qtn.setText("");
 					} else {
 
 						// Toast.makeText(BuySell.this,
@@ -184,6 +185,8 @@ public class BuySell extends Activity {
 
 						if (et.getText().length() > 0
 								&& Integer.parseInt(et.getText().toString()) > 0) {
+							
+							Toast.makeText(cont, "Stock will bought automatically and you will be notified", Toast.LENGTH_SHORT).show();
 							pref.edit()
 									.putString(
 											"autobuy" + count,
@@ -192,6 +195,8 @@ public class BuySell extends Activity {
 									.commit();
 							count++;
 							pref.edit().putInt("autobuycount", count).commit();
+							et.setText("");
+							qtn.setText("");
 
 						} else {
 							Toast.makeText(getApplicationContext(),
@@ -233,7 +238,6 @@ public class BuySell extends Activity {
 
 		sell.setOnClickListener(new OnClickListener() {
 
-			
 			@Override
 			public void onClick(View v) {
 				
@@ -250,6 +254,7 @@ public class BuySell extends Activity {
 						double price = Companies.PriceList.get(companyName
 								.toLowerCase());
 						sellStock(companyName, q, price);
+						qtn.setText("");
 					} else {
 
 						// Toast.makeText(BuySell.this,
@@ -261,6 +266,7 @@ public class BuySell extends Activity {
 						int count = pref.getInt("autosellcount", 0);
 						if (et.getText().length() > 0
 								&& Integer.parseInt(et.getText().toString()) > 0) {
+							Toast.makeText(cont, "Stock will sold automatically and you will be notified", Toast.LENGTH_SHORT).show();
 							pref.edit()
 									.putString(
 											"autosell" + count,
@@ -269,6 +275,9 @@ public class BuySell extends Activity {
 									.commit();
 							count++;
 							pref.edit().putInt("autosellcount", count).commit();
+							
+							et.setText("");
+							qtn.setText("");
 						} else {
 							Toast.makeText(getApplicationContext(),
 									"Enter proper amount", Toast.LENGTH_SHORT)
