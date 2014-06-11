@@ -14,6 +14,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
+import android.os.Handler;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.NotificationCompat.Builder;
 import android.support.v4.app.TaskStackBuilder;
@@ -29,6 +30,16 @@ public class priceService extends IntentService {
 			3.04, 3.55, 2.28, 18.03, 17.52, 3.04, 2.53, 5.33, 20.57, 14.22,
 			22.34, 18.79, 3.8, 6.6, 4.06, 9.9, 22.09, 9.14, 4.82, 5.33, 11.17,
 			2.03, 4.57, 12.95, 3.8 };
+
+	private Handler handler;
+	 @Override
+	    public void onCreate() {
+	        // Handler will get associated with the current thread, 
+	        // which is the main thread.
+	        handler = new Handler();
+	        super.onCreate();
+	    }
+
 
 	public priceService() {
 		super("priceService");
@@ -294,12 +305,24 @@ public class priceService extends IntentService {
 
 					}
 					try{
-						MainActivity.updateMarqueeView();
+						handler.post(new Runnable() {
+							
+							@Override
+							public void run() {
+								MainActivity.updateMarqueeView();
+								
+							}
+						});
+						
+				
+
+						
 					}
 					catch (Exception e) {
 						
+						Log.d("Marquee","Error "+e.getMessage());;
 					}
-					wait(6000);
+					wait(60000);
 
 				} catch (Exception e) {
 				}

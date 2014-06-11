@@ -102,7 +102,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 		String[] companies=Companies.getCompanies();
 		for(int i=0;i<companies.length;i++)
 		{
-			Log.d("Marquee", companies[i]);
+		
 			Companies.updateData(companies[i]);
 			
 			double change=Companies.PriceList.get(companies[i])-Companies.prevPriceList.get(companies[i]);
@@ -111,9 +111,27 @@ public class MainActivity extends SherlockFragmentActivity implements
 			" ("+
 			String.format("%.2f",change)
 			+")     ");
+			Log.d("Marquee", companies[i].toUpperCase()+" "+
+					String.format("%.2f",Companies.PriceList.get(companies[i]))+
+					" ("+
+					String.format("%.2f",change)
+					+")     ");
 		}
 	}
 	public static HashMap<String ,TextView> marqueeView=new HashMap<String, TextView>();
+	@Override
+	public void onResume() {
+		
+		super.onResume();
+		updateMarqueeView();
+		
+	}
+	
+	@Override
+	public void onStart() {
+		super.onStart();
+		updateMarqueeView();
+	}
 	private View getMarqueeView()
 	{
 	//	HorizontalScrollView scrollView=new HorizontalScrollView(this);

@@ -16,9 +16,7 @@ public class SplashScreen extends SherlockActivity{
 			public void run() {
 
 				Intent mainIntent = new Intent(SplashScreen.this,MainActivity.class);
-				startActivity(mainIntent);
-				
-				
+				startActivity(mainIntent);				
 
 				finish();
 				overridePendingTransition(R.anim.mainfadein,
