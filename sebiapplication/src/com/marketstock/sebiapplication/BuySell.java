@@ -2,11 +2,18 @@ package com.marketstock.sebiapplication;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.NotificationCompat.Builder;
+import android.support.v4.app.TaskStackBuilder;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -320,6 +327,10 @@ public class BuySell extends Activity {
 			double namount = q * price;
 			namount = Math.round(namount * 100.0) / 100.0;
 
+			if(namount > settings.getFloat("wallet", 0)){
+				return;
+			}
+			
 			double total_amount = amount + namount;
 
 			int nholding = q + holding;
@@ -469,14 +480,15 @@ public class BuySell extends Activity {
 		float w = settings.getFloat("networth", 0);
 		float wa = settings.getFloat("wallet", 0);
 		int l = settings.getInt("level", 0);
-		Log.d("level", l + "");
 		switch (l) {
 		case 1:
-			if (wa < 190050) {
+			if (w < 210000) {
 				Log.d("wa", wa + "");
 				settings.edit().putFloat("networth", w + 5000).commit();
 				settings.edit().putFloat("wallet", wa + 5000).commit();
 				settings.edit().putInt("level", l + 1).commit();
+				notification(mycareer.class,"Your Level Upgraded","Yoo have got 5000 Rs. Bonus");
+				
 			}
 			break;
 
@@ -485,6 +497,7 @@ public class BuySell extends Activity {
 				settings.edit().putFloat("networth", w + 5000).commit();
 				settings.edit().putFloat("wallet", wa + 5000).commit();
 				settings.edit().putInt("level", l + 1).commit();
+				notification(mycareer.class,"Your Level Upgraded","Yoo have got 5000 Rs. Bonus");
 			}
 			break;
 		case 3:
@@ -492,6 +505,7 @@ public class BuySell extends Activity {
 				settings.edit().putFloat("networth", w + 5000).commit();
 				settings.edit().putFloat("wallet", wa + 5000).commit();
 				settings.edit().putInt("level", l + 1).commit();
+				notification(mycareer.class,"Your Level Upgraded","Yoo have got 5000 Rs. Bonus");
 			}
 			break;
 		case 4:
@@ -499,6 +513,7 @@ public class BuySell extends Activity {
 				settings.edit().putFloat("networth", w + 5000).commit();
 				settings.edit().putFloat("wallet", wa + 5000).commit();
 				settings.edit().putInt("level", l + 1).commit();
+				notification(mycareer.class,"Your Level Upgraded","Yoo have got 5000 Rs. Bonus");
 			}
 			break;
 		case 5:
@@ -506,6 +521,7 @@ public class BuySell extends Activity {
 				settings.edit().putFloat("networth", w + 10000).commit();
 				settings.edit().putFloat("wallet", wa + 10000).commit();
 				settings.edit().putInt("level", l + 1).commit();
+				notification(mycareer.class,"Your Level Upgraded","Yoo have got 10000 Rs. Bonus");
 			}
 			break;
 		case 6:
@@ -513,6 +529,7 @@ public class BuySell extends Activity {
 				settings.edit().putFloat("networth", w + 10000).commit();
 				settings.edit().putFloat("wallet", wa + 10000).commit();
 				settings.edit().putInt("level", l + 1).commit();
+				notification(mycareer.class,"Your Level Upgraded","Yoo have got 10000 Rs. Bonus");
 			}
 			break;
 
@@ -521,6 +538,7 @@ public class BuySell extends Activity {
 				settings.edit().putFloat("networth", w + 10000).commit();
 				settings.edit().putFloat("wallet", wa + 10000).commit();
 				settings.edit().putInt("level", l + 1).commit();
+				notification(mycareer.class,"Your Level Upgraded","Yoo have got 10000 Rs. Bonus");
 			}
 			break;
 
@@ -529,6 +547,7 @@ public class BuySell extends Activity {
 				settings.edit().putFloat("networth", w + 10000).commit();
 				settings.edit().putFloat("wallet", wa + 10000).commit();
 				settings.edit().putInt("level", l + 1).commit();
+				notification(mycareer.class,"Your Level Upgraded","Yoo have got 10000 Rs. Bonus");
 			}
 			break;
 
@@ -537,9 +556,39 @@ public class BuySell extends Activity {
 				settings.edit().putFloat("networth", w + 15000).commit();
 				settings.edit().putFloat("wallet", wa + 15000).commit();
 				settings.edit().putInt("level", l + 1).commit();
+				notification(mycareer.class,"Your Level Upgraded","Yoo have got 15000 Rs. Bonus");
 			}
 			break;
 		}
+
+	}
+	
+	public static void notification(Class c,String title,String text){
+		Intent resultIntent = new Intent(cont, c);
+		TaskStackBuilder stackBuilder = TaskStackBuilder
+				.create(cont)
+				.addParentStack(c)
+				.addNextIntent(
+						resultIntent
+								.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+		PendingIntent resultPendingIntent = stackBuilder
+				.getPendingIntent(0,
+						PendingIntent.FLAG_UPDATE_CURRENT);
+		Builder notif = new NotificationCompat.Builder(cont);
+		notif.setContentIntent(resultPendingIntent)
+				.setWhen(System.currentTimeMillis())
+				.setTicker("Stock Master")
+				.setSmallIcon(R.drawable.logo)
+				.setContentTitle(title)
+				.setContentText(text)
+				.setAutoCancel(true);
+		// create notification from builder
+		Notification notification = notif.build();
+		// get instance of NotificationManager
+		NotificationManager notificationmanager = (NotificationManager) cont.getSystemService(NOTIFICATION_SERVICE);
+		// call notify method of NotificationManager to add this
+		// notification to android notification drawer..
+		notificationmanager.notify(0, notification);
 
 	}
 }
