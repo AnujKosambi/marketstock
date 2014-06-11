@@ -96,7 +96,7 @@ public class Stockpage extends SherlockFragmentActivity implements
 		viewPager = (ViewPager) findViewById(R.id.stockpager);
 		viewPager.setScrollContainer(true);
 		companyName = getIntent().getExtras().getString("Company") + "";
-
+		this.setTitle(companyName.toUpperCase());
 		updateNews(companyName);
 		Companies.updateData(companyName);
 		Companies.updateData52(companyName);
