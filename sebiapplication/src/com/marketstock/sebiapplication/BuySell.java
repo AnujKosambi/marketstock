@@ -510,13 +510,13 @@ public class BuySell extends Activity {
 		int l = settings.getInt("level", 0);
 		switch (l) {
 		case 1:
-			if (w < 210000) {
+			if (w > 210000) {
 				Log.d("wa", wa + "");
 				settings.edit().putFloat("networth", w + 5000).commit();
 				settings.edit().putFloat("wallet", wa + 5000).commit();
 				settings.edit().putInt("level", l + 1).commit();
 				notification(mycareer.class, "Your Level Upgraded",
-						"Yoo have got 5000 Rs. Bonus");
+						"You have got 5000 Rs. Bonus");
 
 			}
 			break;
@@ -527,7 +527,7 @@ public class BuySell extends Activity {
 				settings.edit().putFloat("wallet", wa + 5000).commit();
 				settings.edit().putInt("level", l + 1).commit();
 				notification(mycareer.class, "Your Level Upgraded",
-						"Yoo have got 5000 Rs. Bonus");
+						"You have got 5000 Rs. Bonus");
 			}
 			break;
 		case 3:
@@ -536,7 +536,7 @@ public class BuySell extends Activity {
 				settings.edit().putFloat("wallet", wa + 5000).commit();
 				settings.edit().putInt("level", l + 1).commit();
 				notification(mycareer.class, "Your Level Upgraded",
-						"Yoo have got 5000 Rs. Bonus");
+						"You have got 5000 Rs. Bonus");
 			}
 			break;
 		case 4:
@@ -545,7 +545,7 @@ public class BuySell extends Activity {
 				settings.edit().putFloat("wallet", wa + 5000).commit();
 				settings.edit().putInt("level", l + 1).commit();
 				notification(mycareer.class, "Your Level Upgraded",
-						"Yoo have got 5000 Rs. Bonus");
+						"You have got 5000 Rs. Bonus");
 			}
 			break;
 		case 5:
@@ -554,7 +554,7 @@ public class BuySell extends Activity {
 				settings.edit().putFloat("wallet", wa + 10000).commit();
 				settings.edit().putInt("level", l + 1).commit();
 				notification(mycareer.class, "Your Level Upgraded",
-						"Yoo have got 10000 Rs. Bonus");
+						"You have got 10000 Rs. Bonus");
 			}
 			break;
 		case 6:
@@ -563,7 +563,7 @@ public class BuySell extends Activity {
 				settings.edit().putFloat("wallet", wa + 10000).commit();
 				settings.edit().putInt("level", l + 1).commit();
 				notification(mycareer.class, "Your Level Upgraded",
-						"Yoo have got 10000 Rs. Bonus");
+						"You have got 10000 Rs. Bonus");
 			}
 			break;
 
@@ -573,7 +573,7 @@ public class BuySell extends Activity {
 				settings.edit().putFloat("wallet", wa + 10000).commit();
 				settings.edit().putInt("level", l + 1).commit();
 				notification(mycareer.class, "Your Level Upgraded",
-						"Yoo have got 10000 Rs. Bonus");
+						"You have got 10000 Rs. Bonus");
 			}
 			break;
 
@@ -583,7 +583,7 @@ public class BuySell extends Activity {
 				settings.edit().putFloat("wallet", wa + 10000).commit();
 				settings.edit().putInt("level", l + 1).commit();
 				notification(mycareer.class, "Your Level Upgraded",
-						"Yoo have got 10000 Rs. Bonus");
+						"You have got 10000 Rs. Bonus");
 			}
 			break;
 
@@ -593,7 +593,7 @@ public class BuySell extends Activity {
 				settings.edit().putFloat("wallet", wa + 15000).commit();
 				settings.edit().putInt("level", l + 1).commit();
 				notification(mycareer.class, "Your Level Upgraded",
-						"Yoo have got 15000 Rs. Bonus");
+						"You have got 15000 Rs. Bonus");
 			}
 			break;
 		}
