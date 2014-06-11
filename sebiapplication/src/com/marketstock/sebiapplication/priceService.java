@@ -71,6 +71,8 @@ public class priceService extends IntentService {
 						
 					} else {
 							marketOpen = true;
+							cweight = 0;
+							weight = 0;
 						for (int i = 0; i < DBHelper.TB_STOCKS.length; i++) {
 							float hp = 10, lp = 0;
 							Cursor c = MainActivity.db.getReadableDatabase()
@@ -102,6 +104,7 @@ public class priceService extends IntentService {
 							if (currentValue.containsKey(DBHelper.TB_STOCKS[i]))
 								currentValue.remove(DBHelper.TB_STOCKS[i]);
 							currentValue.put(DBHelper.TB_STOCKS[i], price);
+							
 							values.put("weight", cweight);
 							values.put("percentChange", pc);
 
@@ -109,9 +112,11 @@ public class priceService extends IntentService {
 									DBHelper.TB_COMPANYDATA, values,
 									"company = '" + DBHelper.TB_STOCKS[i] + "'",
 									null);
-
+							
 						}
 						
+						
+							
 						Cursor c = MainActivity.db.getReadableDatabase().rawQuery(
 								"select * from userdata", null);
 						double netWorthChange = 0.0;
@@ -138,11 +143,10 @@ public class priceService extends IntentService {
 						
 						float psensex = prefs.getFloat("psensex", 15000.0f);
 						float sensex = prefs.getFloat("sensex", 15000.0f);
-
-						sensex =psensex + weight;
-						sensex = (float) ((Math.round(sensex) * 100.0) / 100.0);
-
 						weight = (float) (Math.round(weight * 100.0) / 100.0);
+						
+						sensex = psensex + weight;
+						sensex = (float) ((Math.round(sensex) * 100.0) / 100.0);
 
 						prefs.edit().putFloat("sensex", sensex).commit();
 						prefs.edit().putFloat("sensexchange", weight).commit();
@@ -290,7 +294,7 @@ public class priceService extends IntentService {
 						}
 
 					}
-					wait(1000);
+					wait(3000);
 
 				} catch (Exception e) {
 				}
