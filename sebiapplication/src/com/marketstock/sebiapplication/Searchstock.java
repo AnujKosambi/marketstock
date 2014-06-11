@@ -13,11 +13,9 @@ import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-<<<<<<< HEAD
 import android.widget.TextView;
 import android.widget.Toast;
-=======
->>>>>>> 174b538cfc0685b68a9bbf58e2fc7c501624fc41
+
 
 import com.marketstock.sebiapplication.dbhelper.DBHelper;
 
@@ -33,9 +31,10 @@ public class Searchstock extends Activity {
 		
 		
 		setContentView(R.layout.activity_searchstock);
-		errorLog.setVisibility(View.GONE);
+
 		searchStockBtn = (Button) findViewById(R.id.searchstockbtn);
 		errorLog=(TextView)findViewById(R.id.errorLog);
+		errorLog.setAlpha(0);
 		stockVal = (AutoCompleteTextView) findViewById(R.id.stockval);
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, DBHelper.TB_STOCKS);
@@ -55,7 +54,7 @@ public class Searchstock extends Activity {
 			
 			@Override
 			public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
-				errorLog.setVisibility(View.GONE);
+				errorLog.setAlpha(0);
 				
 			}
 			
@@ -72,7 +71,7 @@ public class Searchstock extends Activity {
 				
 			if(list.contains(arg0.toString()))
 			{
-				errorLog.setVisibility(View.GONE);
+				errorLog.setAlpha(0);
 				stockVal.dismissDropDown();
 				
 			
@@ -91,7 +90,7 @@ public class Searchstock extends Activity {
 					startActivity(intent);					
 				}
 				else{
-					errorLog.setVisibility(View.VISIBLE);
+					errorLog.setAlpha(1);
 				}
 			}
 		});

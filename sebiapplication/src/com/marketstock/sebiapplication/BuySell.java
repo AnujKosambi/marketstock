@@ -43,7 +43,7 @@ public class BuySell extends Activity {
 		final Button buy = (Button) findViewById(R.id.bsbuy);
 		final Button sell = (Button) findViewById(R.id.bssell);
 		final EditText qtn = (EditText) findViewById(R.id.qtn);
-
+		final TextView companyView=(TextView)findViewById(R.id.companyname);
 		final String companyName = getIntent().getExtras().getString("Company")
 				+ "";
 		int i;
@@ -54,6 +54,7 @@ public class BuySell extends Activity {
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		Spinner sp = (Spinner) findViewById(R.id.companies);
 		sp.setAdapter(adapter);
+		
 
 		settings = getApplicationContext()
 				.getSharedPreferences(
@@ -68,7 +69,7 @@ public class BuySell extends Activity {
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
 					int arg2, long arg3) {
-
+				
 				lock = true;
 				for (int i = 0; i < level; i++) {
 					for (int j = 0; j < 3; j++) {
@@ -79,6 +80,7 @@ public class BuySell extends Activity {
 					}
 
 				}
+				
 
 				if (lock) {
 					Toast.makeText(getApplicationContext(),
@@ -86,7 +88,9 @@ public class BuySell extends Activity {
 							Toast.LENGTH_SHORT).show();
 					buy.setEnabled(false);
 					sell.setEnabled(false);
+					companyView.setText("Select Company");
 				} else {
+					companyView.setText(""+DBHelper.TB_STOCKS[arg2].toUpperCase());
 					buy.setEnabled(true);
 					sell.setEnabled(true);
 				}
@@ -95,7 +99,7 @@ public class BuySell extends Activity {
 
 			@Override
 			public void onNothingSelected(AdapterView<?> arg0) {
-
+				companyView.setText("Select Company");
 			}
 		});
 
