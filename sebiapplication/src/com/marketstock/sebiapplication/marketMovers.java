@@ -62,13 +62,13 @@ public class marketMovers extends SherlockActivity{
 		if(cursor.getDouble(3)>0)
 		{
 			gainer_company1_name.setText(cursor.getString(0).toUpperCase());
-			gainer_company1_value.setText(cursor.getDouble(1)+"");
+			gainer_company1_value.setText((Math.round((cursor.getDouble(1))*100))/100+"");
 			gainer_company1_percent.setText((Math.round((cursor.getDouble(3))*100))/100+"%");
 			
 			cursor.moveToNext();
 			
 			gainer_company2_name.setText(cursor.getString(0).toUpperCase());
-			gainer_company2_value.setText(cursor.getDouble(1)+"");
+			gainer_company2_value.setText((Math.round((cursor.getDouble(1))*100))/100+"");
 			gainer_company2_percent.setText((Math.round((cursor.getDouble(3))*100))/100+"%");
 		}
 		else
@@ -82,14 +82,14 @@ public class marketMovers extends SherlockActivity{
 		if(cursor.getDouble(3)<=0)
 		{
 			loser_company1_name.setText(cursor.getString(0).toUpperCase());
-			loser_company1_value.setText(cursor.getDouble(1)+"");
+			loser_company1_value.setText((Math.round((cursor.getDouble(1))*100))/100+"");
 			loser_company1_percent.setText((Math.round((cursor.getDouble(3))*100))/100+"%");
 			
 			cursor.moveToPrevious();
 			if(cursor.getDouble(3)<=0)
 			{
 				loser_company2_name.setText(cursor.getString(0).toUpperCase());
-				loser_company2_value.setText(cursor.getDouble(1)+"");
+				loser_company2_value.setText((Math.round((cursor.getDouble(1))*100))/100+"");
 				loser_company2_percent.setText((Math.round((cursor.getDouble(3))*100))/100+"%");
 			}
 		}
