@@ -41,6 +41,7 @@ public class News extends SherlockActivity{
 			while(cursor.isAfterLast()==false)
 			{
 			CardItemTitleNData data = new CardItemTitleNData(
+					cursor.getInt(cursor.getColumnIndex("day")),
 					cursor.getString(cursor.getColumnIndex("title")),
 					cursor.getString(cursor.getColumnIndex("desc")).replaceAll("//", "'"),
 					cursor.getString(cursor.getColumnIndex("learning")).replaceAll("//", "'"));
@@ -54,7 +55,9 @@ public class News extends SherlockActivity{
 		cursor.moveToFirst();
 		while(cursor.isAfterLast()==false)
 		{
-		CardItemTitleNData data = new CardItemTitleNData(
+		CardItemTitleNData data = new CardItemTitleNData(	
+				cursor.getInt(cursor.getColumnIndex("day")),
+				
 				cursor.getString(cursor.getColumnIndex("title")),
 				cursor.getString(cursor.getColumnIndex("desc")).replaceAll("//", "'"),
 				cursor.getString(cursor.getColumnIndex("learning")).replaceAll("//", "'"));

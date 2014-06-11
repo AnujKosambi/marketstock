@@ -168,23 +168,76 @@
                 android:paddingTop="10dp" >
 
                 <LinearLayout
-                    android:id="@+id/newsCard"
+                    android:id="@+id/careerCard"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/selector_card_background"
                     android:clickable="true"
                     android:descendantFocusability="afterDescendants"
+                    android:orientation="vertical"
                     android:paddingBottom="10dp"
                     android:paddingLeft="10dp"
                     android:paddingTop="10dp" >
 
                     <TextView
-                        android:id="@+id/textNews"
+                        android:id="@+id/textCareer"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="News"
+                        android:text="My Career"
                         android:textAppearance="?android:attr/textAppearanceMedium"
                         android:textStyle="bold" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:paddingLeft="20dp" >
+
+                        <TextView
+                            android:id="@+id/careerLevel"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Level"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/careerLevelInt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1"
+                            android:textAppearance="?android:attr/textAppearanceSmall" />
+
+                        <TextView
+                            android:id="@+id/careerWorth"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Cash in Hand"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/careerWorthInt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textAppearance="?android:attr/textAppearanceSmall" />
+                        
+                        <TextView
+                            android:id="@+id/careerWorth"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="NetWorth"
+                            android:textAppearance="?android:attr/textAppearanceSmall"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/careerNetWorthInt"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0"
+                            android:textAppearance="?android:attr/textAppearanceSmall" />
+                    </LinearLayout>
                 </LinearLayout>
             </FrameLayout>
 

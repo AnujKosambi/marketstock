@@ -1,6 +1,5 @@
 package com.marketstock.sebiapplication;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -11,25 +10,32 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+<<<<<<< HEAD
+import android.widget.TextView;
 import android.widget.Toast;
+=======
+>>>>>>> 174b538cfc0685b68a9bbf58e2fc7c501624fc41
 
 import com.marketstock.sebiapplication.dbhelper.DBHelper;
 
 public class Searchstock extends Activity {
 
+	private TextView errorLog;
 	private Button searchStockBtn;
 	private AutoCompleteTextView stockVal;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_searchstock);
-		searchStockBtn = (Button) findViewById(R.id.searchstockbtn);
 		
+		
+		setContentView(R.layout.activity_searchstock);
+		errorLog.setVisibility(View.GONE);
+		searchStockBtn = (Button) findViewById(R.id.searchstockbtn);
+		errorLog=(TextView)findViewById(R.id.errorLog);
 		stockVal = (AutoCompleteTextView) findViewById(R.id.stockval);
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, DBHelper.TB_STOCKS);
@@ -49,7 +55,7 @@ public class Searchstock extends Activity {
 			
 			@Override
 			public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
-				// TODO Auto-generated method stub
+				errorLog.setVisibility(View.GONE);
 				
 			}
 			
@@ -66,6 +72,7 @@ public class Searchstock extends Activity {
 				
 			if(list.contains(arg0.toString()))
 			{
+				errorLog.setVisibility(View.GONE);
 				stockVal.dismissDropDown();
 				
 			
@@ -76,11 +83,16 @@ public class Searchstock extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				Intent intent = new Intent(getApplicationContext(),
-						Stockpage.class);
-				intent.putExtra("Company", stockVal.getText().toString());
-				startActivity(intent);
-				
+				if(list.contains(stockVal.getText().toString()))
+				{
+					Intent intent = new Intent(getApplicationContext(),
+							Stockpage.class);
+					intent.putExtra("Company", stockVal.getText().toString());
+					startActivity(intent);					
+				}
+				else{
+					errorLog.setVisibility(View.VISIBLE);
+				}
 			}
 		});
 

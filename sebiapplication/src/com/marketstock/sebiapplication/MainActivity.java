@@ -1,7 +1,6 @@
 package com.marketstock.sebiapplication;
 
 import java.sql.Date;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -27,7 +26,6 @@ import com.actionbarsherlock.app.SherlockFragmentActivity;
 import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.actionbarsherlock.view.MenuItem;
-import com.marketstock.adapter.CardItemTitleNData;
 import com.marketstock.adapter.TabsPagerAdapter;
 import com.marketstock.helper.Companies;
 import com.marketstock.helper.MarqueeLayout;
@@ -244,7 +242,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 					Searchstock.class));
 		 		
 		 	}
-			return super.onOptionsItemSelected(item);
-	    
-	    }
+		return super.onOptionsItemSelected(item);
+
+	}
 }

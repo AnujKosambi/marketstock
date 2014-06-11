@@ -5,13 +5,24 @@
     android:orientation="vertical"
     tools:context="${packageName}.${activityClass}" >
 
+    <TextView
+        android:id="@+id/errorLog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Error log"
+            android:layout_marginTop="75dp"
+            android:layout_marginLeft="20dp"
+            android:textColor="#FF0000"
+            android:textStyle="bold"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
     <AutoCompleteTextView
         android:id="@+id/stockval"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:ems="10"
-        android:layout_marginTop="75dp"
+    
         android:textStyle="bold"
         android:hint="Enter a stock">
 
