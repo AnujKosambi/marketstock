@@ -33,6 +33,7 @@ public class stockNews extends SherlockFragment{
 		
 		for (com.marketstock.sebiapplication.models.News news : Stockpage.news) {
 			CardItemTitleNData data = new CardItemTitleNData(
+					news.getDay(),
 					news.getTitle(),
 					news.getDesc(),
 					news.getLearning());

@@ -1,8 +1,12 @@
 package com.marketstock.adapter.inflaters;
 
+import java.sql.Date;
+import java.util.Calendar;
+
 import com.marketstock.adapter.CardItemData;
 import com.marketstock.adapter.CardItemTitleNData;
 import com.marketstock.adapter.IAdapterViewInflater;
+import com.marketstock.sebiapplication.MainActivity;
 import com.marketstock.sebiapplication.R;
 import com.marketstock.adapter.BaseInflaterAdapter;
 
@@ -48,11 +52,13 @@ public class CardInflaterQuote implements IAdapterViewInflater<CardItemTitleNDat
 		private ToggleButton stock_news_title ;
 		private Button explainButton;
 		private TextView stock_news_data ;
+		private TextView dateView;
 		
 
 		public ViewHolder(final View rootView,final CardItemTitleNData data)
 		{
 			m_rootView = rootView;
+			dateView=(TextView)m_rootView.findViewById(R.id.dateView);
 			stock_news_title = (ToggleButton) m_rootView.findViewById(R.id.NewsTitle);
 			explainButton=(Button) m_rootView.findViewById(R.id.explainButton);
 			stock_news_title.setOnClickListener(new View.OnClickListener() {
@@ -115,7 +121,8 @@ public class CardInflaterQuote implements IAdapterViewInflater<CardItemTitleNDat
 			stock_news_data.setText(item.getData());
 			stock_news_data.setMaxLines(1);
 			stock_news_title.setChecked(true);
-			
+			Date date=new Date(MainActivity.installed);
+			dateView.setText(new Date(date.getTime()+(item.getDay()-1)*24*60*60*1000).toString());
 			
 		}
 	}

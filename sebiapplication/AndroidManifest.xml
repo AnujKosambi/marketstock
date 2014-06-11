@@ -14,10 +14,10 @@
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:screenOrientation="portrait"
-        android:theme="@style/Theme.Sherlock.Light.DarkActionBar" >
+        android:theme="@style/Theme.Sherlock.Light" android:logo="@drawable/logo">
         <service android:name="com.marketstock.sebiapplication.priceService" />
         <activity
-            android:name="com.marketstock.sebiapplication.MainActivity"
+            android:name="com.marketstock.sebiapplication.SplashScreen"
             android:screenOrientation="portrait"
             android:label="@string/app_name" >
             <intent-filter>
@@ -26,6 +26,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+         <activity
+            android:name="com.marketstock.sebiapplication.MainActivity"
+             android:label="@string/app_name"
+             android:screenOrientation="portrait"
+            
+            />
          <activity
             android:name="com.marketstock.sebiapplication.Searchstock"
              android:label="GetQuote"
