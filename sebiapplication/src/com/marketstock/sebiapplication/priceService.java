@@ -319,7 +319,7 @@ public class priceService extends IntentService {
 					catch (Exception e) {
 					
 					}
-					wait(1000);
+					wait(60000);
 
 				} catch (Exception e) {
 					Log.d("Marquee","Error "+e.getMessage());
