@@ -306,7 +306,7 @@ public class priceService extends IntentService {
 					}
 					
 					BuySell.checkLevel();
-					
+				
 					try{
 						handler.post(new Runnable() {
 							
@@ -316,16 +316,15 @@ public class priceService extends IntentService {
 								
 							}
 						});
-						
-				
+							
 
 						
 					}
 					catch (Exception e) {
-						
+					
 						Log.d("Marquee","Error "+e.getMessage());;
 					}
-					wait(60000);
+					wait(1000);
 
 				} catch (Exception e) {
 				}
