@@ -103,7 +103,7 @@ public class BuySell extends Activity {
 
 				if (lock) {
 					Toast.makeText(getApplicationContext(),
-							"You cannot buy this stock your level is low",
+							"You cannot buy this stock in the current level. Unlock more levels.",
 							Toast.LENGTH_SHORT).show();
 					buy.setEnabled(false);
 					sell.setEnabled(false);
@@ -162,8 +162,7 @@ public class BuySell extends Activity {
 						buyStock(companyName, q, price);
 					} else {
 
-						Toast.makeText(BuySell.this, "AUTOBUY",
-								Toast.LENGTH_LONG).show();
+					//	Toast.makeText(BuySell.this, "AUTOBUY",Toast.LENGTH_LONG).show();
 
 						SharedPreferences pref = BuySell.this
 								.getSharedPreferences("Autobuy",
@@ -234,8 +233,7 @@ public class BuySell extends Activity {
 						sellStock(companyName, q, price);
 					} else {
 
-						Toast.makeText(BuySell.this, "AUTOBUY",
-								Toast.LENGTH_LONG).show();
+				//		Toast.makeText(BuySell.this, "AUTOBUY",Toast.LENGTH_LONG).show();
 
 						SharedPreferences pref = BuySell.this
 								.getSharedPreferences("Autobuy",
@@ -361,7 +359,7 @@ public class BuySell extends Activity {
 
 		}
 
-		Toast.makeText(cont, "Stock Buyed Successfully", Toast.LENGTH_SHORT)
+		Toast.makeText(cont, "Stock Bought Successfully", Toast.LENGTH_SHORT)
 				.show();
 
 		c.close();
@@ -443,18 +441,18 @@ public class BuySell extends Activity {
 				settings.edit().putFloat("wallet", (float) (w + amount))
 						.commit();
 
-				Toast.makeText(cont, "All of these stock sold",
+				Toast.makeText(cont, "All stocks sold.",
 						Toast.LENGTH_SHORT).show();
 
 				checkLevel();
 
 			} else {
-				Toast.makeText(cont, "You Don't have any of these stock",
+				Toast.makeText(cont, "You don't have stocks of this company.",
 						Toast.LENGTH_SHORT).show();
 			}
 
 		} else {
-			Toast.makeText(cont, "You Don't have any of these stock",
+			Toast.makeText(cont, "You don't have stocks of this company.",
 					Toast.LENGTH_SHORT).show();
 
 		}
