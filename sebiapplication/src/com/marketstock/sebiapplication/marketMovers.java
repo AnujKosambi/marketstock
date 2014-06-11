@@ -93,10 +93,10 @@ public class marketMovers extends SherlockActivity{
 				loser_company2_percent.setText((Math.round((cursor.getDouble(3))*100))/100+"%");
 			}
 		}
+		else
 		{
 			top_losers.setText("No Losers");
 			losers.setVisibility(View.GONE);
-			
 		}
 		cursor.close();
 	}
