@@ -293,7 +293,7 @@ public class priceService extends IntentService {
 						}
 
 					}
-					wait(3000);
+					wait(60000);
 
 				} catch (Exception e) {
 				}

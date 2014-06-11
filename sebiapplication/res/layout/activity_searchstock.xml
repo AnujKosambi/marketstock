@@ -23,7 +23,6 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:ems="10"
-    
         android:textStyle="bold"
         android:hint="Enter a stock">
 

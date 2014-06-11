@@ -54,7 +54,7 @@ public class BuySell extends Activity {
 						"com.marketstock.sebiapplication.setting",
 						Context.MODE_PRIVATE);
 		final int level = settings.getInt("level", 1);
-		String[] companies=DBHelper.TB_STOCKS;
+		String[] companies=DBHelper.TB_STOCKS.clone();
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, companies);
 	

@@ -3,7 +3,7 @@
     package="com.marketstock.sebiapplication"
     android:versionCode="1"
     android:versionName="1.0" 
-    >
+    android:installLocation="preferExternal">
 
     <uses-sdk
         android:minSdkVersion="8"
@@ -140,9 +140,9 @@
         </activity>
         
         
+        
     </application>
     
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     
 </manifest>
