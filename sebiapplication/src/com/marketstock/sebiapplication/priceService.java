@@ -22,8 +22,8 @@ import android.util.Log;
 import com.marketstock.sebiapplication.dbhelper.DBHelper;
 
 public class priceService extends IntentService {
-
-	public static float sensex = 15000.00f;
+	
+	public static boolean marketOpen = false;
 
 	public static double sensexUpdateArray[] = { 7.36, 3.55, 5.84, 2.53, 2.53,
 			3.04, 3.55, 2.28, 18.03, 17.52, 3.04, 2.53, 5.33, 20.57, 14.22,
@@ -36,6 +36,12 @@ public class priceService extends IntentService {
 
 	HashMap<String, Double> currentValue = new HashMap<String, Double>();
 
+	float weight = 0.0f;
+	float last = 0.0f;
+	float cweight = 0.0f;
+	SharedPreferences prefs;
+
+
 	@Override
 	protected void onHandleIntent(Intent intent) {
 
@@ -43,87 +49,107 @@ public class priceService extends IntentService {
 
 			synchronized (this) {
 				try {
-					float weight = 0.0f;
-					float last = 0.0f;
-					float cweight = 0.0f;
-
-					for (int i = 0; i < DBHelper.TB_STOCKS.length; i++) {
-
-						float hp = 10, lp = 0;
-						Cursor c = MainActivity.db.getReadableDatabase()
-								.rawQuery(
-										"SELECT highPrice,lowPrice,closePrice from '"
-												+ DBHelper.TB_STOCKS[i]
-												+ "' order by date ", null);
-						c.moveToPosition(MainActivity.moveToDays);
-						hp = c.getFloat(0);
-						lp = c.getFloat(1);
-
-						if (c.moveToPrevious())
-							last = c.getFloat(2);
-
-						ContentValues values = new ContentValues();
-						double price = Math.round((lp + Math.random()
-								* (hp - lp)) * 100.0) / 100.0;
-
-						float pc = (float) ((price - last) / (last * 0.01));
-
-						cweight = (float) (pc * sensexUpdateArray[i]);
-
-						cweight = (float) (Math.round(cweight * 100.0) / 100.0);
-						pc = (float) (Math.round(pc * 100.0) / 100.0);
-
-						weight += cweight;
-
-						values.put("price", price);
-						if (currentValue.containsKey(DBHelper.TB_STOCKS[i]))
-							currentValue.remove(DBHelper.TB_STOCKS[i]);
-						currentValue.put(DBHelper.TB_STOCKS[i], price);
-						values.put("weight", cweight);
-						values.put("percentChange", pc);
-
-						MainActivity.db.getWritableDatabase().update(
-								DBHelper.TB_COMPANYDATA, values,
-								"company = '" + DBHelper.TB_STOCKS[i] + "'",
-								null);
-
-					}
-
-					Cursor c = MainActivity.db.getReadableDatabase().rawQuery(
-							"select * from userdata", null);
-					double netWorthChange = 0.0;
-					if (c.moveToFirst())
-						do {
-							netWorthChange += (Integer.parseInt(c.getString(c
-									.getColumnIndex("holdings"))) * currentValue
-									.get(c.getString(c
-											.getColumnIndex("company"))));
-						} while (c.moveToNext());
-
-					SharedPreferences settings = getApplicationContext()
-							.getSharedPreferences(
-									"com.marketstock.sebiapplication.setting",
-									Context.MODE_PRIVATE);
-
-					double w = settings.getFloat("wallet", 0);
-					settings.edit()
-							.putFloat("networth", (float) (w + netWorthChange))
-							.commit();
-
-					sensex += weight;
-					sensex = (float) ((Math.round(sensex) * 100.0) / 100.0);
-
-					weight = (float) (Math.round(weight * 100.0) / 100.0);
-
-					SharedPreferences prefs = getApplicationContext()
+					prefs = getApplicationContext()
 							.getSharedPreferences(
 									"com.marketstock.sebiapplication",
 									Context.MODE_PRIVATE);
+					
+					Calendar cal = Calendar.getInstance();
+					long nowMillies = (cal.get(Calendar.HOUR_OF_DAY) * 60 * 60 * 1000);
+					nowMillies += cal.get(Calendar.MINUTE) * 60 * 1000;
+					long millies330 = (long) (15.5 * 60 * 60 * 1000);
+					long millies930 = (long) (9.5 * 60 * 60 * 1000);
+					long durationMillies = millies330 - millies930;
+					int vol = 0;
+					if (nowMillies < millies930) {
+							marketOpen = false;
+					} 
+					else if (nowMillies > millies330) {
+							marketOpen = false;
+						float sensex = prefs.getFloat("sensex", 15000.0f);
+						prefs.edit().putFloat("psensex", sensex).commit();						
+						
+					} else {
+							marketOpen = true;
+						for (int i = 0; i < DBHelper.TB_STOCKS.length; i++) {
+							float hp = 10, lp = 0;
+							Cursor c = MainActivity.db.getReadableDatabase()
+									.rawQuery(
+											"SELECT highPrice,lowPrice,closePrice from '"
+													+ DBHelper.TB_STOCKS[i]
+													+ "' order by date ", null);
+							c.moveToPosition(MainActivity.moveToDays);
+							hp = c.getFloat(0);
+							lp = c.getFloat(1);
+
+							if (c.moveToPrevious())
+								last = c.getFloat(2);
+
+							ContentValues values = new ContentValues();
+							double price = Math.round((lp + Math.random()
+									* (hp - lp)) * 100.0) / 100.0;
+
+							float pc = (float) ((price - last) / (last * 0.01));
+
+							cweight = (float) (pc * sensexUpdateArray[i]);
+
+							cweight = (float) (Math.round(cweight * 100.0) / 100.0);
+							pc = (float) (Math.round(pc * 100.0) / 100.0);
+
+							weight += cweight;
+
+							values.put("price", price);
+							if (currentValue.containsKey(DBHelper.TB_STOCKS[i]))
+								currentValue.remove(DBHelper.TB_STOCKS[i]);
+							currentValue.put(DBHelper.TB_STOCKS[i], price);
+							values.put("weight", cweight);
+							values.put("percentChange", pc);
+
+							MainActivity.db.getWritableDatabase().update(
+									DBHelper.TB_COMPANYDATA, values,
+									"company = '" + DBHelper.TB_STOCKS[i] + "'",
+									null);
+
+						}
+						
+						Cursor c = MainActivity.db.getReadableDatabase().rawQuery(
+								"select * from userdata", null);
+						double netWorthChange = 0.0;
+						if (c.moveToFirst())
+							do {
+								String comp = c.getString(c
+										.getColumnIndex("company"));
+								int holding = Integer.parseInt(c.getString(c
+										.getColumnIndex("holdings")));
+
+								netWorthChange += (holding * currentValue.get(comp));
+							} while (c.moveToNext());
+
+						SharedPreferences settings = getApplicationContext()
+								.getSharedPreferences(
+										"com.marketstock.sebiapplication.setting",
+										Context.MODE_PRIVATE);
+
+						double w = settings.getFloat("wallet", 0);
+						settings.edit()
+								.putFloat("networth", (float) (w + netWorthChange))
+								.commit();
+
+						
+						float psensex = prefs.getFloat("psensex", 15000.0f);
+						float sensex = prefs.getFloat("sensex", 15000.0f);
+
+						sensex =psensex + weight;
+						sensex = (float) ((Math.round(sensex) * 100.0) / 100.0);
+
+						weight = (float) (Math.round(weight * 100.0) / 100.0);
+
+						prefs.edit().putFloat("sensex", sensex).commit();
+						prefs.edit().putFloat("sensexchange", weight).commit();
+
+					}
 
 					long installed = prefs.getLong("Date", 0);
-					prefs.edit().putFloat("sensex", sensex).commit();
-					prefs.edit().putFloat("sensexchange", weight).commit();
-
 					SimpleDateFormat formatter = new SimpleDateFormat("dd");
 
 					Calendar calendar = Calendar.getInstance();

@@ -125,8 +125,12 @@ public class trading extends SherlockFragment {
 				if (c.moveToFirst() && c.getColumnIndex("totalamount") >= 0) {
 					netvalue.setText(c.getString(c
 							.getColumnIndex("totalamount")));
-					netprofit.setText(c.getString(c
-							.getColumnIndex("totalprofit")));
+
+					if (portFolio.netProfit == 0)
+						netprofit.setText(c.getString(c
+								.getColumnIndex("totalprofit")));
+					else
+						netprofit.setText(portFolio.netProfit + "");
 				}
 
 				Intent intent = new Intent(context, portFolio.class);

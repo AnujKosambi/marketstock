@@ -9,7 +9,7 @@
         android:id="@+id/errorLog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Error log"
+        android:text="This company is not available !! "
             android:layout_marginTop="75dp"
             android:layout_marginLeft="20dp"
             android:textColor="#FF0000"

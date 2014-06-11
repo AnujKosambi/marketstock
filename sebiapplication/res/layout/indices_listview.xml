@@ -8,47 +8,57 @@
     android:layout_width="fill_parent"
     android:layout_height="0dp"
     android:orientation="horizontal"
-    android:layout_weight="0.05">
+    android:layout_weight="0.05"
+    android:background="#D3D3D3" >
 
 
     <TextView
         android:id="@+id/tv2"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Company"
         android:textStyle="bold"
-        android:layout_weight="0.3"
+        android:layout_weight="0.25"
+        android:gravity="center"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
         android:id="@+id/tv3"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="Value"
-        android:layout_weight="0.3"
+        android:layout_weight="0.25"
         android:textStyle="bold"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <TextView
         android:id="@+id/tv4"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="Change(%)"
-        android:layout_weight="0.2"
+        android:layout_weight="0.25"
+        android:gravity="center"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/tv1"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_weight="0.25"
         android:text="Weight"
-        android:layout_weight="0.2"
+        android:gravity="center"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textStyle="bold" />
     
     </LinearLayout>
-    
+      <View
+         android:layout_width="fill_parent"
+         android:layout_height="3dp"
+         android:background="@android:color/darker_gray"
+        />
      <ListView
         android:id="@+id/list_indices"
         android:layout_width="fill_parent"
@@ -62,12 +72,17 @@
         android:layout_weight="0.8"
         >
     </ListView>	
-    
+    <View
+         android:layout_width="fill_parent"
+         android:layout_height="3dp"
+         android:background="@android:color/darker_gray"
+        />
      <LinearLayout 
          android:orientation="horizontal"
          android:layout_width="fill_parent"
          android:layout_height="0dp"
-         android:layout_weight="0.05">
+         android:layout_weight="0.05"
+         android:background="#D3D3D3">
      <TextView 
          
         android:text = "Sensex Change"
