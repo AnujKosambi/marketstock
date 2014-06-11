@@ -30,13 +30,23 @@ public class stockNews extends SherlockFragment{
 		list.addFooterView(new View(context));
 		
 		BaseInflaterAdapter<CardItemTitleNData> adapter = new BaseInflaterAdapter<CardItemTitleNData>(new CardInflaterQuote());
-		
+		if(Stockpage.news.size()!=0){
 		for (com.marketstock.sebiapplication.models.News news : Stockpage.news) {
 			CardItemTitleNData data = new CardItemTitleNData(
 					news.getDay(),
 					news.getTitle(),
 					news.getDesc(),
 					news.getLearning());
+			adapter.addItem(data, false);
+		}
+		}
+		else
+		{
+			CardItemTitleNData data = new CardItemTitleNData(
+					0,
+					"No news till now..!",
+					"",
+					"");
 			adapter.addItem(data, false);
 		}
 		list.setAdapter(adapter);

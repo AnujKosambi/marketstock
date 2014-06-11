@@ -3,8 +3,10 @@ package com.marketstock.sebiapplication;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -71,7 +73,7 @@ public class portFolio extends SherlockActivity {
 				stocklist.add(map);
 			} while (c.moveToNext());
 		else {
-			final Dialog dialog = new Dialog(portFolio.this);
+			/*final Dialog dialog = new Dialog(portFolio.this);
 			dialog.setTitle("Error");
 			LinearLayout linearLayout = new LinearLayout(portFolio.this);
 			linearLayout.setPadding(25, 25, 25, 25);
@@ -90,7 +92,22 @@ public class portFolio extends SherlockActivity {
 					LinearLayout.LayoutParams.WRAP_CONTENT);
 			linearLayout.addView(ok);
 			dialog.setContentView(linearLayout);
-			dialog.show();
+			dialog.show();*/
+			AlertDialog.Builder alertBuilder=new AlertDialog.Builder(this);
+			alertBuilder.setTitle("No trading yet");
+			alertBuilder.setMessage("Buy stock to get started.!");
+			alertBuilder.setIcon(android.R.drawable.stat_sys_warning);
+			alertBuilder.setCancelable(true);
+			alertBuilder.setNeutralButton("OK",new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					// TODO Auto-generated method stub
+					
+				}
+			});
+			alertBuilder.create();
+			alertBuilder.show();
 		}
 
 		portfolio_adaptor = new Portfolio_adapter(context, stocklist);

@@ -116,7 +116,8 @@ public class CardInflaterQuote implements IAdapterViewInflater<CardItemTitleNDat
 		{
 			stock_news_title.setTextOn(item.getTitle());
 			stock_news_title.setTextOff(item.getTitle());
-			
+			if(item.getLearning().equals(""))
+				explainButton.setVisibility(View.GONE);
 			stock_news_title.setText(item.getTitle());
 			stock_news_data.setText(item.getData());
 			stock_news_data.setMaxLines(1);
