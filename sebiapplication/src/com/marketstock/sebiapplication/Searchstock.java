@@ -13,11 +13,8 @@ import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-<<<<<<< HEAD
 import android.widget.TextView;
 import android.widget.Toast;
-=======
->>>>>>> 174b538cfc0685b68a9bbf58e2fc7c501624fc41
 
 import com.marketstock.sebiapplication.dbhelper.DBHelper;
 
