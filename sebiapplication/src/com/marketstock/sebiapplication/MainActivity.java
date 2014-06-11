@@ -19,7 +19,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
@@ -76,7 +75,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 					ucursor.moveToPosition(news.getDay()+54);
 					id=ucursor.getInt(ucursor.getColumnIndex("id"));
 				
-					Toast.makeText(this,id+" "+DBHelper.TB_NEWS[i], Toast.LENGTH_SHORT).show();
+				//	Toast.makeText(this,id+" "+DBHelper.TB_NEWS[i], Toast.LENGTH_SHORT).show();
 					ContentValues cv = new ContentValues();
 					ucursor.moveToPrevious();
 					Double preValue=ucursor.getDouble(ucursor.getColumnIndex("closePrice"));
@@ -84,11 +83,11 @@ public class MainActivity extends SherlockFragmentActivity implements
 					if(news.getEffect().equals("Up"))
 					{cv.put("closePrice",preValue+change); 
 					
-					Toast.makeText(this,id+" "+(preValue+change), Toast.LENGTH_LONG).show();
+				//	Toast.makeText(this,id+" "+(preValue+change), Toast.LENGTH_LONG).show();
 					}
 					else
 					{	cv.put("closePrice",preValue-change); 
-					Toast.makeText(this,id+" "+(preValue-change), Toast.LENGTH_SHORT).show();
+				//	Toast.makeText(this,id+" "+(preValue-change), Toast.LENGTH_SHORT).show();
 					}
 					ucursor.close();
 					db.getWritableDatabase().update(cname, cv, "id="+id, null);

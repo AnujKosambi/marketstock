@@ -9,465 +9,549 @@
     android:paddingTop="5dp"
     android:paddingBottom="5dp"
     >
-	    
-    	<LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_weight="1" >
-  
-    
-		    <TextView
-		        android:id="@+id/level"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:layout_weight="0.1"
-		        android:text="Level"
-		        android:textStyle="bold" />
-		
-		    <TextView
-		        android:id="@+id/threshold"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:layout_weight="0.3"
-		        android:text="Threshold" />
-		
-		    <TextView
-		        android:id="@+id/unlocks"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:layout_weight="0.4"
-		        android:text="New Unlocks" />
-		
-		    <TextView
-		        android:id="@+id/bonus"
-		        android:layout_width="wrap_content"
-		        android:layout_height="wrap_content"
-		        android:layout_weight="0.2"
-		        android:text="Bonus" />
-	 </LinearLayout>
+    <TableLayout   android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:stretchColumns="0,1,2,3">
 
-	 <ScrollView
-       	android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-	        
-	        <TableLayout
-	            android:layout_width="match_parent"
-	            android:layout_height="0dp" 
-	            android:stretchColumns="0,1,2,3"
-	            >
-	            
-	            <TableRow
-	                android:layout_height="0dp"
-	                android:layout_width="fill_parent"
-	                android:layout_weight="0.1"
-	                android:paddingTop="5dp"
-	                android:paddingBottom="5dp" >
-	                    
-				    <TextView
-				        android:id="@+id/level1"
-				        android:layout_width="0dp"
-				        android:layout_height="match_parent"
-				        android:textAppearance="?android:attr/textAppearanceMedium"
-				        android:layout_weight="0.1"
-				        android:text="1" />
-				
-				    <TextView
-				        android:id="@+id/threshold1"
-				        android:layout_width="0dp"
-				        android:layout_height="match_parent"
-				        android:textAppearance="?android:attr/textAppearanceMedium"
-				        android:layout_weight="0.3"
-				        android:text="2,10,000" />
-				
-				    <TextView
-				        android:id="@+id/unlocks1"
-				        android:layout_width="0dp"
-				        android:layout_height="match_parent"
-				        android:textAppearance="?android:attr/textAppearanceMedium"
-				        android:layout_weight="0.4"
-				        android:text="BAJAJ, INFOSYS, TCS" />
-				
-				    <TextView
-				        android:id="@+id/bonus1"
-				        android:layout_width="0dp"
-				        android:textAppearance="?android:attr/textAppearanceMedium"
-				        android:layout_height="match_parent"
-				        android:layout_weight="0.2"
-				        android:text="5,000" />
-	                
-	            </TableRow>
-	            
-	            <TableRow
-	                android:layout_height="0dp"
-	                android:layout_width="fill_parent"
-	                android:layout_weight="0.1"
-	                android:paddingTop="5dp"
-	                android:paddingBottom="5dp" >
-	                    
-				    <TextView
-				        android:id="@+id/level2"
-				        android:layout_width="0dp"
-				        android:layout_height="match_parent"
-				        android:textAppearance="?android:attr/textAppearanceMedium"
-				        android:layout_weight="0.1"
-				        android:text="2" />
-				
-				    <TextView
-				        android:id="@+id/threshold2"
-				        android:layout_width="0dp"
-				        android:layout_height="match_parent"
-				        android:textAppearance="?android:attr/textAppearanceMedium"
-				        android:layout_weight="0.3"
-				        android:text="2,25,000" />
-				
-				    <TextView
-				        android:id="@+id/unlocks2"
-				        android:textAppearance="?android:attr/textAppearanceMedium"
-				        android:layout_width="0dp"
-				        android:layout_height="match_parent"
-				        android:layout_weight="0.4"
-				        android:text="AXIS, ITC, LnT" />
-				
-				    <TextView
-				        android:id="@+id/bonus2"
-				        android:layout_width="0dp"
-				        android:textAppearance="?android:attr/textAppearanceMedium"
-				        android:layout_height="match_parent"
-				        android:layout_weight="0.2"
-				        android:text="5,000" />
-	                
-	            </TableRow>
-	            
-	            <TableRow
-	                android:layout_height="0dp"
-	                android:layout_width="fill_parent"
-	                android:layout_weight="0.1"
-	                android:textAppearance="?android:attr/textAppearanceMedium"
-	                android:paddingTop="5dp"
-	                android:paddingBottom="5dp" >
-	                    
-				    <TextView
-				        android:id="@+id/level3"
-				        android:layout_width="0dp"
-				        android:textAppearance="?android:attr/textAppearanceMedium"
-				        android:layout_height="match_parent"
-				        android:layout_weight="0.1"
-				        android:text="3" />
-				
-				    <TextView
-				        android:id="@+id/threshold3"
-				        android:layout_width="0dp"
-				        android:textAppearance="?android:attr/textAppearanceMedium"
-				        android:layout_height="match_parent"
-				        android:layout_weight="0.3"
-				        android:text="2,50,000" />
-				
-				    <TextView
-				        android:id="@+id/unlocks3"
-				        android:layout_width="0dp"
-				        android:layout_height="match_parent"
-				        android:textAppearance="?android:attr/textAppearanceMedium"
-				        android:layout_weight="0.4"
-				        android:text="RIL, TATA MOTORS, HDFC BANK" />
-				
-				    <TextView
-				        android:id="@+id/bonus3"
-				        android:layout_width="0dp"
-				        android:textAppearance="?android:attr/textAppearanceMedium"
-				        android:layout_height="match_parent"
-				        android:layout_weight="0.2"
-				        android:text="5,000" />
-	                
-	            </TableRow>
-	            
-	            <TableRow
-	                android:layout_height="0dp"
-	                android:layout_width="fill_parent"
-	                android:layout_weight="0.1"
-	                android:paddingTop="5dp"
-	                android:paddingBottom="5dp" >
-	                    
-				    <TextView
-				        android:id="@+id/level4"
-				        android:textAppearance="?android:attr/textAppearanceMedium"
-				        android:layout_width="0dp"
-				        android:layout_height="match_parent"
-				        android:layout_weight="0.1"
-				        android:text="4" />
-				
-				    <TextView
-				        android:id="@+id/threshold4"
-				        android:layout_width="0dp"
-				        android:textAppearance="?android:attr/textAppearanceMedium"
-				        android:layout_height="match_parent"
-				        android:layout_weight="0.3"
-				        android:text="2,75,000" />
-				
-				    <TextView
-				        android:id="@+id/unlocks4"
-				        android:layout_width="0dp"
-				        android:textAppearance="?android:attr/textAppearanceMedium"
-				        android:layout_height="match_parent"
-				        android:layout_weight="0.4"
-				        android:text="HDFC, MARUTI, Mahindra" />
-				
-				    <TextView
-				        android:id="@+id/bonus4"
-				        android:layout_width="0dp"
-				        android:layout_height="match_parent"
-				        android:textAppearance="?android:attr/textAppearanceMedium"
-				        android:layout_weight="0.2"
-				        android:text="5,000" />
-	                
-	            </TableRow>
-	            
-	            <TableRow
-	                android:layout_height="0dp"
-	                android:layout_width="fill_parent"
-	                android:layout_weight="0.1"
-	                android:paddingTop="5dp"
-	                android:paddingBottom="5dp" >
-	                    
-				    <TextView
-				        android:id="@+id/level5"
-				        android:layout_width="0dp"
-				        android:textAppearance="?android:attr/textAppearanceMedium"
-				        android:layout_height="match_parent"
-				        android:layout_weight="0.1"
-				        android:text="5" />
-				
-				    <TextView
-				        android:id="@+id/threshold5"
-				        android:layout_width="0dp"
-				        android:layout_height="match_parent"
-				        android:textAppearance="?android:attr/textAppearanceMedium"
-				        android:layout_weight="0.3"
-				        android:text="3,00,000" />
-				
-				    <TextView
-				        android:id="@+id/unlocks5"
-				        android:layout_width="0dp"
-				        android:textAppearance="?android:attr/textAppearanceMedium"
-				        android:layout_height="match_parent"
-				        android:layout_weight="0.4"
-				        android:text="BHEL, CIPLA, COAL" />
-				
-				    <TextView
-				        android:id="@+id/bonus5"
-				        android:layout_width="0dp"
-				        android:textAppearance="?android:attr/textAppearanceMedium"
-				        android:layout_height="match_parent"
-				        android:layout_weight="0.2"
-				        android:text="10,000" />
-	                
-	            </TableRow>
-	            
-	            <TableRow
-	                android:layout_height="0dp"
-	                android:layout_width="fill_parent"
-	                android:layout_weight="0.1"
-	                android:paddingTop="5dp"
-	                android:paddingBottom="5dp" >
-	                    
-				    <TextView
-				        android:id="@+id/level6"
-				        android:layout_width="0dp"
-				        android:textAppearance="?android:attr/textAppearanceMedium"
-				        android:layout_height="match_parent"
-				        android:layout_weight="0.1"
-				        android:text="6" />
-				
-				    <TextView
-				        android:id="@+id/threshold6"
-				        android:layout_width="0dp"
-				        android:textAppearance="?android:attr/textAppearanceMedium"
-				        android:layout_height="match_parent"
-				        android:layout_weight="0.3"
-				        android:text="3,50,000" />
-				
-				    <TextView
-				        android:id="@+id/unlocks6"
-				        android:layout_width="0dp"
-				        android:textAppearance="?android:attr/textAppearanceMedium"
-				        android:layout_height="match_parent"
-				        android:layout_weight="0.4"
-				        android:text="DR.REDDY, GAIL, HERO" />
-				
-				    <TextView
-				        android:id="@+id/bonus6"
-				        android:layout_width="0dp"
-				        android:layout_height="match_parent"
-				        android:layout_weight="0.2"
-				        android:textAppearance="?android:attr/textAppearanceMedium"
-				        android:text="10,000" />
-	                
-	            </TableRow>
-	            
-	            <TableRow
-	                android:layout_height="0dp"
-	                android:layout_width="fill_parent"
-	                android:layout_weight="0.1"
-	                android:paddingTop="5dp"
-	                android:paddingBottom="5dp" >
-	                    
-				    <TextView
-				        android:id="@+id/level7"
-				        android:layout_width="0dp"
-				        android:textAppearance="?android:attr/textAppearanceMedium"
-				        android:layout_height="match_parent"
-				        android:layout_weight="0.1"
-				        android:text="7" />
-				
-				    <TextView
-				        android:id="@+id/threshold7"
-				        android:layout_width="0dp"
-				        android:layout_height="match_parent"
-				        android:layout_weight="0.3"
-				        android:textAppearance="?android:attr/textAppearanceMedium"
-				        android:text="4,00,000" />
-				
-				    <TextView
-				        android:id="@+id/unlocks7"
-				        android:layout_width="0dp"
-				        android:layout_height="match_parent"
-				        android:textAppearance="?android:attr/textAppearanceMedium"
-				        android:layout_weight="0.4"
-				        android:text="HUL, ICICI, HINDALCO" />
-				
-				    <TextView
-				        android:id="@+id/bonus7"
-				        android:layout_width="0dp"
-				        android:textAppearance="?android:attr/textAppearanceMedium"
-				        android:layout_height="match_parent"
-				        android:layout_weight="0.2"
-				        android:text="10,000" />
-	                
-	            </TableRow>
-	            
-	            <TableRow
-	                android:layout_height="0dp"
-	                android:layout_width="fill_parent"
-	                android:layout_weight="0.1"
-	                android:paddingTop="5dp"
-	                android:paddingBottom="5dp" >
-	                    
-				    <TextView
-				        android:id="@+id/level8"
-				        android:layout_width="0dp"
-				        android:textAppearance="?android:attr/textAppearanceMedium"
-				        android:layout_height="match_parent"
-				        android:layout_weight="0.1"
-				        android:text="8" />
-				
-				    <TextView
-				        android:id="@+id/threshold8"
-				        android:textAppearance="?android:attr/textAppearanceMedium"
-				        android:layout_width="0dp"
-				        android:layout_height="match_parent"
-				        android:layout_weight="0.3"
-				        android:text="4,50,000" />
-				
-				    <TextView
-				        android:id="@+id/unlocks8"
-				        android:layout_width="0dp"
-				        android:textAppearance="?android:attr/textAppearanceMedium"
-				        android:layout_height="match_parent"
-				        android:layout_weight="0.4"
-				        android:text="NTPC, ONGC, SBI" />
-				
-				    <TextView
-				        android:id="@+id/bonus8"
-				        android:layout_width="0dp"
-				        android:layout_height="match_parent"
-				        android:textAppearance="?android:attr/textAppearanceMedium"
-				        android:layout_weight="0.2"
-				        android:text="10,000" />
-	                
-	            </TableRow>
-	            
-	            <TableRow
-	                android:layout_height="0dp"
-	                android:layout_width="fill_parent"
-	                android:layout_weight="0.1"
-	                android:paddingTop="5dp"
-	                android:paddingBottom="5dp" >
-	                    
-				    <TextView
-				        android:id="@+id/level9"
-				        android:layout_width="0dp"
-				        android:textAppearance="?android:attr/textAppearanceMedium"
-				        android:layout_height="match_parent"
-				        android:layout_weight="0.1"
-				        android:text="9" />
-				
-				    <TextView
-				        android:id="@+id/threshold9"
-				        android:layout_width="0dp"
-				        android:textAppearance="?android:attr/textAppearanceMedium"
-				        android:layout_height="match_parent"
-				        android:layout_weight="0.3"
-				        android:text="5,25,000" />
-				
-				    <TextView
-				        android:id="@+id/unlocks9"
-				        android:layout_width="0dp"
-				        android:textAppearance="?android:attr/textAppearanceMedium"
-				        android:layout_height="match_parent"
-				        android:layout_weight="0.4"
-				        android:text="SESA, SUN, TATA POWER" />
-				
-				    <TextView
-				        android:id="@+id/bonus9"
-				        android:layout_width="0dp"
-				        android:layout_height="match_parent"
-				        android:layout_weight="0.2"
-				        android:textAppearance="?android:attr/textAppearanceMedium"
-				        android:text="10,000" />
-	                
-	            </TableRow>
-	            
-	            <TableRow
-	                android:layout_height="0dp"
-	                android:layout_width="fill_parent"
-	                android:layout_weight="0.1"
-	                android:paddingTop="5dp"
-	                android:paddingBottom="5dp" >
-	                    
-				    <TextView
-				        android:id="@+id/level10"
-				        android:layout_width="0dp"
-				        android:layout_height="match_parent"
-				        android:layout_weight="0.1"
-				        android:textAppearance="?android:attr/textAppearanceMedium"
-				        android:text="10" />
-				
-				    <TextView
-				        android:id="@+id/threshold10"
-				        android:layout_width="0dp"
-				        android:layout_height="match_parent"
-				        android:layout_weight="0.3"
-				        android:textAppearance="?android:attr/textAppearanceMedium"
-				        android:text="6,00,000" />
-				
-				    <TextView
-				        android:id="@+id/unlocks10"
-				        android:layout_width="0dp"
-				        android:textAppearance="?android:attr/textAppearanceMedium"
-				        android:layout_height="match_parent"
-				        android:layout_weight="0.4"
-				        android:text="TATA STEEL, WIPRO, BHARTI" />
-				
-				    <TextView
-				        android:id="@+id/bonus10"
-				        android:textAppearance="?android:attr/textAppearanceMedium"
-				        android:layout_width="0dp"
-				        android:layout_height="match_parent"
-				        android:layout_weight="0.2"
-				        android:text="15,000" />
-	                
-	            </TableRow>	            
-	        </TableLayout>
-	    </ScrollView>
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:background="#D3D3D3" 
+                android:paddingBottom="15dp">
+
+                <TextView
+                    android:id="@+id/level"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.1"
+                    android:text="Level"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/threshold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_weight="0.3"
+                    android:text="Threshold"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/unlocks"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.4"
+                    android:text="New Unlocks"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/bonus"
+                    android:layout_width="wrap_content"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.2"
+                    android:text="Bonus"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </TableRow>
+        <View
+					         android:layout_width="fill_parent"
+					         android:layout_height="3dp"
+					         android:background="@android:color/darker_gray"
+					        />
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:stretchColumns="0,1,2,3" >
+
+                    <TableRow
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.1"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="5dp" >
+
+                        <TextView
+                            android:id="@+id/level1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.1"
+                            android:text="1"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <TextView
+                            android:id="@+id/threshold1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.3"
+                            android:text="2,10,000"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <TextView
+                            android:id="@+id/unlocks1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.4"
+                            android:text="BAJAJ, INFOSYS, TCS"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <TextView
+                            android:id="@+id/bonus1"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.2"
+                            android:text="5,000"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+                        
+                         
+                    </TableRow>
+                     <View
+					         android:layout_width="fill_parent"
+					         android:layout_height="1dp"
+					         android:background="@android:color/darker_gray"
+					        />
+
+                    <TableRow
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.1"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="5dp" >
+
+                        <TextView
+                            android:id="@+id/level2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.1"
+                            android:text="2"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <TextView
+                            android:id="@+id/threshold2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.3"
+                            android:text="2,25,000"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <TextView
+                            android:id="@+id/unlocks2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.4"
+                            android:text="AXIS, ITC, LnT"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <TextView
+                            android:id="@+id/bonus2"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.2"
+                            android:text="5,000"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+                                                  
+                    </TableRow>
+                    
+                    <View
+					         android:layout_width="fill_parent"
+					         android:layout_height="1dp"
+					         android:background="@android:color/darker_gray"
+					        />
+                    <TableRow
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.1"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="5dp"
+                        android:textAppearance="?android:attr/textAppearanceMedium" >
+
+                        <TextView
+                            android:id="@+id/level3"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.1"
+                            android:text="3"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <TextView
+                            android:id="@+id/threshold3"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.3"
+                            android:text="2,50,000"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <TextView
+                            android:id="@+id/unlocks3"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.4"
+                            android:text="RIL, TATA MOTORS, HDFC BANK"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <TextView
+                            android:id="@+id/bonus3"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.2"
+                            android:text="5,000"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+                              
+                    </TableRow>
+
+                    <View
+					         android:layout_width="fill_parent"
+					         android:layout_height="1dp"
+					         android:background="@android:color/darker_gray"
+					        />
+                    <TableRow
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.1"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="5dp" >
+
+                        <TextView
+                            android:id="@+id/level4"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.1"
+                            android:text="4"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <TextView
+                            android:id="@+id/threshold4"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.3"
+                            android:text="2,75,000"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <TextView
+                            android:id="@+id/unlocks4"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.4"
+                            android:text="HDFC, MARUTI, Mahindra"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <TextView
+                            android:id="@+id/bonus4"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.2"
+                            android:text="5,000"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+                              
+                    </TableRow>
+                    
+                    <View
+					         android:layout_width="fill_parent"
+					         android:layout_height="1dp"
+					         android:background="@android:color/darker_gray"
+					        />
+
+                    <TableRow
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.1"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="5dp" >
+
+                        <TextView
+                            android:id="@+id/level5"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.1"
+                            android:text="5"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <TextView
+                            android:id="@+id/threshold5"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.3"
+                            android:text="3,00,000"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <TextView
+                            android:id="@+id/unlocks5"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.4"
+                            android:text="BHEL, CIPLA, COAL"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <TextView
+                            android:id="@+id/bonus5"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.2"
+                            android:text="10,000"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+                              
+                    </TableRow>
+                    
+                    <View
+					         android:layout_width="fill_parent"
+					         android:layout_height="1dp"
+					         android:background="@android:color/darker_gray"
+					        />
+
+                    <TableRow
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.1"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="5dp" >
+
+                        <TextView
+                            android:id="@+id/level6"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.1"
+                            android:text="6"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <TextView
+                            android:id="@+id/threshold6"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.3"
+                            android:text="3,50,000"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <TextView
+                            android:id="@+id/unlocks6"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.4"
+                            android:text="DR.REDDY, GAIL, HERO"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <TextView
+                            android:id="@+id/bonus6"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.2"
+                            android:text="10,000"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+                              
+                    </TableRow>
+                    
+                    <View
+					         android:layout_width="fill_parent"
+					         android:layout_height="1dp"
+					         android:background="@android:color/darker_gray"
+					        />
+
+                    <TableRow
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.1"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="5dp" >
+
+                        <TextView
+                            android:id="@+id/level7"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.1"
+                            android:text="7"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <TextView
+                            android:id="@+id/threshold7"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.3"
+                            android:text="4,00,000"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <TextView
+                            android:id="@+id/unlocks7"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.4"
+                            android:text="HUL, ICICI, HINDALCO"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <TextView
+                            android:id="@+id/bonus7"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.2"
+                            android:text="10,000"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+                              
+                    </TableRow>
+                    
+                    <View
+					         android:layout_width="fill_parent"
+					         android:layout_height="1dp"
+					         android:background="@android:color/darker_gray"
+					        />
+
+                    <TableRow
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.1"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="5dp" >
+
+                        <TextView
+                            android:id="@+id/level8"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.1"
+                            android:text="8"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <TextView
+                            android:id="@+id/threshold8"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.3"
+                            android:text="4,50,000"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <TextView
+                            android:id="@+id/unlocks8"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.4"
+                            android:text="NTPC, ONGC, SBI"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <TextView
+                            android:id="@+id/bonus8"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.2"
+                            android:text="10,000"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+                              
+                    </TableRow>
+                    
+                    <View
+					         android:layout_width="fill_parent"
+					         android:layout_height="1dp"
+					         android:background="@android:color/darker_gray"
+					        />
+
+                    <TableRow
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.1"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="5dp" >
+
+                        <TextView
+                            android:id="@+id/level9"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.1"
+                            android:text="9"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <TextView
+                            android:id="@+id/threshold9"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.3"
+                            android:text="5,25,000"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <TextView
+                            android:id="@+id/unlocks9"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.4"
+                            android:text="SESA, SUN, TATA POWER"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <TextView
+                            android:id="@+id/bonus9"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.2"
+                            android:text="10,000"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+                              
+                    </TableRow>
+                    
+                    <View
+					         android:layout_width="fill_parent"
+					         android:layout_height="1dp"
+					         android:background="@android:color/darker_gray"
+					        />
+
+                    <TableRow
+                        android:layout_width="fill_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="0.1"
+                        android:paddingBottom="5dp"
+                        android:paddingTop="5dp" >
+
+                        <TextView
+                            android:id="@+id/level10"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.1"
+                            android:text="10"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <TextView
+                            android:id="@+id/threshold10"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.3"
+                            android:text="6,00,000"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <TextView
+                            android:id="@+id/unlocks10"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.4"
+                            android:text="TATA STEEL, WIPRO, BHARTI"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+                        <TextView
+                            android:id="@+id/bonus10"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="0.2"
+                            android:text="15,000"
+                            android:textAppearance="?android:attr/textAppearanceMedium" />
+                              
+                    </TableRow>
+                    <View
+					         android:layout_width="fill_parent"
+					         android:layout_height="1dp"
+					         android:background="@android:color/darker_gray"
+					        />
+                </TableLayout>
+            </ScrollView>
+        </TableRow>
+
+</TableLayout>
 </LinearLayout>
