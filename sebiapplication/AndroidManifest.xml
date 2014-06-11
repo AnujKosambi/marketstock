@@ -127,6 +127,13 @@
              >
         </activity>
         <activity
+            android:name="com.marketstock.sebiapplication.mycareer"
+             android:label="My Career"
+             android:screenOrientation="portrait"
+             android:parentActivityName="com.marketstock.sebiapplication.MainActivity"
+             >
+        </activity>
+        <activity
             android:name="com.marketstock.sebiapplication.Stockpage"
             android:screenOrientation="portrait"
             android:label="@string/title_activity_stockpage" >

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
 import android.view.animation.TranslateAnimation;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 public class MarqueeLayout extends LinearLayout {

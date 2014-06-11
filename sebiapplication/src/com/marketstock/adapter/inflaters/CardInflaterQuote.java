@@ -1,18 +1,8 @@
 package com.marketstock.adapter.inflaters;
 
 import java.sql.Date;
-import java.util.Calendar;
-
-import com.marketstock.adapter.CardItemData;
-import com.marketstock.adapter.CardItemTitleNData;
-import com.marketstock.adapter.IAdapterViewInflater;
-import com.marketstock.sebiapplication.MainActivity;
-import com.marketstock.sebiapplication.R;
-import com.marketstock.adapter.BaseInflaterAdapter;
 
 import android.app.Dialog;
-import android.graphics.drawable.GradientDrawable.Orientation;
-import android.opengl.Visibility;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +11,12 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.ToggleButton;
+
+import com.marketstock.adapter.BaseInflaterAdapter;
+import com.marketstock.adapter.CardItemTitleNData;
+import com.marketstock.adapter.IAdapterViewInflater;
+import com.marketstock.sebiapplication.MainActivity;
+import com.marketstock.sebiapplication.R;
 
 public class CardInflaterQuote implements IAdapterViewInflater<CardItemTitleNData>
 {

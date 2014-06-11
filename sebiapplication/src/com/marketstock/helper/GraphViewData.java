@@ -1,12 +1,7 @@
 package com.marketstock.helper;
 
 
-import java.util.Date;
-
-import android.text.format.Time;
-
 import com.jjoe64.graphview.GraphViewDataInterface;
-import com.marketstock.sebiapplication.stockChart;
 
 public class GraphViewData implements GraphViewDataInterface  {
     private double x,y;

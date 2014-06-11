@@ -4,7 +4,8 @@
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:paddingBottom="30dp"
-    android:stretchColumns="0,1,2,3" >
+    android:stretchColumns="0,1,2,3"
+    android:background="#E0EEEE" >
 
     <TableRow
       

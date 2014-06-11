@@ -6,7 +6,8 @@
     android:paddingRight="10dp"
     android:paddingBottom="10dp"
     android:paddingTop="10dp"
-    android:orientation="vertical" >
+    android:orientation="vertical"
+    android:background="#E0EEEE" >
 
     <TableLayout
         android:layout_width="match_parent"

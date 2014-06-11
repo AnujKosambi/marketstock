@@ -1,18 +1,14 @@
 package com.marketstock.sebiapplication;
 
-import java.util.HashMap;
-
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
-import com.marketstock.adapter.CardItemData;
 
 public class Definitions extends SherlockActivity{
 	

@@ -3,13 +3,10 @@ package com.marketstock.sebiapplication;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
-import android.util.Log;
 
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.ActionBar.Tab;
@@ -18,7 +15,6 @@ import com.actionbarsherlock.view.Menu;
 import com.actionbarsherlock.view.MenuInflater;
 import com.marketstock.adapter.StockPagesAdapter;
 import com.marketstock.helper.Companies;
-import com.marketstock.sebiapplication.dbhelper.DBHelper;
 import com.marketstock.sebiapplication.models.Stock;
 
 public class Stockpage extends SherlockFragmentActivity implements

@@ -9,11 +9,8 @@ import android.widget.ListView;
 import com.actionbarsherlock.app.ActionBar;
 import com.actionbarsherlock.app.SherlockActivity;
 import com.marketstock.adapter.BaseInflaterAdapter;
-import com.marketstock.adapter.CardItemData;
 import com.marketstock.adapter.CardItemTitleNData;
-import com.marketstock.adapter.inflaters.CardInflater;
 import com.marketstock.adapter.inflaters.CardInflaterQuote;
-import com.marketstock.helper.Companies;
 import com.marketstock.sebiapplication.dbhelper.DBHelper;
 
 public class News extends SherlockActivity{

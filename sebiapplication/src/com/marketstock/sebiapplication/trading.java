@@ -105,9 +105,9 @@ public class trading extends SherlockFragment {
 				careerWorth.setText(settings.getFloat("wallet", 0) + "");
 				careerNetWorth.setText(settings.getFloat("networth", 0) + "");
 				careerLevel.setText(settings.getInt("level", 0) + "");
+				Intent intent = new Intent(context, mycareer.class);
+				startActivity(intent);
 
-				Toast.makeText(getActivity(), "Don't click on this",
-						Toast.LENGTH_SHORT).show();
 			}
 		});
 
