@@ -159,7 +159,7 @@ public class BuySell extends Activity {
 			@Override
 			public void onClick(View v) {
 
-				if (qtn.getText().length() > 0
+				if (qtn.getText().length() > 0 && qtn.getText().length() <= 4
 						&& Integer.parseInt(qtn.getText().toString()) > 0) {
 					int q = Integer.parseInt(qtn.getText().toString());
 					if (bst.isChecked()) {
@@ -231,7 +231,7 @@ public class BuySell extends Activity {
 			@Override
 			public void onClick(View v) {
 
-				if (qtn.getText().length() > 0
+				if (qtn.getText().length() > 0 && qtn.getText().length() <= 4
 						&& Integer.parseInt(qtn.getText().toString()) > 0) {
 					int q = Integer.parseInt(qtn.getText().toString());
 					if (bst.isChecked()) {
@@ -327,10 +327,12 @@ public class BuySell extends Activity {
 			double namount = q * price;
 			namount = Math.round(namount * 100.0) / 100.0;
 
-			if(namount > settings.getFloat("wallet", 0)){
+			if (namount > settings.getFloat("wallet", 0)) {
+				Log.d("amout", "out of value");
+				Toast.makeText(cont, "You do not have enough money",
+						Toast.LENGTH_SHORT).show();
 				return;
 			}
-			
 			double total_amount = amount + namount;
 
 			int nholding = q + holding;
@@ -356,7 +358,13 @@ public class BuySell extends Activity {
 			settings.edit().putFloat("wallet", (float) (w - namount)).commit();
 
 		} else {
-			Log.d("msg", "new entry");
+
+			if ((price * q) > settings.getFloat("wallet", 0)) {
+				Log.d("amout", "out of value");
+				Toast.makeText(cont, "You do not have enough money",
+						Toast.LENGTH_SHORT).show();
+				return;
+			}
 
 			d.execSQL("INSERT into userdata (company,holdings,avg_price,amount,profit) values ('"
 					+ companyName.toLowerCase()
@@ -487,8 +495,9 @@ public class BuySell extends Activity {
 				settings.edit().putFloat("networth", w + 5000).commit();
 				settings.edit().putFloat("wallet", wa + 5000).commit();
 				settings.edit().putInt("level", l + 1).commit();
-				notification(mycareer.class,"Your Level Upgraded","Yoo have got 5000 Rs. Bonus");
-				
+				notification(mycareer.class, "Your Level Upgraded",
+						"Yoo have got 5000 Rs. Bonus");
+
 			}
 			break;
 
@@ -497,7 +506,8 @@ public class BuySell extends Activity {
 				settings.edit().putFloat("networth", w + 5000).commit();
 				settings.edit().putFloat("wallet", wa + 5000).commit();
 				settings.edit().putInt("level", l + 1).commit();
-				notification(mycareer.class,"Your Level Upgraded","Yoo have got 5000 Rs. Bonus");
+				notification(mycareer.class, "Your Level Upgraded",
+						"Yoo have got 5000 Rs. Bonus");
 			}
 			break;
 		case 3:
@@ -505,7 +515,8 @@ public class BuySell extends Activity {
 				settings.edit().putFloat("networth", w + 5000).commit();
 				settings.edit().putFloat("wallet", wa + 5000).commit();
 				settings.edit().putInt("level", l + 1).commit();
-				notification(mycareer.class,"Your Level Upgraded","Yoo have got 5000 Rs. Bonus");
+				notification(mycareer.class, "Your Level Upgraded",
+						"Yoo have got 5000 Rs. Bonus");
 			}
 			break;
 		case 4:
@@ -513,7 +524,8 @@ public class BuySell extends Activity {
 				settings.edit().putFloat("networth", w + 5000).commit();
 				settings.edit().putFloat("wallet", wa + 5000).commit();
 				settings.edit().putInt("level", l + 1).commit();
-				notification(mycareer.class,"Your Level Upgraded","Yoo have got 5000 Rs. Bonus");
+				notification(mycareer.class, "Your Level Upgraded",
+						"Yoo have got 5000 Rs. Bonus");
 			}
 			break;
 		case 5:
@@ -521,7 +533,8 @@ public class BuySell extends Activity {
 				settings.edit().putFloat("networth", w + 10000).commit();
 				settings.edit().putFloat("wallet", wa + 10000).commit();
 				settings.edit().putInt("level", l + 1).commit();
-				notification(mycareer.class,"Your Level Upgraded","Yoo have got 10000 Rs. Bonus");
+				notification(mycareer.class, "Your Level Upgraded",
+						"Yoo have got 10000 Rs. Bonus");
 			}
 			break;
 		case 6:
@@ -529,7 +542,8 @@ public class BuySell extends Activity {
 				settings.edit().putFloat("networth", w + 10000).commit();
 				settings.edit().putFloat("wallet", wa + 10000).commit();
 				settings.edit().putInt("level", l + 1).commit();
-				notification(mycareer.class,"Your Level Upgraded","Yoo have got 10000 Rs. Bonus");
+				notification(mycareer.class, "Your Level Upgraded",
+						"Yoo have got 10000 Rs. Bonus");
 			}
 			break;
 
@@ -538,7 +552,8 @@ public class BuySell extends Activity {
 				settings.edit().putFloat("networth", w + 10000).commit();
 				settings.edit().putFloat("wallet", wa + 10000).commit();
 				settings.edit().putInt("level", l + 1).commit();
-				notification(mycareer.class,"Your Level Upgraded","Yoo have got 10000 Rs. Bonus");
+				notification(mycareer.class, "Your Level Upgraded",
+						"Yoo have got 10000 Rs. Bonus");
 			}
 			break;
 
@@ -547,7 +562,8 @@ public class BuySell extends Activity {
 				settings.edit().putFloat("networth", w + 10000).commit();
 				settings.edit().putFloat("wallet", wa + 10000).commit();
 				settings.edit().putInt("level", l + 1).commit();
-				notification(mycareer.class,"Your Level Upgraded","Yoo have got 10000 Rs. Bonus");
+				notification(mycareer.class, "Your Level Upgraded",
+						"Yoo have got 10000 Rs. Bonus");
 			}
 			break;
 
@@ -556,36 +572,33 @@ public class BuySell extends Activity {
 				settings.edit().putFloat("networth", w + 15000).commit();
 				settings.edit().putFloat("wallet", wa + 15000).commit();
 				settings.edit().putInt("level", l + 1).commit();
-				notification(mycareer.class,"Your Level Upgraded","Yoo have got 15000 Rs. Bonus");
+				notification(mycareer.class, "Your Level Upgraded",
+						"Yoo have got 15000 Rs. Bonus");
 			}
 			break;
 		}
 
 	}
-	
-	public static void notification(Class c,String title,String text){
+
+	public static void notification(Class c, String title, String text) {
 		Intent resultIntent = new Intent(cont, c);
 		TaskStackBuilder stackBuilder = TaskStackBuilder
 				.create(cont)
 				.addParentStack(c)
 				.addNextIntent(
-						resultIntent
-								.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
-		PendingIntent resultPendingIntent = stackBuilder
-				.getPendingIntent(0,
-						PendingIntent.FLAG_UPDATE_CURRENT);
+						resultIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK));
+		PendingIntent resultPendingIntent = stackBuilder.getPendingIntent(0,
+				PendingIntent.FLAG_UPDATE_CURRENT);
 		Builder notif = new NotificationCompat.Builder(cont);
 		notif.setContentIntent(resultPendingIntent)
-				.setWhen(System.currentTimeMillis())
-				.setTicker("Stock Master")
-				.setSmallIcon(R.drawable.logo)
-				.setContentTitle(title)
-				.setContentText(text)
-				.setAutoCancel(true);
+				.setWhen(System.currentTimeMillis()).setTicker("Stock Master")
+				.setSmallIcon(R.drawable.logo).setContentTitle(title)
+				.setContentText(text).setAutoCancel(true);
 		// create notification from builder
 		Notification notification = notif.build();
 		// get instance of NotificationManager
-		NotificationManager notificationmanager = (NotificationManager) cont.getSystemService(NOTIFICATION_SERVICE);
+		NotificationManager notificationmanager = (NotificationManager) cont
+				.getSystemService(NOTIFICATION_SERVICE);
 		// call notify method of NotificationManager to add this
 		// notification to android notification drawer..
 		notificationmanager.notify(0, notification);
