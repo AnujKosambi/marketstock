@@ -14,11 +14,9 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.TextView;
-<<<<<<< HEAD
+
 import android.widget.Toast;
 
-=======
->>>>>>> 3b5470c68a9c177ce0513ba40c2a881ebf305923
 
 import com.marketstock.sebiapplication.dbhelper.DBHelper;
 
