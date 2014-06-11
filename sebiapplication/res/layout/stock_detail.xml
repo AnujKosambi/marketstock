@@ -114,6 +114,7 @@
                 android:layout_height="wrap_content"
                 android:text="Highest Price:"
                 android:layout_weight="1"
+                android:gravity="right"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:textStyle="bold" />
                
@@ -141,6 +142,7 @@
                 android:layout_gravity="right"
                 android:layout_weight="1"
                 android:text="High:+value"
+                 android:gravity="right"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
 
         </TableRow>
@@ -163,6 +165,7 @@
                    android:layout_gravity="bottom"
                    android:layout_weight="1"
                    android:text="Lowest Price:"
+                    android:gravity="right"
                    android:textAppearance="?android:attr/textAppearanceMedium"
                    android:textStyle="bold" />
 
@@ -187,6 +190,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Low: -Value"
+                 android:gravity="right"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
         </TableRow>
         <TableRow
@@ -208,6 +212,7 @@
                    android:layout_gravity="bottom"
                    android:layout_weight="1"
                    android:text="52wk Lowest:"
+                    android:gravity="right"
                    android:textAppearance="?android:attr/textAppearanceMedium"
                    android:textStyle="bold" />
 
@@ -232,6 +237,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="Low: -Value"
+                 android:gravity="right"
                 android:textAppearance="?android:attr/textAppearanceMedium" />
         </TableRow>
         

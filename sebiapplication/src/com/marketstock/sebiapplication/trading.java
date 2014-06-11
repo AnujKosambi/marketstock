@@ -18,7 +18,7 @@ import com.actionbarsherlock.app.SherlockFragment;
 public class trading extends SherlockFragment {
 
 	Context context = getActivity();
-	SharedPreferences settings;
+	SharedPreferences settings,prefs;
 	TextView netvalue, netprofit;
 
 	@Override
@@ -35,9 +35,9 @@ public class trading extends SherlockFragment {
 		LinearLayout portfolioCard = (LinearLayout) rootView
 				.findViewById(R.id.portfolioCard);
 
-		TextView sensexvi = (TextView) rootView
+		final TextView sensexvi = (TextView) rootView
 				.findViewById(R.id.textSensexValueInt);
-		TextView sensexci = (TextView) rootView
+		final TextView sensexci = (TextView) rootView
 				.findViewById(R.id.textSensexChangeInt);
 
 		netvalue = (TextView) rootView.findViewById(R.id.textNetValueInt);
@@ -50,7 +50,7 @@ public class trading extends SherlockFragment {
 		final TextView careerNetWorth = (TextView) rootView
 				.findViewById(R.id.careerNetWorthInt);
 
-		SharedPreferences prefs = rootView.getContext().getSharedPreferences(
+		prefs = rootView.getContext().getSharedPreferences(
 				"com.marketstock.sebiapplication", Context.MODE_PRIVATE);
 
 		settings = rootView.getContext()
@@ -81,8 +81,13 @@ public class trading extends SherlockFragment {
 
 			@Override
 			public void onClick(View v) {
+
+				sensexvi.setText(prefs.getFloat("sensex", 0) + "");
+				sensexci.setText(prefs.getFloat("sensexchange", 0) + "");
+				
 				Intent intent = new Intent(context, indices.class);
 				startActivity(intent);
+				
 			}
 		});
 

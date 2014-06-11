@@ -1,5 +1,6 @@
 package com.marketstock.sebiapplication;
 
+import java.io.IOException;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -136,7 +137,12 @@ public class MainActivity extends SherlockFragmentActivity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		db = new DBHelper(this);
+		try {
+			db = new DBHelper(this);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 //		Cursor c = db.getReadableDatabase().rawQuery("select * from axis", null);
 		

@@ -46,14 +46,7 @@ public class BuySell extends Activity {
 		final TextView companyView=(TextView)findViewById(R.id.companyname);
 		final String companyName = getIntent().getExtras().getString("Company")
 				+ "";
-		int i;
-
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1, DBHelper.TB_STOCKS);
-
-		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-		Spinner sp = (Spinner) findViewById(R.id.companies);
-		sp.setAdapter(adapter);
+	//	int i;
 		
 
 		settings = getApplicationContext()
@@ -61,7 +54,32 @@ public class BuySell extends Activity {
 						"com.marketstock.sebiapplication.setting",
 						Context.MODE_PRIVATE);
 		final int level = settings.getInt("level", 1);
+		String[] companies=DBHelper.TB_STOCKS;
+		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
+				android.R.layout.simple_list_item_1, companies);
+	
+		for(int k=0;k<companies.length;k++)
+		{boolean lock = true;
+			for (int i = 0; i < level; i++) {
+		
+			for (int j = 0; j < 3; j++) {
+				if (DBHelper.level[i][j]== k) {
+					
+					lock = false;
+					break;
+				}
+			}
 
+			}
+			if(lock)
+				companies[k]+=" (Locked)";
+		}
+		
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		Spinner sp = (Spinner) findViewById(R.id.companies);
+		sp.setAdapter(adapter);
+	
+		int i;
 		sp.setOnItemSelectedListener(new OnItemSelectedListener() {
 
 			boolean lock = true;
@@ -71,6 +89,7 @@ public class BuySell extends Activity {
 					int arg2, long arg3) {
 				
 				lock = true;
+				
 				for (int i = 0; i < level; i++) {
 					for (int j = 0; j < 3; j++) {
 						if (DBHelper.level[i][j] == arg2) {
@@ -88,7 +107,7 @@ public class BuySell extends Activity {
 							Toast.LENGTH_SHORT).show();
 					buy.setEnabled(false);
 					sell.setEnabled(false);
-					companyView.setText("Select Company");
+					companyView.setText("Select Company :");
 				} else {
 					companyView.setText(""+DBHelper.TB_STOCKS[arg2].toUpperCase());
 					buy.setEnabled(true);
@@ -132,14 +151,6 @@ public class BuySell extends Activity {
 
 			@Override
 			public void onClick(View v) {
-
-				if (!priceService.marketOpen) {
-					Toast.makeText(
-							getApplicationContext(),
-							"Sorry Market is Closed. Market hours 9:30 AM to 3:30 PM",
-							Toast.LENGTH_SHORT).show();
-					return;
-				}
 
 				if (qtn.getText().length() > 0
 						&& Integer.parseInt(qtn.getText().toString()) > 0) {
@@ -212,14 +223,6 @@ public class BuySell extends Activity {
 
 			@Override
 			public void onClick(View v) {
-
-				if (!priceService.marketOpen) {
-					Toast.makeText(
-							getApplicationContext(),
-							"Sorry Market is Closed. Market hours 9:30 AM to 3:30 PM",
-							Toast.LENGTH_SHORT).show();
-					return;
-				}
 
 				if (qtn.getText().length() > 0
 						&& Integer.parseInt(qtn.getText().toString()) > 0) {

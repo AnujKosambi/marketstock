@@ -5,7 +5,7 @@
    android:paddingLeft="15dp"
    android:paddingRight="15dp"
    android:stretchColumns="0"
-   android:background="#E0EEEE"
+   android:background="#E9EAED"
    android:descendantFocusability="beforeDescendants" >
    
     <TableRow 

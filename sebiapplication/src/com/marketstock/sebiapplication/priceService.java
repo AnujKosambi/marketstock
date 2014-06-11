@@ -22,7 +22,7 @@ import android.util.Log;
 import com.marketstock.sebiapplication.dbhelper.DBHelper;
 
 public class priceService extends IntentService {
-	
+
 	public static boolean marketOpen = false;
 
 	public static double sensexUpdateArray[] = { 7.36, 3.55, 5.84, 2.53, 2.53,
@@ -41,7 +41,6 @@ public class priceService extends IntentService {
 	float cweight = 0.0f;
 	SharedPreferences prefs;
 
-
 	@Override
 	protected void onHandleIntent(Intent intent) {
 
@@ -49,11 +48,10 @@ public class priceService extends IntentService {
 
 			synchronized (this) {
 				try {
-					prefs = getApplicationContext()
-							.getSharedPreferences(
-									"com.marketstock.sebiapplication",
-									Context.MODE_PRIVATE);
-					
+					prefs = getApplicationContext().getSharedPreferences(
+							"com.marketstock.sebiapplication",
+							Context.MODE_PRIVATE);
+
 					Calendar cal = Calendar.getInstance();
 					long nowMillies = (cal.get(Calendar.HOUR_OF_DAY) * 60 * 60 * 1000);
 					nowMillies += cal.get(Calendar.MINUTE) * 60 * 1000;
@@ -62,15 +60,18 @@ public class priceService extends IntentService {
 					long durationMillies = millies330 - millies930;
 					int vol = 0;
 					if (nowMillies < millies930) {
-							marketOpen = false;
-					} 
-					else if (nowMillies > millies330) {
-							marketOpen = false;
+						marketOpen = false;
+						setclosePrice();
+					} else if (nowMillies > millies330) {
+						marketOpen = false;
 						float sensex = prefs.getFloat("sensex", 15000.0f);
-						prefs.edit().putFloat("psensex", sensex).commit();						
-						
+						prefs.edit().putFloat("psensex", sensex).commit();
+						setclosePrice();
+
 					} else {
-							marketOpen = true;
+						marketOpen = true;
+						cweight = 0;
+						weight = 0;
 						for (int i = 0; i < DBHelper.TB_STOCKS.length; i++) {
 							float hp = 10, lp = 0;
 							Cursor c = MainActivity.db.getReadableDatabase()
@@ -102,18 +103,21 @@ public class priceService extends IntentService {
 							if (currentValue.containsKey(DBHelper.TB_STOCKS[i]))
 								currentValue.remove(DBHelper.TB_STOCKS[i]);
 							currentValue.put(DBHelper.TB_STOCKS[i], price);
+
 							values.put("weight", cweight);
 							values.put("percentChange", pc);
 
-							MainActivity.db.getWritableDatabase().update(
-									DBHelper.TB_COMPANYDATA, values,
-									"company = '" + DBHelper.TB_STOCKS[i] + "'",
-									null);
+							MainActivity.db.getWritableDatabase()
+									.update(DBHelper.TB_COMPANYDATA,
+											values,
+											"company = '"
+													+ DBHelper.TB_STOCKS[i]
+													+ "'", null);
 
 						}
-						
-						Cursor c = MainActivity.db.getReadableDatabase().rawQuery(
-								"select * from userdata", null);
+
+						Cursor c = MainActivity.db.getReadableDatabase()
+								.rawQuery("select * from userdata", null);
 						double netWorthChange = 0.0;
 						if (c.moveToFirst())
 							do {
@@ -122,7 +126,8 @@ public class priceService extends IntentService {
 								int holding = Integer.parseInt(c.getString(c
 										.getColumnIndex("holdings")));
 
-								netWorthChange += (holding * currentValue.get(comp));
+								netWorthChange += (holding * currentValue
+										.get(comp));
 							} while (c.moveToNext());
 
 						SharedPreferences settings = getApplicationContext()
@@ -132,17 +137,15 @@ public class priceService extends IntentService {
 
 						double w = settings.getFloat("wallet", 0);
 						settings.edit()
-								.putFloat("networth", (float) (w + netWorthChange))
-								.commit();
+								.putFloat("networth",
+										(float) (w + netWorthChange)).commit();
 
-						
 						float psensex = prefs.getFloat("psensex", 15000.0f);
 						float sensex = prefs.getFloat("sensex", 15000.0f);
-
-						sensex =psensex + weight;
-						sensex = (float) ((Math.round(sensex) * 100.0) / 100.0);
-
 						weight = (float) (Math.round(weight * 100.0) / 100.0);
+
+						sensex = psensex + weight;
+						sensex = (float) ((Math.round(sensex) * 100.0) / 100.0);
 
 						prefs.edit().putFloat("sensex", sensex).commit();
 						prefs.edit().putFloat("sensexchange", weight).commit();
@@ -290,11 +293,32 @@ public class priceService extends IntentService {
 						}
 
 					}
-					wait(1000);
+					wait(3000);
 
 				} catch (Exception e) {
 				}
 			}
+
+		}
+
+	}
+
+	private void setclosePrice() {
+
+		for (int i = 0; i < DBHelper.TB_STOCKS.length; i++) {
+			Cursor cursor = MainActivity.db.getReadableDatabase().rawQuery(
+					"SELECT id,date,closePrice FROM " + DBHelper.TB_STOCKS[i]
+							+ " order by date ", null);
+			cursor.moveToFirst();
+			cursor.moveToPosition(MainActivity.moveToDays - 1);
+			float cp = cursor.getFloat(2);
+			ContentValues values = new ContentValues();
+
+			values.put("price", cp);
+
+			MainActivity.db.getWritableDatabase().update(
+					DBHelper.TB_COMPANYDATA, values,
+					"company = '" + DBHelper.TB_STOCKS[i] + "'", null);
 
 		}
 

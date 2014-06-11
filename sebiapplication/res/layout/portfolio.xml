@@ -4,14 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#E0EEEE" >
-    
+    >
+
     <LinearLayout
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
-    android:paddingBottom="20dp"
+    android:paddingBottom="2dp"
     android:paddingLeft="10dp"
+     android:background="#D3D3D3"  
      >
 
 
@@ -61,7 +62,11 @@
         android:textStyle="bold" />
     
     </LinearLayout>
-
+    <View
+         android:layout_width="fill_parent"
+         android:layout_height="3dp"
+         android:background="@android:color/darker_gray"
+        />
     <ListView
         android:id="@+id/portfolio_listview"
         android:layout_width="match_parent"
