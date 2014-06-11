@@ -43,42 +43,41 @@ public class BuySell extends Activity {
 		final Button buy = (Button) findViewById(R.id.bsbuy);
 		final Button sell = (Button) findViewById(R.id.bssell);
 		final EditText qtn = (EditText) findViewById(R.id.qtn);
-		final TextView companyView=(TextView)findViewById(R.id.companyname);
+		final TextView companyView = (TextView) findViewById(R.id.companyname);
 		final String companyName = getIntent().getExtras().getString("Company")
 				+ "";
-	//	int i;
-		
+		// int i;
 
 		settings = getApplicationContext()
 				.getSharedPreferences(
 						"com.marketstock.sebiapplication.setting",
 						Context.MODE_PRIVATE);
 		final int level = settings.getInt("level", 1);
-		String[] companies=DBHelper.TB_STOCKS.clone();
+		String[] companies = DBHelper.TB_STOCKS.clone();
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_list_item_1, companies);
-	
-		for(int k=0;k<companies.length;k++)
-		{boolean lock = true;
+
+		for (int k = 0; k < companies.length; k++) {
+			boolean lock = true;
 			for (int i = 0; i < level; i++) {
-		
-			for (int j = 0; j < 3; j++) {
-				if (DBHelper.level[i][j]== k) {
-					
-					lock = false;
-					break;
+
+				for (int j = 0; j < 3; j++) {
+					if (DBHelper.level[i][j] == k) {
+
+						lock = false;
+						break;
+					}
 				}
-			}
 
 			}
-			if(lock)
-				companies[k]+=" (Locked)";
+			if (lock)
+				companies[k] += " (Locked)";
 		}
-		
+
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		Spinner sp = (Spinner) findViewById(R.id.companies);
 		sp.setAdapter(adapter);
-	
+
 		int i;
 		sp.setOnItemSelectedListener(new OnItemSelectedListener() {
 
@@ -87,9 +86,9 @@ public class BuySell extends Activity {
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
 					int arg2, long arg3) {
-				
+
 				lock = true;
-				
+
 				for (int i = 0; i < level; i++) {
 					for (int j = 0; j < 3; j++) {
 						if (DBHelper.level[i][j] == arg2) {
@@ -99,17 +98,18 @@ public class BuySell extends Activity {
 					}
 
 				}
-				
 
 				if (lock) {
-					Toast.makeText(getApplicationContext(),
+					Toast.makeText(
+							getApplicationContext(),
 							"You cannot buy this stock in the current level. Unlock more levels.",
 							Toast.LENGTH_SHORT).show();
 					buy.setEnabled(false);
 					sell.setEnabled(false);
 					companyView.setText("Select Company :");
 				} else {
-					companyView.setText(""+DBHelper.TB_STOCKS[arg2].toUpperCase());
+					companyView.setText(""
+							+ DBHelper.TB_STOCKS[arg2].toUpperCase());
 					buy.setEnabled(true);
 					sell.setEnabled(true);
 				}
@@ -162,7 +162,8 @@ public class BuySell extends Activity {
 						buyStock(companyName, q, price);
 					} else {
 
-					//	Toast.makeText(BuySell.this, "AUTOBUY",Toast.LENGTH_LONG).show();
+						// Toast.makeText(BuySell.this,
+						// "AUTOBUY",Toast.LENGTH_LONG).show();
 
 						SharedPreferences pref = BuySell.this
 								.getSharedPreferences("Autobuy",
@@ -233,7 +234,8 @@ public class BuySell extends Activity {
 						sellStock(companyName, q, price);
 					} else {
 
-				//		Toast.makeText(BuySell.this, "AUTOBUY",Toast.LENGTH_LONG).show();
+						// Toast.makeText(BuySell.this,
+						// "AUTOBUY",Toast.LENGTH_LONG).show();
 
 						SharedPreferences pref = BuySell.this
 								.getSharedPreferences("Autobuy",
@@ -441,8 +443,8 @@ public class BuySell extends Activity {
 				settings.edit().putFloat("wallet", (float) (w + amount))
 						.commit();
 
-				Toast.makeText(cont, "All stocks sold.",
-						Toast.LENGTH_SHORT).show();
+				Toast.makeText(cont, "All stocks sold.", Toast.LENGTH_SHORT)
+						.show();
 
 				checkLevel();
 
