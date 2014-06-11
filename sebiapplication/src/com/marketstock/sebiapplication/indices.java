@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -28,7 +29,7 @@ public class indices extends SherlockActivity{
 	public static final String KEY_VALUE = "value";
 	public static final String KEY_POINT_CHANGE = "point_change";
 	public static final String KEY_PERCENT_CHANGE = "percent_change";
-
+	public static float change=0.0f;
 	
 	@Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,28 +43,26 @@ public class indices extends SherlockActivity{
 		
 		TextView sensex = (TextView) findViewById(R.id.indices_sensex_change);
 		
-		float change=0.0f;
-		
         HashMap<String, String> map;
         
         SQLiteDatabase d = MainActivity.db.getReadableDatabase();
-         
+        change =0.0f;
         Cursor c = d.rawQuery("select * from "+DBHelper.TB_COMPANYDATA, null);
         if(c.moveToFirst())
         do{
         	map = new HashMap<String, String>();        	
         	map.put(KEY_NAME, c.getString(c.getColumnIndex("company")));
-//        	map.put(KEY_DATE, MainActivity.moveToDays+"");
         	map.put(KEY_VALUE, c.getString(c.getColumnIndex("price")));
         	map.put(KEY_POINT_CHANGE, c.getString(c.getColumnIndex("weight")));
         	map.put(KEY_PERCENT_CHANGE, c.getString(c.getColumnIndex("percentChange")));
-        	
         	change += Float.parseFloat(c.getString(c.getColumnIndex("weight")));
+        	
         	companylist.add(map);
         	
         }while(c.moveToNext());
         
         sensex.setText(change+"");
+        
         adapt = new listadapter(context, companylist);
 		listview.setAdapter(adapt);
         
