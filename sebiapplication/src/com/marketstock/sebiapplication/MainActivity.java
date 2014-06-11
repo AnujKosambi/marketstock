@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -15,6 +16,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.LinearLayout.LayoutParams;
@@ -96,6 +98,21 @@ public class MainActivity extends SherlockFragmentActivity implements
 		}
 		
 	}
+	public static void updateMarqueeView(){
+		String[] companies=Companies.getCompanies();
+		for(int i=0;i<companies.length;i++)
+		{
+			Log.d("Marquee", "Update");
+			Companies.updateData(companies[i]);
+			double change=Companies.PriceList.get(companies[i])-Companies.prevPriceList.get(companies[i]);
+			marqueeView.get(companies[i]).setText(companies[i].toUpperCase()+" "+
+			String.format("%.2f",Companies.PriceList.get(companies[i]))+
+			" ("+
+			String.format("%.2f",change)
+			+")     ");
+		}
+	}
+	public static HashMap<String ,TextView> marqueeView=new HashMap<String, TextView>();
 	private View getMarqueeView()
 	{
 	//	HorizontalScrollView scrollView=new HorizontalScrollView(this);
@@ -107,6 +124,7 @@ public class MainActivity extends SherlockFragmentActivity implements
 		{
 			Companies.updateData(companies[i]);
 			TextView textView = new TextView(this);
+			marqueeView.put(companies[i], textView);
 			double change=Companies.PriceList.get(companies[i])-Companies.prevPriceList.get(companies[i]);
 			textView.setText(companies[i].toUpperCase()+" "+
 			String.format("%.2f",Companies.PriceList.get(companies[i]))+

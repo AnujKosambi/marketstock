@@ -293,6 +293,12 @@ public class priceService extends IntentService {
 						}
 
 					}
+					try{
+						MainActivity.updateMarqueeView();
+					}
+					catch (Exception e) {
+						
+					}
 					wait(60000);
 
 				} catch (Exception e) {
