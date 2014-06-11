@@ -10,6 +10,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -27,6 +29,7 @@ import com.marketstock.sebiapplication.dbhelper.DBHelper;
 public class BuySell extends Activity {
 
 	static Context cont;
+	static SharedPreferences settings;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +40,8 @@ public class BuySell extends Activity {
 		final ToggleButton bst = (ToggleButton) findViewById(R.id.buyselltoggle);
 		final EditText et = (EditText) findViewById(R.id.price);
 
-		Button buy = (Button) findViewById(R.id.bsbuy);
-		Button sell = (Button) findViewById(R.id.bssell);
+		final Button buy = (Button) findViewById(R.id.bsbuy);
+		final Button sell = (Button) findViewById(R.id.bssell);
 		final EditText qtn = (EditText) findViewById(R.id.qtn);
 
 		final String companyName = getIntent().getExtras().getString("Company")
@@ -51,6 +54,50 @@ public class BuySell extends Activity {
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		Spinner sp = (Spinner) findViewById(R.id.companies);
 		sp.setAdapter(adapter);
+
+		settings = getApplicationContext()
+				.getSharedPreferences(
+						"com.marketstock.sebiapplication.setting",
+						Context.MODE_PRIVATE);
+		final int level = settings.getInt("level", 1);
+
+		sp.setOnItemSelectedListener(new OnItemSelectedListener() {
+
+			boolean lock = true;
+
+			@Override
+			public void onItemSelected(AdapterView<?> arg0, View arg1,
+					int arg2, long arg3) {
+
+				lock = true;
+				for (int i = 0; i < level; i++) {
+					for (int j = 0; j < 3; j++) {
+						if (DBHelper.level[i][j] == arg2) {
+							lock = false;
+							break;
+						}
+					}
+
+				}
+
+				if (lock) {
+					Toast.makeText(getApplicationContext(),
+							"You cannot buy this stock your level is low",
+							Toast.LENGTH_SHORT).show();
+					buy.setEnabled(false);
+					sell.setEnabled(false);
+				} else {
+					buy.setEnabled(true);
+					sell.setEnabled(true);
+				}
+
+			}
+
+			@Override
+			public void onNothingSelected(AdapterView<?> arg0) {
+
+			}
+		});
 
 		bst.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
@@ -81,27 +128,43 @@ public class BuySell extends Activity {
 
 			@Override
 			public void onClick(View v) {
-				Toast.makeText(BuySell.this,"AUTOBUY", Toast.LENGTH_LONG).show();
+
 				if (qtn.getText().length() > 0
-						&& Integer.parseInt(qtn.getText().toString()) > 0
-						) {
+						&& Integer.parseInt(qtn.getText().toString()) > 0) {
 					int q = Integer.parseInt(qtn.getText().toString());
 					if (bst.isChecked()) {
-						
-						double price = Companies.PriceList.get(companyName.toLowerCase());
-						buyStock(companyName, q,price);
-					}
-					else{
-						SharedPreferences pref= BuySell.this.getSharedPreferences(
-										"Autobuy",
+
+						double price = Companies.PriceList.get(companyName
+								.toLowerCase());
+						buyStock(companyName, q, price);
+					} else {
+
+						Toast.makeText(BuySell.this, "AUTOBUY",
+								Toast.LENGTH_LONG).show();
+
+						SharedPreferences pref = BuySell.this
+								.getSharedPreferences("Autobuy",
 										Context.MODE_PRIVATE);
-						int count=pref.getInt("autobuycount",0);
-						pref.edit().putString("autobuy"+count,companyName.toLowerCase()+"#"+q+"#"+et.getText()).commit();
-						count++;
-						pref.edit().putInt("autobuycount",count).commit();
-						
+						int count = pref.getInt("autobuycount", 0);
+
+						if (et.getText().length() > 0
+								&& Integer.parseInt(et.getText().toString()) > 0) {
+							pref.edit()
+									.putString(
+											"autobuy" + count,
+											companyName.toLowerCase() + "#" + q
+													+ "#" + et.getText())
+									.commit();
+							count++;
+							pref.edit().putInt("autobuycount", count).commit();
+
+						} else {
+							Toast.makeText(getApplicationContext(),
+									"Enter proper amount", Toast.LENGTH_SHORT)
+									.show();
+						}
+
 					}
-					
 
 				} else {
 
@@ -139,23 +202,38 @@ public class BuySell extends Activity {
 			public void onClick(View v) {
 
 				if (qtn.getText().length() > 0
-						&& Integer.parseInt(qtn.getText().toString()) > 0
-						) {
+						&& Integer.parseInt(qtn.getText().toString()) > 0) {
 					int q = Integer.parseInt(qtn.getText().toString());
 					if (bst.isChecked()) {
-						
-						double price = Companies.PriceList.get(companyName.toLowerCase());
-						sellStock(companyName, q,price);
-					}
-					else
-					{
-						SharedPreferences pref= BuySell.this.getSharedPreferences(
-								"Autobuy",
-								Context.MODE_PRIVATE);
-					int count=pref.getInt("autosellcount",0);
-					pref.edit().putString("autosell"+count,companyName.toLowerCase()+"#"+q+"#"+et.getText()).commit();
-					count++;
-					pref.edit().putInt("autosellcount",count).commit();
+
+						double price = Companies.PriceList.get(companyName
+								.toLowerCase());
+						sellStock(companyName, q, price);
+					} else {
+
+						Toast.makeText(BuySell.this, "AUTOBUY",
+								Toast.LENGTH_LONG).show();
+
+						SharedPreferences pref = BuySell.this
+								.getSharedPreferences("Autobuy",
+										Context.MODE_PRIVATE);
+						int count = pref.getInt("autosellcount", 0);
+						if (et.getText().length() > 0
+								&& Integer.parseInt(et.getText().toString()) > 0) {
+							pref.edit()
+									.putString(
+											"autosell" + count,
+											companyName.toLowerCase() + "#" + q
+													+ "#" + et.getText())
+									.commit();
+							count++;
+							pref.edit().putInt("autosellcount", count).commit();
+						} else {
+							Toast.makeText(getApplicationContext(),
+									"Enter proper amount", Toast.LENGTH_SHORT)
+									.show();
+						}
+
 					}
 				} else {
 
@@ -189,10 +267,9 @@ public class BuySell extends Activity {
 
 	}
 
-	public static void buyStock(String companyName, int q,double price) {
+	public static void buyStock(String companyName, int q, double price) {
 
 		Companies.updateData(companyName);
-		
 
 		SQLiteDatabase d = MainActivity.db.getWritableDatabase();
 		String qrl = "select * from userdata where company='"
@@ -241,6 +318,9 @@ public class BuySell extends Activity {
 					+ total_amount + "',profit ='" + nprofit
 					+ "' where company='" + companyName.toLowerCase() + "'");
 
+			float w = settings.getFloat("wallet", 0);
+			settings.edit().putFloat("wallet", (float) (w - namount)).commit();
+
 		} else {
 			Log.d("msg", "new entry");
 
@@ -252,6 +332,10 @@ public class BuySell extends Activity {
 					+ price
 					+ "','" + price * q + "','0')");
 
+			float w = settings.getFloat("wallet", 0);
+			settings.edit().putFloat("wallet", (float) (w - (price * q)))
+					.commit();
+
 		}
 
 		Toast.makeText(cont, "Stock Buyed Successfully", Toast.LENGTH_SHORT)
@@ -262,9 +346,8 @@ public class BuySell extends Activity {
 
 	}
 
-	public static void sellStock(String companyName, int q,double price) {
+	public static void sellStock(String companyName, int q, double price) {
 		Companies.updateData(companyName);
-		
 
 		SQLiteDatabase d = MainActivity.db.getWritableDatabase();
 		String qrl = "select * from userdata where company='"
@@ -316,16 +399,31 @@ public class BuySell extends Activity {
 						+ total_amount + "',profit ='" + nprofit
 						+ "' where company='" + companyName.toLowerCase() + "'");
 
+				float w = settings.getFloat("wallet", 0);
+				settings.edit().putFloat("wallet", (float) (w + namount))
+						.commit();
+
 				Toast.makeText(cont, "Stocks sold successfully",
 						Toast.LENGTH_SHORT).show();
+
+				checkLevel();
 
 			} else if (holding == q) {
 				// DELETE ROW
 				d.execSQL("DELETE from userdata  where company='"
 						+ companyName.toLowerCase() + "'");
 
+				double amount = Double.parseDouble(c.getString(c
+						.getColumnIndex("amount")));
+
+				float w = settings.getFloat("wallet", 0);
+				settings.edit().putFloat("wallet", (float) (w + amount))
+						.commit();
+
 				Toast.makeText(cont, "All of these stock sold",
 						Toast.LENGTH_SHORT).show();
+
+				checkLevel();
 
 			} else {
 				Toast.makeText(cont, "You Don't have any of these stock",
@@ -340,6 +438,85 @@ public class BuySell extends Activity {
 
 		c.close();
 		d.close();
+
+	}
+
+	public static void checkLevel() {
+
+		float w = settings.getFloat("networth", 0);
+		float wa = settings.getFloat("wallet", 0);
+		int l = settings.getInt("level", 0);
+		Log.d("level", l + "");
+		switch (l) {
+		case 1:
+			if (wa < 190050) {
+				Log.d("wa", wa + "");
+				settings.edit().putFloat("networth", w + 5000).commit();
+				settings.edit().putFloat("wallet", wa + 5000).commit();
+				settings.edit().putInt("level", l + 1).commit();
+			}
+			break;
+
+		case 2:
+			if (w > 225000) {
+				settings.edit().putFloat("networth", w + 5000).commit();
+				settings.edit().putFloat("wallet", wa + 5000).commit();
+				settings.edit().putInt("level", l + 1).commit();
+			}
+			break;
+		case 3:
+			if (w > 250000) {
+				settings.edit().putFloat("networth", w + 5000).commit();
+				settings.edit().putFloat("wallet", wa + 5000).commit();
+				settings.edit().putInt("level", l + 1).commit();
+			}
+			break;
+		case 4:
+			if (w > 275000) {
+				settings.edit().putFloat("networth", w + 5000).commit();
+				settings.edit().putFloat("wallet", wa + 5000).commit();
+				settings.edit().putInt("level", l + 1).commit();
+			}
+			break;
+		case 5:
+			if (w > 300000) {
+				settings.edit().putFloat("networth", w + 10000).commit();
+				settings.edit().putFloat("wallet", wa + 10000).commit();
+				settings.edit().putInt("level", l + 1).commit();
+			}
+			break;
+		case 6:
+			if (w > 350000) {
+				settings.edit().putFloat("networth", w + 10000).commit();
+				settings.edit().putFloat("wallet", wa + 10000).commit();
+				settings.edit().putInt("level", l + 1).commit();
+			}
+			break;
+
+		case 7:
+			if (w > 400000) {
+				settings.edit().putFloat("networth", w + 10000).commit();
+				settings.edit().putFloat("wallet", wa + 10000).commit();
+				settings.edit().putInt("level", l + 1).commit();
+			}
+			break;
+
+		case 8:
+			if (w > 450000) {
+				settings.edit().putFloat("networth", w + 10000).commit();
+				settings.edit().putFloat("wallet", wa + 10000).commit();
+				settings.edit().putInt("level", l + 1).commit();
+			}
+			break;
+
+		case 9:
+			if (w > 525000) {
+				settings.edit().putFloat("networth", w + 15000).commit();
+				settings.edit().putFloat("wallet", wa + 15000).commit();
+				settings.edit().putInt("level", l + 1).commit();
+			}
+			break;
+		}
 
 	}
 }

@@ -5,13 +5,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Random;
 
 import android.annotation.SuppressLint;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.os.storage.StorageManager;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -21,7 +19,6 @@ import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.SeekBar.OnSeekBarChangeListener;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.actionbarsherlock.app.SherlockFragment;
 import com.jjoe64.graphview.CustomLabelFormatter;
@@ -118,7 +115,7 @@ public class stockChart extends SherlockFragment {
         	cursor.moveToNext();
         	
         }
-        Toast.makeText(rootView.getContext(),i+" ", Toast.LENGTH_LONG).show();
+        
         if(i<=0)
         	return rootView;
         
